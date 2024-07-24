@@ -26,9 +26,16 @@ namespace Source.Scripts.ECS.Systems
         {
             ref var jumpData = ref Componenter.Get<JumpData>(entity);
             jumpData.CoolDownTimer -= Time.deltaTime;
-            if ((Input.GetKeyDown(jumpData.Key1) || Input.GetKeyDown(jumpData.Key2)) && jumpData.CoolDownTimer < 0)
+            
+            if ((Input.GetKey(jumpData.Key1) || Input.GetKey(jumpData.Key2)) && jumpData.CoolDownTimer < 0)
             {
                 ref var physicalBodyData = ref Componenter.Get<PhysicalBodyData>(entity);
+                var velocity = physicalBodyData.Rigidbody2D.velocity;
+                
+                if (velocity.x != 0) velocity.x = 0;
+                if (velocity.y != 0) velocity.y = 0;
+                physicalBodyData.Rigidbody2D.velocity = velocity;
+                
                 physicalBodyData.Rigidbody2D.velocity += jumpData.Power * jumpData.Direction;
                 jumpData.OnJump?.Invoke(entity, Componenter);
                 jumpData.CoolDownTimer = jumpData.CoolDownDelay;
@@ -37,10 +44,10 @@ namespace Source.Scripts.ECS.Systems
 
         private void OnKeyboardInputMoverUpdate(int entity)
         {
-            var input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            var input = Input.GetAxis("Horizontal");
             ref var keyboardInputMoverData = ref Componenter.Get<KeyboardPlatformInputMoverData>(entity);
 
-            if (input == Vector2.zero)
+            if (input == 0)
             {
                 if (keyboardInputMoverData.StopXWithoutInput && keyboardInputMoverData.UsePhysicalBody)
                 {
@@ -52,8 +59,6 @@ namespace Source.Scripts.ECS.Systems
                 return;
             }
 
-            var result = input.normalized;
-
             if (keyboardInputMoverData.UsePhysicalBody)
             {
                 ref var physicalBodyData = ref Componenter.Get<PhysicalBodyData>(entity);
@@ -61,7 +66,7 @@ namespace Source.Scripts.ECS.Systems
                 
                 if (keyboardInputMoverData.FullSpeed)
                 {
-                    currentVelocity.x = keyboardInputMoverData.Speed * result.x;
+                    currentVelocity.x = keyboardInputMoverData.Speed * input;
                     physicalBodyData.Rigidbody2D.velocity = currentVelocity;
 
                     if (Mathf.Abs(currentVelocity.x) > keyboardInputMoverData.Speed)
@@ -72,14 +77,14 @@ namespace Source.Scripts.ECS.Systems
                 }
                 else
                 {
-                    currentVelocity.x += keyboardInputMoverData.Speed * Time.deltaTime * result.x;
+                    currentVelocity.x += keyboardInputMoverData.Speed * Time.deltaTime * input;
                     physicalBodyData.Rigidbody2D.velocity = currentVelocity;
                 }
             }
             else
             {
                 ref var transformData = ref Componenter.Get<TransformData>(entity);
-                transformData.Value.Translate(keyboardInputMoverData.Speed * Time.deltaTime * result);
+                transformData.Value.Translate(keyboardInputMoverData.Speed * Time.deltaTime * new Vector2(input, 0));
             }
         }
     }

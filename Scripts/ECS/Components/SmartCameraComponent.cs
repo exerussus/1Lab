@@ -1,6 +1,5 @@
 ﻿
 using Source.Scripts.SignalSystem;
-using Source.SignalSystem;
 using UnityEngine;
 
 namespace Source.Scripts.ECS.Components

@@ -8,7 +8,7 @@ namespace Source.Scripts.ECS.Triggers
     [AddComponentMenu("1Lab/Triggers/Timer")]
     public class TimerTrigger : EcsComponent
     {
-        [SerializeField] private bool autoStart;
+        [SerializeField] private bool autoStart = true;
         [SerializeField] private float delay = 1f;
         [SerializeField] private bool isLoop;
 

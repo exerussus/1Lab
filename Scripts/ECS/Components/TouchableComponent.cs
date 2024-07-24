@@ -41,6 +41,15 @@ namespace Source.Scripts.ECS.Components
             if (other.TryGetComponent(out TouchableComponent touchable))
             {
                 if (!touchable.IsInitialized) return;
+
+                if (Componenter.Has<JumpData>(Entity))
+                {
+                    ref var jumpData = ref Componenter.Get<JumpData>(Entity);
+                    if (jumpData.ReloadOnTouch && jumpData.TouchTags.ContainsAny(touchable.Tags.Values))
+                    {
+                        jumpData.CoolDownTimer = -1;
+                    }
+                }
                 if (!targetTags.ContainsAny(touchable.Tags.Values)) return;
                 onTouch?.Invoke(Entity, touchable.Entity, Componenter);
                 if (singleUse) _isUsed = true;
@@ -54,6 +63,15 @@ namespace Source.Scripts.ECS.Components
             if (other.collider.TryGetComponent(out TouchableComponent touchable))
             {
                 if (!touchable.IsInitialized) return;
+
+                if (Componenter.Has<JumpData>(Entity))
+                {
+                    ref var jumpData = ref Componenter.Get<JumpData>(Entity);
+                    if (jumpData.ReloadOnTouch && jumpData.TouchTags.ContainsAny(touchable.Tags.Values))
+                    {
+                        jumpData.CoolDownTimer = -1;
+                    }
+                }
                 if (!targetTags.ContainsAny(touchable.Tags.Values)) return;
                 onTouch?.Invoke(Entity, touchable.Entity, Componenter);
                 if (singleUse) _isUsed = true;

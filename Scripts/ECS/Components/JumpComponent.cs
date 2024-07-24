@@ -14,6 +14,8 @@ namespace Source.Scripts.ECS.Components
         [SerializeField] private float power;
         [SerializeField] private Vector2 direction;
         [SerializeField] private float coolDown;
+        [SerializeField] private bool reloadOnTouch;
+        [SerializeField] private string[] touchTags;
         public UnityEvent<int, Componenter> onJump;
         
         public override void Initialize()
@@ -35,6 +37,8 @@ namespace Source.Scripts.ECS.Components
             jumpData.Key2 = key2;
             jumpData.OnJump = onJump;
             jumpData.CoolDownDelay = coolDown;
+            jumpData.ReloadOnTouch = reloadOnTouch;
+            jumpData.TouchTags = touchTags;
         }
 
         public void Stop()
@@ -52,5 +56,7 @@ namespace Source.Scripts.ECS.Components
         public UnityEvent<int, Componenter> OnJump;
         public float CoolDownDelay;
         public float CoolDownTimer;
+        public bool ReloadOnTouch;
+        public string[] TouchTags;
     }
 }
