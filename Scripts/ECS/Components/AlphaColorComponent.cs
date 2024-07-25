@@ -8,15 +8,16 @@ namespace Source.Scripts.ECS.Components
     [AddComponentMenu("1Lab/Components/AlphaColor"), RequireComponent(typeof(VisualComponent))]
     public class AlphaColorComponent : EcsComponent
     {
-        [SerializeField] private bool visable = true;
-        [SerializeField] private float speed = 10;
+        [SerializeField] public bool makeVisable = false;
+        [SerializeField] public float speed = 10;
         public UnityEvent<int, Componenter> onSuccess;
         private const float SpeedMultiply = 0.001f;
-        
+
         public void Run()
         {
+            makeVisable = !makeVisable;
             ref var alphaColorProcessData = ref Componenter.AddOrGet<AlphaColorProcessData>(Entity);
-            alphaColorProcessData.Visable = visable;
+            alphaColorProcessData.AlphaColor = this;
             alphaColorProcessData.Speed = speed * SpeedMultiply;
             alphaColorProcessData.OnSuccess = onSuccess;
         }
@@ -33,7 +34,7 @@ namespace Source.Scripts.ECS.Components
             if (spriteRenderer != null)
             {
                 var color = spriteRenderer.color;
-                color.a = visable ? 1 : 0;
+                color.a = makeVisable ? 1 : 0;
                 spriteRenderer.color = color;
             }
         }
@@ -41,7 +42,7 @@ namespace Source.Scripts.ECS.Components
 
     public struct AlphaColorProcessData : IEcsComponent
     {
-        public bool Visable;
+        public AlphaColorComponent AlphaColor;
         public float Speed;
         public UnityEvent<int, Componenter> OnSuccess;
     }

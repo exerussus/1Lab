@@ -10,11 +10,13 @@ namespace Source.Scripts.ECS.Components
     [RequireComponent(typeof(Collider2D), typeof(TagsComponent))]
     public class TouchableComponent : EcsComponent
     {
+        [SerializeField, HideInInspector] public Collider2D touchableCollider2D;
         [SerializeField, HideInInspector] public TagsComponent tags;
         [SerializeField] public string[] targetTags;
         [SerializeField] public bool singleUse;
         private bool _isUsed;
         public UnityEvent<int, int, Componenter> onTouch;
+        public UnityEvent<int, int, Componenter> onExit;
         public bool IsInitialized { get; private set; } = false;
 
         public TagsComponent Tags => tags;
@@ -78,10 +80,42 @@ namespace Source.Scripts.ECS.Components
             }
         }
 
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (!IsInitialized) return;
+            if (singleUse && _isUsed) return;
+            if (other.TryGetComponent(out TouchableComponent touchable))
+            {
+                if (!touchable.IsInitialized) return;
+                if (!targetTags.ContainsAny(touchable.Tags.Values)) return;
+                onExit?.Invoke(Entity, touchable.Entity, Componenter);
+                if (singleUse) _isUsed = true;
+            }
+        }
+
+        private void OnCollisionExit2D(Collision2D other)
+        {
+            if (!IsInitialized) return;
+            if (singleUse && _isUsed) return;
+            if (other.collider.TryGetComponent(out TouchableComponent touchable))
+            {
+                if (!touchable.IsInitialized) return;
+                if (!targetTags.ContainsAny(touchable.Tags.Values)) return;
+                onExit?.Invoke(Entity, touchable.Entity, Componenter);
+                if (singleUse) _isUsed = true;
+            }
+        }
+
+        public void SwitchColliderActivation()
+        {
+            touchableCollider2D.enabled = !touchableCollider2D.enabled;
+        }
+        
         protected override void OnValidate()
         {
             base.OnValidate();
             if (tags == null) tags = GetComponent<TagsComponent>();
+            if (touchableCollider2D == null) touchableCollider2D = GetComponent<Collider2D>();
         }
     }
 

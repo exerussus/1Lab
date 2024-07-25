@@ -21,13 +21,14 @@ namespace Source.Scripts.ECS.Systems
                 ref var visualData = ref Componenter.Get<VisualData>(entity);
                 var color = visualData.SpriteRenderer.color;
 
-                if (alphaColorData.Visable)
+                if (!alphaColorData.AlphaColor.makeVisable)
                 {
                     color.a -= alphaColorData.Speed;
                     visualData.SpriteRenderer.color = color;
                     if (visualData.SpriteRenderer.color.a <= 0)
                     {
                         alphaColorData.OnSuccess?.Invoke(entity, Componenter);
+                        alphaColorData.AlphaColor.makeVisable = false;
                         Componenter.Del<AlphaColorProcessData>(entity);
                     }
                 }
@@ -38,6 +39,7 @@ namespace Source.Scripts.ECS.Systems
                     if (visualData.SpriteRenderer.color.a >= 1)
                     {
                         alphaColorData.OnSuccess?.Invoke(entity, Componenter);
+                        alphaColorData.AlphaColor.makeVisable = true;
                         Componenter.Del<AlphaColorProcessData>(entity);
                     }
                 }
