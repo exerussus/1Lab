@@ -1,8 +1,8 @@
 ﻿
-using Source.Scripts.SignalSystem;
+using _1Lab.Scripts.SignalSystem;
 using UnityEngine;
 
-namespace Source.Scripts.ECS.Effects
+namespace _1Lab.Scripts.ECS.Effects
 {
     public class EcsEffect : MonoSignalListener
     {

@@ -1,7 +1,7 @@
-﻿using Source.Scripts.Managers.ProjectSettings;
+﻿using _1Lab.Scripts.Managers.ProjectSettings;
 using UnityEngine;
 
-namespace Source.Scripts.Extensions
+namespace _1Lab.Scripts.Extensions
 {
     public static class GameObjectExtensions
     {

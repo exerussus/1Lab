@@ -1,7 +1,7 @@
-﻿using OneLab.Scripts.ECS.Core.Interfaces;
+﻿using _1Lab.Scripts.ECS.Core.Interfaces;
 using UnityEngine;
 
-namespace OneLab.Scripts.ECS.Core
+namespace _1Lab.Scripts.ECS.Core
 {
     public struct TransformData : IEcsData<Transform>
     {

@@ -1,9 +1,9 @@
 using Leopotam.EcsLite;
-using OneLab.Scripts.ECS.Core;
-using Source.Scripts.Data.GamesConfigurations;
+using _1Lab.Scripts.ECS.Core;
+using _1Lab.Scripts.Data.GamesConfigurations;
 using UnityEngine;
 
-namespace OneLab.Scripts.ECS
+namespace _1Lab.Scripts.ECS
 {
     public abstract class OneLabStarter : BootstrapComponent
     {

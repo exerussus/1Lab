@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using OneLab.Scripts.ECS.Core;
+using _1Lab.Scripts.ECS.Core;
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace Source.Scripts.Extensions
+namespace _1Lab.Scripts.Extensions
 {
     public static class EcsComponentsExtensions
     {

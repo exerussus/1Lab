@@ -1,8 +1,8 @@
-﻿using OneLab.Scripts.ECS.Core;
-using Source.Scripts.SignalSystem;
+﻿
+using _1Lab.Scripts.SignalSystem;
 using UnityEngine;
 
-namespace OneLab.Scripts.ECS.Core
+namespace _1Lab.Scripts.ECS.Core
 {
     [RequireComponent(typeof(EcsMonoBehavior))]
     public abstract class EcsComponent : MonoSignalListener, IEcsComponentInitialize, IEcsComponentDestroy

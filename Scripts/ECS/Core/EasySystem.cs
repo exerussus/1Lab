@@ -1,11 +1,11 @@
 ﻿
 using System;
-using Source.Scripts.Data.GamesConfigurations;
-using Source.SignalSystem;
+using _1Lab.Scripts.Data.GamesConfigurations;
+using _1Lab.SignalSystem;
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace OneLab.Scripts.ECS.Core
+namespace _1Lab.Scripts.ECS.Core
 {
     public abstract class EasySystem : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem
     {

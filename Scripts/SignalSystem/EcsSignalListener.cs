@@ -1,8 +1,7 @@
-﻿using OneLab.Scripts.ECS.Core;
-using Source.SignalSystem;
+﻿using _1Lab.Scripts.ECS.Core;
 using Leopotam.EcsLite;
 
-namespace Source.Scripts.SignalSystem
+namespace _1Lab.Scripts.SignalSystem
 {
     public abstract class EcsSignalListener<T1> : EasySystem 
         where T1 : struct

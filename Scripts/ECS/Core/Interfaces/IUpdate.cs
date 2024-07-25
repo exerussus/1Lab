@@ -1,4 +1,4 @@
-﻿namespace OneLab.Scripts.ECS.Core.Interfaces
+﻿namespace _1Lab.Scripts.ECS.Core.Interfaces
 {
     public interface IEasyUpdate
     {

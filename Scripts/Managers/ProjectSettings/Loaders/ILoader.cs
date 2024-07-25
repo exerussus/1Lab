@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Object = UnityEngine.Object;
 
-namespace Source.Scripts.Managers.ProjectSettings
+namespace _1Lab.Scripts.Managers.ProjectSettings
 {
     public interface ILoader
     {

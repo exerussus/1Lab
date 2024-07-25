@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace Source.Scripts.Data.GamesConfigurations
+namespace _1Lab.Scripts.Data.GamesConfigurations
 {
     [Serializable]
     public class Profile

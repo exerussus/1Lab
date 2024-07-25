@@ -1,7 +1,7 @@
 ﻿
-using OneLab.Scripts.ECS.Core;
+using _1Lab.Scripts.ECS.Core;
 
-namespace Source.Scripts.SignalSystem
+namespace _1Lab.Scripts.SignalSystem
 {
     /// <summary>
     /// MonoBehaviourView проинициализировался.

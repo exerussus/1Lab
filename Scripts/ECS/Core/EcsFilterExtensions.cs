@@ -1,9 +1,8 @@
 ﻿using System;
 using Leopotam.EcsLite;
-using OneLab.Scripts.ECS.Core;
 using UnityEngine;
 
-namespace OneLab.Scripts.ECS.Core
+namespace _1Lab.Scripts.ECS.Core
 {
     public static  class EcsFilterExtensions
     {

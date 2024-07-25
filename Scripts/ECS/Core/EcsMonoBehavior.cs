@@ -1,13 +1,12 @@
 ﻿
 using System;
-using OneLab.Scripts.ECS.Core.Interfaces;
-using Source.Scripts.Data.GamesConfigurations;
-using OneLab.Scripts.ECS.Core;
-using Source.Scripts.Managers.ProjectSettings;
-using Source.Scripts.SignalSystem;
+using _1Lab.Scripts.ECS.Core.Interfaces;
+using _1Lab.Scripts.Data.GamesConfigurations;
+using _1Lab.Scripts.Managers.ProjectSettings;
+using _1Lab.Scripts.SignalSystem;
 using UnityEngine;
 
-namespace OneLab.Scripts.ECS.Core
+namespace _1Lab.Scripts.ECS.Core
 {
     public sealed class EcsMonoBehavior : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-namespace Source.Scripts.ECS.Components.Clickables
+namespace _1Lab.Scripts.ECS.Components.Clickables
 {
     [AddComponentMenu("1Lab/Components/Flickable")]
     [RequireComponent(typeof(Rigidbody2D), typeof(PhysicalBodyComponent))]

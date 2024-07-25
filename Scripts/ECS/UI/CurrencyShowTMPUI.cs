@@ -1,11 +1,11 @@
 ﻿
 using System;
-using Source.Scripts.Data.GamesConfigurations;
-using Source.Scripts.SignalSystem;
+using _1Lab.Scripts.Data.GamesConfigurations;
+using _1Lab.Scripts.SignalSystem;
 using TMPro;
 using UnityEngine;
 
-namespace Plugins._1Lab.Scripts.ECS.UI
+namespace _1Lab.Scripts.ECS.UI
 {
     [AddComponentMenu("1Lab/UI/CurrencyShowTMP")]
     public class CurrencyShowTMPUI : MonoSignalListener

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using UnityEditor;
 using Object = UnityEngine.Object;
 
-namespace Source.Scripts.Managers.ProjectSettings
+namespace _1Lab.Scripts.Managers.ProjectSettings
 {
     public class AssetLoader
     {

@@ -1,10 +1,10 @@
 ﻿using System;
 using Leopotam.EcsLite;
-using Source.Scripts.SignalSystem;
+using _1Lab.Scripts.SignalSystem;
 using UnityEngine.Scripting;
 using Object = UnityEngine.Object;
 
-namespace OneLab.Scripts.ECS.Core
+namespace _1Lab.Scripts.ECS.Core
 {
     [Preserve]
     public class DestroySystem : EcsSignalListener<CommandKillEntitySignal>

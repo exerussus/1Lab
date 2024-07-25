@@ -1,8 +1,8 @@
-﻿using OneLab.Scripts.ECS.Core;
-using Source.Scripts.ECS.Components;
+﻿using _1Lab.Scripts.ECS.Core;
+using _1Lab.Scripts.ECS.Components;
 using UnityEngine;
 
-namespace Source.Scripts.ECS.Effects
+namespace _1Lab.Scripts.ECS.Effects
 {
     [AddComponentMenu("1Lab/Effects/CameraEffect")]
     public class CameraEffect : EcsEffect

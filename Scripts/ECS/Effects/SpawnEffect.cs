@@ -1,9 +1,9 @@
-﻿using OneLab.Scripts.ECS.Core;
-using Source.Scripts.Extensions;
+﻿using _1Lab.Scripts.ECS.Core;
+using _1Lab.Scripts.Extensions;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Source.Scripts.ECS.Effects
+namespace _1Lab.Scripts.ECS.Effects
 {
     [AddComponentMenu("1Lab/Effects/Spawn")]
     public class SpawnEffect : EcsEffect

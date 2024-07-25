@@ -1,10 +1,9 @@
-﻿
-using OneLab.Scripts.ECS.Core;
-using Leopotam.EcsLite;
-using Source.Scripts.ECS.Triggers;
+﻿using Leopotam.EcsLite;
+using _1Lab.Scripts.ECS.Core;
+using _1Lab.Scripts.ECS.Triggers;
 using UnityEngine;
 
-namespace Source.Scripts.ECS.Systems
+namespace _1Lab.Scripts.ECS.Systems
 {
     public class TriggerSystem : EasySystem
     {

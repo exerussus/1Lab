@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Source.Scripts.ECS.Effects
+namespace _1Lab.Scripts.ECS.Effects
 {
     [AddComponentMenu("1Lab/Effects/SceneLoader")]
     public class SceneLoaderEffect : EcsEffect

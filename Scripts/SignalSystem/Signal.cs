@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using OneLab.Scripts.ECS.Core;
+using _1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
-namespace Source.SignalSystem
+namespace _1Lab.SignalSystem
 {
     public class Signal : IGameShareItem
     {

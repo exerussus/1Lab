@@ -1,10 +1,10 @@
 ﻿
 using System;
-using Source.Scripts.Data.GamesConfigurations;
+using _1Lab.Scripts.Data.GamesConfigurations;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Source.Scripts.ECS.Effects
+namespace _1Lab.Scripts.ECS.Effects
 {
     [AddComponentMenu("1Lab/Effects/Buy")]
     public class BuyEffect : EcsEffect

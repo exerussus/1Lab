@@ -1,7 +1,7 @@
 ﻿
-using Source.Scripts.Managers.ProjectSettings.Loaders;
+using _1Lab.Scripts.Managers.ProjectSettings.Loaders;
 
-namespace Source.Scripts.Managers.ProjectSettings
+namespace _1Lab.Scripts.Managers.ProjectSettings
 {
     public static class Project
     {

@@ -1,10 +1,10 @@
-﻿using Source.Scripts.Data.GamesConfigurations;
-using Source.Scripts.Managers.ProjectSettings;
-using Source.SignalSystem;
+﻿using _1Lab.Scripts.Data.GamesConfigurations;
+using _1Lab.Scripts.Managers.ProjectSettings;
+using _1Lab.SignalSystem;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace Source.Scripts.SignalSystem
+namespace _1Lab.Scripts.SignalSystem
 {
     public abstract class MonoSignalListener : MonoBehaviour
     {

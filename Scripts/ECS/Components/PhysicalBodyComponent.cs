@@ -1,9 +1,9 @@
 ﻿
-using OneLab.Scripts.ECS.Core.Interfaces;
-using OneLab.Scripts.ECS.Core;
+using _1Lab.Scripts.ECS.Core.Interfaces;
+using _1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
-namespace Source.Scripts.ECS.Components
+namespace _1Lab.Scripts.ECS.Components
 {
     [AddComponentMenu("1Lab/Components/PhysicalBody")]
     [RequireComponent(typeof(Rigidbody2D))]

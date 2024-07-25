@@ -1,8 +1,8 @@
 ﻿
-using Source.Scripts.SignalSystem;
+using _1Lab.Scripts.SignalSystem;
 using UnityEngine;
 
-namespace Source.Scripts.ECS.Components
+namespace _1Lab.Scripts.ECS.Components
 {
     [AddComponentMenu("1Lab/Components/SmartCamera")]
     public class SmartCameraComponent : MonoSignalListener<CommandCameraFollowTransformSignal, OnEcsMonoBehaviorStartDestroySignal>

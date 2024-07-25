@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Source.Scripts.Managers.ProjectSettings.Loaders
+namespace _1Lab.Scripts.Managers.ProjectSettings.Loaders
 {
     public class ResourceLoader : ILoader
     {

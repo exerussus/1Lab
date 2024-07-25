@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Source.Scripts.ECS.Systems;
 using Leopotam.EcsLite;
-using Source.Scripts.Data.GamesConfigurations;
+using _1Lab.Scripts.ECS.Systems;
+using _1Lab.Scripts.Data.GamesConfigurations;
+using _1Lab.SignalSystem;
 using UnityEngine;
 
-namespace OneLab.Scripts.ECS.Core
+namespace _1Lab.Scripts.ECS.Core
 {
     public class OneLab : OneLabStarter
     {
@@ -17,6 +18,7 @@ namespace OneLab.Scripts.ECS.Core
         private static GameShare _gameShare;
         public static Componenter Componenter => Instance._componenter;
         public static EcsWorld World => Instance._world;
+        public static Signal Signal => Instance._configuration.Signal;
         private event Action OnDestroyEvent;
         private OneLabConfiguration _configuration;
         public static OneLabConfiguration Configuration => Instance._configuration;
@@ -65,6 +67,7 @@ namespace OneLab.Scripts.ECS.Core
             fixedUpdateSystems.Add(new FlipSystem());
             fixedUpdateSystems.Add(new SpeedLimitSystem());
             fixedUpdateSystems.Add(new AlphaColorSystem());
+            fixedUpdateSystems.Add(new VfxSystem());
             ExtraSystemsMethods.FixedUpdateExecute(fixedUpdateSystems);
         }
 

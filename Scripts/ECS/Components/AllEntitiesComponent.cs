@@ -1,9 +1,9 @@
 ﻿using Leopotam.EcsLite;
-using OneLab.Scripts.ECS.Core;
+using _1Lab.Scripts.ECS.Core;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Source.Scripts.ECS.Components
+namespace _1Lab.Scripts.ECS.Components
 {
     [AddComponentMenu("1Lab/Components/AllEntities")]
     public class AllEntitiesComponent : EcsComponent

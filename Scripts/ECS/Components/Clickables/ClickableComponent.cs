@@ -1,8 +1,8 @@
-﻿using OneLab.Scripts.ECS.Core;
+﻿using _1Lab.Scripts.ECS.Core;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Source.Scripts.ECS.Components.Clickables
+namespace _1Lab.Scripts.ECS.Components.Clickables
 {
     [AddComponentMenu("1Lab/Components/Clickable")]
     [DisallowMultipleComponent, RequireComponent(typeof(Collider2D))]

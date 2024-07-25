@@ -1,9 +1,9 @@
 ﻿using System;
-using OneLab.Scripts.ECS.Core;
-using Source.SignalSystem;
+using _1Lab.Scripts.ECS.Core;
+using _1Lab.SignalSystem;
 using UnityEngine;
 
-namespace Source.Scripts.Data.GamesConfigurations
+namespace _1Lab.Scripts.Data.GamesConfigurations
 {
     [CreateAssetMenu(fileName = "OneLabConfiguration", menuName = "Data/OneLabConfiguration")]
     public class OneLabConfiguration : ScriptableObject, IGameShareItem

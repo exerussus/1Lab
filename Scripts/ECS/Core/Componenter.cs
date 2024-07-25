@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using _1Lab.Scripts.ECS.Core.Interfaces;
 using Leopotam.EcsLite;
-using OneLab.Scripts.ECS.Core.Interfaces;
 
-namespace OneLab.Scripts.ECS.Core
+namespace _1Lab.Scripts.ECS.Core
 {
     public class Componenter : IGameShareItem
     {

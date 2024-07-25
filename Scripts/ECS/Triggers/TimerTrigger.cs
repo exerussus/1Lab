@@ -1,9 +1,9 @@
-﻿using OneLab.Scripts.ECS.Core.Interfaces;
-using OneLab.Scripts.ECS.Core;
+﻿using _1Lab.Scripts.ECS.Core.Interfaces;
+using _1Lab.Scripts.ECS.Core;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Source.Scripts.ECS.Triggers
+namespace _1Lab.Scripts.ECS.Triggers
 {
     [AddComponentMenu("1Lab/Triggers/Timer")]
     public class TimerTrigger : EcsComponent
@@ -23,7 +23,7 @@ namespace Source.Scripts.ECS.Triggers
         {
             Stop();
         }
-
+        
         public void Run()
         {
             ref var timerTriggerData = ref Componenter.AddOrGet<TimerTriggerData>(Entity);

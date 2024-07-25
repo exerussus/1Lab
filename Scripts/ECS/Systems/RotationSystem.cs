@@ -1,10 +1,10 @@
-﻿using OneLab.Scripts.ECS.Core;
-using Source.Scripts.ECS.Components;
-using Leopotam.EcsLite;
-using Source.Scripts.Extensions;
+﻿using Leopotam.EcsLite;
+using _1Lab.Scripts.ECS.Core;
+using _1Lab.Scripts.ECS.Components;
+using _1Lab.Scripts.Extensions;
 using UnityEngine;
 
-namespace Source.Scripts.ECS.Systems
+namespace _1Lab.Scripts.ECS.Systems
 {
     public class RotationSystem : EasySystem
     {

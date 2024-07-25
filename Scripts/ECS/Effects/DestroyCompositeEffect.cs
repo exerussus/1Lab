@@ -1,7 +1,7 @@
-﻿using OneLab.Scripts.ECS.Core;
-using Source.Scripts.ECS.Components;
+﻿using _1Lab.Scripts.ECS.Core;
+using _1Lab.Scripts.ECS.Components;
 
-namespace Source.Scripts.ECS.Effects
+namespace _1Lab.Scripts.ECS.Effects
 {
     public class DestroyCompositeEffect : EcsEffect
     {

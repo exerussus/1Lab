@@ -1,12 +1,12 @@
 ﻿using System.Linq;
-using OneLab.Scripts.ECS.Core;
-using Source.Scripts.ECS.Components;
-using Source.Scripts.ECS.Effects;
-using Source.Scripts.Extensions;
+using _1Lab.Scripts.ECS.Core;
+using _1Lab.Scripts.ECS.Components;
+using _1Lab.Scripts.ECS.Effects;
+using _1Lab.Scripts.Extensions;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Plugins._1Lab.Scripts.ECS.Filters
+namespace _1Lab.Scripts.ECS.Filters
 {
     [AddComponentMenu("1Lab/Filter/TagFilter")]
     public class TagFilter : EcsEffect
