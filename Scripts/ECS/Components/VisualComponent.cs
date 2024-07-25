@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Source.Scripts.ECS.Components
 {
-    [AddComponentMenu("1Lab/Components/Visual")]
+    [AddComponentMenu("1Lab/Components/Visual"), RequireComponent(typeof(SpriteRenderer))]
     public class VisualComponent : EcsComponent
     {
         [SerializeField] private SpriteRenderer spriteRenderer;
@@ -19,7 +19,12 @@ namespace Source.Scripts.ECS.Components
         {
             Componenter.Del<VisualData>(Entity);
         }
-        
+
+        protected override void OnValidate()
+        {
+            base.OnValidate();
+            if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
+        }
     }
 
     public struct VisualData : IEcsComponent

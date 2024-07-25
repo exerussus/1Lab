@@ -64,6 +64,7 @@ namespace OneLab.Scripts.ECS.Core
             fixedUpdateSystems.Add(new MoveSystem());
             fixedUpdateSystems.Add(new FlipSystem());
             fixedUpdateSystems.Add(new SpeedLimitSystem());
+            fixedUpdateSystems.Add(new AlphaColorSystem());
             ExtraSystemsMethods.FixedUpdateExecute(fixedUpdateSystems);
         }
 
