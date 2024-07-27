@@ -69,6 +69,7 @@ namespace _1Lab.Scripts.ECS.Core
             fixedUpdateSystems.Add(new AlphaColorSystem());
             fixedUpdateSystems.Add(new VfxSystem());
             fixedUpdateSystems.Add(new CharacterAnimatorSystem());
+            fixedUpdateSystems.Add(new GlobalTriggerSystem());
             ExtraSystemsMethods.FixedUpdateExecute(fixedUpdateSystems);
         }
 
