@@ -1,6 +1,6 @@
 ﻿using Leopotam.EcsLite;
 
-namespace OneLab.Scripts.ECS.Core
+namespace _1Lab.Scripts.ECS.Core
 {
     public static class ExtraSystemsMethods
     {
