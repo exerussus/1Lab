@@ -35,7 +35,7 @@ namespace _1Lab.Scripts.ECS.Components
             ref var characterAnimatorData = ref Componenter.AddOrGet<CharacterAnimatorData>(Entity);
             characterAnimatorData.Value = this;
             characterAnimatorData.CurrentSprite = 0;
-            characterAnimatorData.CurrentPack = characterAnimatorData.Value.animations[0];
+            characterAnimatorData.CurrentPack = characterAnimatorData.Value.idle;
             characterAnimatorData.IsOneShot = false;
         }
 
