@@ -68,6 +68,7 @@ namespace _1Lab.Scripts.ECS.Core
             fixedUpdateSystems.Add(new SpeedLimitSystem());
             fixedUpdateSystems.Add(new AlphaColorSystem());
             fixedUpdateSystems.Add(new VfxSystem());
+            fixedUpdateSystems.Add(new CharacterAnimatorSystem());
             ExtraSystemsMethods.FixedUpdateExecute(fixedUpdateSystems);
         }
 
