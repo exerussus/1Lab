@@ -1,0 +1,44 @@
+﻿
+using _1Lab.Scripts.ECS.Core;
+using _1Lab.Scripts.ECS.Core.Interfaces;
+using UnityEngine;
+
+namespace _1Lab.Scripts.ECS.Components
+{
+    [AddComponentMenu("1Lab/Components/KeyColliderSwitcher")]
+    public class KeyColliderSwitcherComponent : EcsComponent
+    {
+        public bool autoRun = true;
+        public KeyCode key1 = KeyCode.S;
+        public KeyCode key2 = KeyCode.DownArrow;
+        public Collider2D _collider2D;
+        public bool deactivateOnExist = true;
+
+        public override void Initialize()
+        {
+            if (autoRun) Run();
+        }
+
+        public void Run()
+        {
+            ref var keyColliderSwitcherData = ref Componenter.AddOrGet<KeyColliderSwitcherData>(Entity);
+            keyColliderSwitcherData.Value = this;
+        }
+
+        public void Stop()
+        {
+            Componenter.Del<KeyColliderSwitcherData>(Entity);
+        }
+
+        protected override void OnValidate()
+        {
+            base.OnValidate();
+            if (_collider2D == null) _collider2D = GetComponent<Collider2D>();
+        }
+    }
+
+    public struct KeyColliderSwitcherData : IEcsComponent
+    {
+        public KeyColliderSwitcherComponent Value;
+    }
+}

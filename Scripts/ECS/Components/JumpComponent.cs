@@ -19,6 +19,7 @@ namespace _1Lab.Scripts.ECS.Components
         [SerializeField] private bool reloadOnTouch;
         [SerializeField] private string[] touchTags;
         public UnityEvent<int, Componenter> onJump;
+        private const float MaxReloadOnTouch = 0.2f;
         
         public override void Initialize()
         {
@@ -75,7 +76,7 @@ namespace _1Lab.Scripts.ECS.Components
                 if (Componenter.Has<JumpData>(Entity))
                 {
                     ref var jumpData = ref Componenter.Get<JumpData>(Entity);
-                    if (jumpData is { ReloadOnTouch: true, CoolDownTimer: > 0.1f }) jumpData.CoolDownTimer = 0.1f;
+                    if (jumpData is { ReloadOnTouch: true, CoolDownTimer: > MaxReloadOnTouch }) jumpData.CoolDownTimer = MaxReloadOnTouch;
                 }
             }
         }

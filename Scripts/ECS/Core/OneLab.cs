@@ -70,6 +70,7 @@ namespace _1Lab.Scripts.ECS.Core
             fixedUpdateSystems.Add(new VfxSystem());
             fixedUpdateSystems.Add(new CharacterAnimatorSystem());
             fixedUpdateSystems.Add(new GlobalTriggerSystem());
+            fixedUpdateSystems.Add(new KeyColliderSwitcherSystem());
             ExtraSystemsMethods.FixedUpdateExecute(fixedUpdateSystems);
         }
 

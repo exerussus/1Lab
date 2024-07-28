@@ -12,7 +12,6 @@ namespace _1Lab.Scripts.ECS.Components
         [SerializeField] private bool fullSpeed;
         [SerializeField] private bool usePhysicalBody;
         [SerializeField] private bool stopXWithoutInput;
-        [SerializeField] private Collider2D characterCollider2D;
         
         public override void Initialize()
         {
@@ -37,7 +36,6 @@ namespace _1Lab.Scripts.ECS.Components
             keyboardInputMoverData.UsePhysicalBody = usePhysicalBody;
             keyboardInputMoverData.FullSpeed = fullSpeed;
             keyboardInputMoverData.StopXWithoutInput = stopXWithoutInput;
-            keyboardInputMoverData.CharacterCollider2D = characterCollider2D;
         }
 
         public void Stop()

@@ -45,10 +45,7 @@ namespace _1Lab.Scripts.ECS.Systems
         private void OnKeyboardInputMoverUpdate(int entity)
         {
             var inputX = Input.GetAxis("Horizontal");
-            var inputY = Input.GetAxis("Vertical");
             ref var keyboardInputMoverData = ref Componenter.Get<KeyboardPlatformInputMoverData>(entity);
-
-            keyboardInputMoverData.CharacterCollider2D.isTrigger = inputY < 0;
             
             if (inputX == 0)
             {
