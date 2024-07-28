@@ -8,15 +8,116 @@ namespace _1Lab.Scripts.ECS.Systems
     public class CharacterAnimatorSystem : EasySystem
     {
         public EcsFilter _characterAnimatorFilter;
+        public EcsFilter _characterAnimatorExpendedFilter;
 
         protected override void Initialize()
         {
             _characterAnimatorFilter = Componenter.Filter<CharacterAnimatorData>().End();
+            _characterAnimatorExpendedFilter = Componenter.Filter<CharacterAnimatorExpendedData>().End();
         }
 
         protected override void Update()
         {
             _characterAnimatorFilter.Foreach(OnCharacterAnimatorUpdate);
+            _characterAnimatorExpendedFilter.Foreach(OnCharacterAnimatorExpendedUpdate);
+        }
+
+        private void OnCharacterAnimatorExpendedUpdate(int entity)
+        {
+            ref var characterAnimatorData = ref Componenter.Get<CharacterAnimatorExpendedData>(entity);
+            
+            var input = Input.GetAxis("Horizontal");
+            if (input != 0) characterAnimatorData.Value.spriteRenderer.flipX = input < 0;
+
+            if (characterAnimatorData.Value.isTouchingCollider)
+            {
+                if (characterAnimatorData.Value.groundCollider2D.isTrigger)
+                {
+                    characterAnimatorData.Value.isFalling = true;
+                    characterAnimatorData.Value.isTouchingCollider = false;
+                }
+            }
+            
+            if (characterAnimatorData.Value.isFalling)
+            {
+                if (characterAnimatorData.CurrentPack != characterAnimatorData.Value.fall)
+                {
+                    characterAnimatorData.FrameRemaining = characterAnimatorData.Value.fall.frameDelay;
+                    characterAnimatorData.CurrentSprite = 0;
+                    characterAnimatorData.CurrentPack = characterAnimatorData.Value.fall;
+                    characterAnimatorData.Value.spriteRenderer.sprite = characterAnimatorData.Value.fall.sprites[characterAnimatorData.CurrentSprite];
+                }
+                return;
+            }
+            
+            if (characterAnimatorData.IsOneShot)
+            {
+                if (characterAnimatorData.FrameRemaining > 0)
+                {
+                    characterAnimatorData.FrameRemaining--;
+                    return;
+                }
+                
+                characterAnimatorData.FrameRemaining = characterAnimatorData.CurrentPack.frameDelay;
+                characterAnimatorData.CurrentSprite++;
+                if (characterAnimatorData.CurrentSprite >= characterAnimatorData.CurrentPack.sprites.Length)
+                {
+                    characterAnimatorData.IsOneShot = false;
+                }
+                else
+                {
+                    characterAnimatorData.Value.spriteRenderer.sprite = characterAnimatorData.CurrentPack.sprites[characterAnimatorData.CurrentSprite];
+                    return; 
+                }
+            }
+            
+            if (input != 0)
+            {
+                characterAnimatorData.Value.spriteRenderer.flipX = input < 0;
+                if (characterAnimatorData.CurrentPack != characterAnimatorData.Value.run)
+                {
+                    characterAnimatorData.CurrentPack = characterAnimatorData.Value.run;
+                    characterAnimatorData.FrameRemaining = characterAnimatorData.CurrentPack.frameDelay;
+                    characterAnimatorData.CurrentSprite = 0;
+                    characterAnimatorData.Value.spriteRenderer.sprite = characterAnimatorData.CurrentPack.sprites[characterAnimatorData.CurrentSprite];
+                }
+                else
+                {
+                    if (characterAnimatorData.FrameRemaining > 0)
+                    {
+                        characterAnimatorData.FrameRemaining--;
+                        return;
+                    }
+                        
+                    characterAnimatorData.FrameRemaining = characterAnimatorData.CurrentPack.frameDelay;
+                    characterAnimatorData.CurrentSprite++;
+                    if (characterAnimatorData.CurrentSprite >= characterAnimatorData.CurrentPack.sprites.Length) characterAnimatorData.CurrentSprite = 0;
+                    characterAnimatorData.Value.spriteRenderer.sprite = characterAnimatorData.CurrentPack.sprites[characterAnimatorData.CurrentSprite];
+                }
+                    
+                return;
+            }
+
+            if (characterAnimatorData.CurrentPack != characterAnimatorData.Value.idle)
+            {
+                characterAnimatorData.CurrentPack = characterAnimatorData.Value.idle;
+                characterAnimatorData.FrameRemaining = characterAnimatorData.CurrentPack.frameDelay;
+                characterAnimatorData.CurrentSprite = 0;
+                characterAnimatorData.Value.spriteRenderer.sprite = characterAnimatorData.CurrentPack.sprites[characterAnimatorData.CurrentSprite];
+            }
+            else
+            {
+                if (characterAnimatorData.FrameRemaining > 0)
+                {
+                    characterAnimatorData.FrameRemaining--;
+                    return;
+                }
+
+                characterAnimatorData.FrameRemaining = characterAnimatorData.CurrentPack.frameDelay;
+                characterAnimatorData.CurrentSprite++;
+                if (characterAnimatorData.CurrentSprite >= characterAnimatorData.CurrentPack.sprites.Length) characterAnimatorData.CurrentSprite = 0;
+                characterAnimatorData.Value.spriteRenderer.sprite = characterAnimatorData.CurrentPack.sprites[characterAnimatorData.CurrentSprite];
+            }
         }
 
         private void OnCharacterAnimatorUpdate(int entity)

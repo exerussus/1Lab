@@ -2,7 +2,6 @@
 using _1Lab.Scripts.ECS.Core;
 using _1Lab.Scripts.ECS.Core.Interfaces;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _1Lab.Scripts.ECS.Components
 {
@@ -11,18 +10,24 @@ namespace _1Lab.Scripts.ECS.Components
     {
         public bool autoRun = true;
         public SpriteRenderer spriteRenderer;
-        [FormerlySerializedAs("idlePack")] public SpritePack idle;
-        [FormerlySerializedAs("spritePacks")] public SpritePack[] animations;
+        public SpritePack idle;
+        public SpritePack fall;
+        public SpritePack jump;
+        public SpritePack run;
+        public bool isFalling;
+        public Collider2D groundCollider2D;
+        public bool isTouchingCollider;
+        public string[] tags;
 
         public override void Initialize()
         {
             if (autoRun) Run();
         }
 
-        public void InvokeOneShot(int packIndex)
+        public void PlayJump()
         {
-            var spritePack = animations[packIndex];
-            ref var characterAnimatorData = ref Componenter.AddOrGet<CharacterAnimatorData>(Entity);
+            var spritePack = jump;
+            ref var characterAnimatorData = ref Componenter.AddOrGet<CharacterAnimatorExpendedData>(Entity);
             characterAnimatorData.CurrentSprite = 0;
             characterAnimatorData.CurrentPack = spritePack;
             characterAnimatorData.FrameRemaining = spritePack.frameDelay;
@@ -32,7 +37,7 @@ namespace _1Lab.Scripts.ECS.Components
         
         public void Run()
         {
-            ref var characterAnimatorData = ref Componenter.AddOrGet<CharacterAnimatorData>(Entity);
+            ref var characterAnimatorData = ref Componenter.AddOrGet<CharacterAnimatorExpendedData>(Entity);
             characterAnimatorData.Value = this;
             characterAnimatorData.CurrentSprite = 0;
             characterAnimatorData.CurrentPack = characterAnimatorData.Value.idle;
@@ -42,20 +47,38 @@ namespace _1Lab.Scripts.ECS.Components
         public void Stop()
         {
             spriteRenderer.sprite = idle.sprites[0];
-            Componenter.Del<CharacterAnimatorData>(Entity);
+            Componenter.Del<CharacterAnimatorExpendedData>(Entity);
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            foreach (var targetTag in tags) if (other.collider.CompareTag(targetTag))
+            {
+                groundCollider2D = other.collider;
+                isTouchingCollider = true;
+                isFalling = false;
+            }
+        }
+
+        private void OnCollisionExit2D(Collision2D other)
+        {
+            foreach (var targetTag in tags) if (other.collider.CompareTag(targetTag))
+            {
+                groundCollider2D = null;
+                isTouchingCollider = false;
+                isFalling = true;
+            }
         }
 
         [Serializable]
         public class SpritePack
         {
-            public KeyCode key;
             public int frameDelay;
             public Sprite[] sprites;
-            public bool isFlip;
         }
     }
 
-    public struct CharacterAnimatorData : IEcsComponent
+    public struct CharacterAnimatorExpendedData : IEcsComponent
     {
         public bool IsOneShot;
         public int FrameRemaining;
