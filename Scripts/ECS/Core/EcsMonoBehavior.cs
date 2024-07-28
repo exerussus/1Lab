@@ -83,6 +83,15 @@ namespace _1Lab.Scripts.ECS.Core
 
         #endregion
 
+        #region Methods
+
+        public void SwitchActivated()
+        {
+            gameObject.SetActive(!gameObject.activeSelf);
+        }
+
+        #endregion
+        
         #region Editor
 
 #if UNITY_EDITOR
