@@ -9,7 +9,7 @@ namespace _1Lab.Scripts.ECS.Effects
     public class PushEffect : EcsEffect
     {
         [SerializeField] private bool useTransformRotation = true;
-        [SerializeField] private Vector2 direction = new Vector2(1, 0);
+        [SerializeField] private Vector2 direction = new Vector2(0, 1);
         [SerializeField] private float power;
         
         public void PushTarget(int originEntity, int targetEntity, Componenter componenter)
@@ -29,11 +29,29 @@ namespace _1Lab.Scripts.ECS.Effects
             physicalBodyData.Rigidbody2D.velocity = direction * power;
         }
         
-        public void PushToDirection(int originEntity, Componenter componenter)
+        public void PushOriginToDirection(int originEntity, Componenter componenter)
         {
             if (!Activated) return;
             if (!componenter.Has<PhysicalBodyData>(originEntity)) return;
             ref var physicalBodyData = ref componenter.Get<PhysicalBodyData>(originEntity);
+            var resultDirection = useTransformRotation ? transform.rotation.ToDirection() : direction;
+            physicalBodyData.Rigidbody2D.velocity = resultDirection * power;
+        }
+        
+        public void PushOriginToDirection(int originEntity, int targetEntity, Componenter componenter)
+        {
+            if (!Activated) return;
+            if (!componenter.Has<PhysicalBodyData>(originEntity)) return;
+            ref var physicalBodyData = ref componenter.Get<PhysicalBodyData>(originEntity);
+            var resultDirection = useTransformRotation ? transform.rotation.ToDirection() : direction;
+            physicalBodyData.Rigidbody2D.velocity = resultDirection * power;
+        }
+        
+        public void PushTargetToDirection(int originEntity, int targetEntity, Componenter componenter)
+        {
+            if (!Activated) return;
+            if (!componenter.Has<PhysicalBodyData>(targetEntity)) return;
+            ref var physicalBodyData = ref componenter.Get<PhysicalBodyData>(targetEntity);
             var resultDirection = useTransformRotation ? transform.rotation.ToDirection() : direction;
             physicalBodyData.Rigidbody2D.velocity = resultDirection * power;
         }

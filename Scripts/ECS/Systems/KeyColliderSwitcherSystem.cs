@@ -25,7 +25,7 @@ namespace _1Lab.Scripts.ECS.Systems
                 }
                 else
                 {
-                    keyColliderSwitcherData.Value._collider2D.isTrigger = !keyColliderSwitcherData.Value.deactivateOnExist;
+                    if (!keyColliderSwitcherData.Value.isPlayerExist) keyColliderSwitcherData.Value._collider2D.isTrigger = !keyColliderSwitcherData.Value.deactivateOnExist;
                 }
             }
         }
