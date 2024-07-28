@@ -1,4 +1,6 @@
-﻿using _1Lab.Scripts.ECS.Core.Interfaces;
+﻿
+using System;
+using _1Lab.Scripts.ECS.Core.Interfaces;
 using _1Lab.Scripts.ECS.Core;
 using UnityEngine;
 using UnityEngine.Events;
@@ -45,6 +47,39 @@ namespace _1Lab.Scripts.ECS.Components
         {
             Componenter.Del<JumpData>(Entity);
         }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            TryReload(other);
+        }
+
+        private void OnCollisionStay2D(Collision2D other)
+        {
+            TryReload(other.collider);
+        }
+
+        private void TryReload(Collider2D other)
+        {
+            var isExist = false;
+            foreach (var touchTag in touchTags)
+            {
+                if (other.CompareTag(touchTag))
+                {
+                    isExist = true;
+                    break;
+                }
+            }
+            
+            if (isExist)
+            {
+                if (Componenter.Has<JumpData>(Entity))
+                {
+                    ref var jumpData = ref Componenter.Get<JumpData>(Entity);
+                    if (jumpData is { ReloadOnTouch: true, CoolDownTimer: > 0.1f }) jumpData.CoolDownTimer = 0.1f;
+                }
+            }
+        }
+        
     }
 
     public struct JumpData : IEcsComponent
