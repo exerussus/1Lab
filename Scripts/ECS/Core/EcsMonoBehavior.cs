@@ -8,6 +8,7 @@ using UnityEngine;
 
 namespace _1Lab.Scripts.ECS.Core
 {
+    [SelectionBase]
     public sealed class EcsMonoBehavior : MonoBehaviour
     {
         #region SerializedFields
