@@ -1,0 +1,12 @@
+{
+  "name": "com.exerussus.1lab",
+  "version": "1.0.0",
+  "displayName": "1EasyEcs",
+  "description": "Набор игровых компонентов для быстрого прототипирования небольших игр. *** НАХОДИТСЯ В РАННЕЙ СТАДИИ РАЗРАБОТКИ ***",
+  "unity": "2019.1",
+  "dependencies": { }
+  "author": {
+    "name": "Exerussus",
+    "email": "solovyov.production@gmail.com"
+  }
+}
