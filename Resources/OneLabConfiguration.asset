@@ -12,9 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ce3974b9b1442c09885e3163d4aa5b2, type: 3}
   m_Name: OneLabConfiguration
   m_EditorClassIdentifier: 
+  tickDelay: 1
   debug:
     signalLogs: 0
   systems:
     destroy:
       entityDestroyDelay: 1.15
-  profile: {fileID: 11400000, guid: ff7dcbb65aaa46e4f829c21c03bba612, type: 2}
+  profile:
+    points: 0
+    soft: 0
+    hard: 0
+  signalHandler: {fileID: 11400000, guid: c8bf0bd9f95ac794d8ac85e9afb8b554, type: 2}

@@ -1,9 +1,11 @@
+
+using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Lab.Scripts.Data.GamesConfigurations;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using Leopotam.EcsLite;
-using _1Lab.Scripts.ECS.Core;
-using _1Lab.Scripts.Data.GamesConfigurations;
 using UnityEngine;
 
-namespace _1Lab.Scripts.ECS
+namespace Exerussus._1Lab.Scripts.ECS
 {
     public abstract class OneLabStarter : BootstrapComponent
     {

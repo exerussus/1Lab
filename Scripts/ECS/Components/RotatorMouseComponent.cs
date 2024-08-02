@@ -1,12 +1,12 @@
 ﻿
-using _1Lab.Scripts.ECS.Core.Interfaces;
-using _1Lab.Scripts.ECS.Core;
+using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
-namespace _1Lab.Scripts.ECS.Components
+namespace Exerussus._1Lab.Scripts.ECS.Components
 {
     [AddComponentMenu("1Lab/Components/RotatorMouse")]
-    public class RotatorMouseComponent : EcsComponent
+    public class RotatorMouseComponent : OneLabComponent
     {
         [SerializeField] private bool autoRun;
         [SerializeField] private float speed;

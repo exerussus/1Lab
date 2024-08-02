@@ -1,12 +1,12 @@
 ﻿using System.Linq;
-using _1Lab.Scripts.ECS.Core;
-using _1Lab.Scripts.ECS.Components;
-using _1Lab.Scripts.ECS.Effects;
-using _1Lab.Scripts.Extensions;
+using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Extensions.Scripts.Extensions;
+using Exerussus._1Lab.Scripts.ECS.Components;
+using Exerussus._1Lab.Scripts.ECS.Effects;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace _1Lab.Scripts.ECS.Filters
+namespace Exerussus._1Lab.Scripts.ECS.Filters
 {
     [AddComponentMenu("1Lab/Filter/TagFilter")]
     public class TagFilter : EcsEffect

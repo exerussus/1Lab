@@ -1,7 +1,7 @@
 ﻿
 using UnityEngine;
 
-namespace _1Lab.Scripts.ECS.Components.Clickables
+namespace Exerussus._1Lab.Scripts.ECS.Components.Clickables
 {
     [AddComponentMenu("1Lab/Components/Dragable")]
     public class DragableComponent : ClickableComponent

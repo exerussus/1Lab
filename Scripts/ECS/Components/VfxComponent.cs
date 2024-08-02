@@ -1,9 +1,8 @@
 ﻿
-using _1Lab.Scripts.ECS.Core;
-using _1Lab.Scripts.ECS.Core.Interfaces;
+using Exerussus._1EasyEcs.Scripts.Core;
 using UnityEngine;
 
-namespace _1Lab.Scripts.ECS.Components
+namespace Exerussus._1Lab.Scripts.ECS.Components
 {
     [AddComponentMenu("1Lab/Components/Vfx")]
     public class VfxComponent : MonoBehaviour

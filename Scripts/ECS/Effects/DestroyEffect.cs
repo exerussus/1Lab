@@ -1,9 +1,8 @@
 ﻿
-using _1Lab.Scripts.ECS.Core;
-using _1Lab.Scripts.SignalSystem;
+using Exerussus._1EasyEcs.Scripts.Core;
 using UnityEngine;
 
-namespace _1Lab.Scripts.ECS.Effects
+namespace Exerussus._1Lab.Scripts.ECS.Effects
 {
     [AddComponentMenu("1Lab/Effects/Destroy")]
     public class DestroyEffect : EcsEffect

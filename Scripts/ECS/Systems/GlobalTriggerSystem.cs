@@ -1,10 +1,10 @@
 ﻿
 using System.Linq;
-using _1Lab.Scripts.SignalSystem;
+using Exerussus._1EasyEcs.Scripts.Core;
 using Leopotam.EcsLite;
-using Plugins._1Lab.Scripts.ECS.Triggers;
+using Exerussus._1Lab.Scripts.ECS.Triggers;
 
-namespace _1Lab.Scripts.ECS.Systems
+namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
     public class GlobalTriggerSystem : EcsSignalListener<CommandInvokeGlobalTrigger>
     {

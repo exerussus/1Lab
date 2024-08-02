@@ -1,12 +1,16 @@
 ﻿
-using _1Lab.Scripts.SignalSystem;
+using Exerussus._1Extensions.SignalSystem;
+using Exerussus._1Lab.Scripts.Data.GamesConfigurations;
 using UnityEngine;
 
-namespace _1Lab.Scripts.ECS.Effects
+namespace Exerussus._1Lab.Scripts.ECS.Effects
 {
     public class EcsEffect : MonoSignalListener
     {
         [SerializeField] private bool activated = true;
+        [SerializeField] private OneLabConfiguration oneLabConfiguration;
+        
+        public OneLabConfiguration OneLabConfiguration => oneLabConfiguration;
         public bool Activated => activated;
 
         public void SetActivated(bool isActivated)

@@ -1,9 +1,9 @@
-﻿using _1Lab.Scripts.ECS.Core;
-using _1Lab.Scripts.Extensions;
+﻿using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1EasyEcs.Scripts.Extensions;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace _1Lab.Scripts.ECS.Effects
+namespace Exerussus._1Lab.Scripts.ECS.Effects
 {
     [AddComponentMenu("1Lab/Effects/Spawn")]
     public class SpawnEffect : EcsEffect

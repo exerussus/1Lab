@@ -1,15 +1,13 @@
 ﻿
-using System.Collections.Generic;
+using Exerussus._1Lab.Scripts.Managers.Pools;
+using Exerussus._1Lab.Scripts.ECS.Components;
+using Exerussus._1EasyEcs.Scripts.Core;
 using Leopotam.EcsLite;
-using _1Lab.Scripts.ECS.Core;
-using _1Lab.Scripts.Managers.Pools;
-using _1Lab.Scripts.ECS.Components;
-using _1Lab.Scripts.SignalSystem;
 using UnityEngine;
-using UnityEngine.VFX;
+using System.Collections.Generic;
 using Object = UnityEngine.Object;
 
-namespace _1Lab.Scripts.ECS.Systems
+namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
     public class VfxSystem : EcsSignalListener<CommandCreateVfxSignal>
     {

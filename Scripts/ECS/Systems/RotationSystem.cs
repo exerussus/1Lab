@@ -1,10 +1,10 @@
-﻿using Leopotam.EcsLite;
-using _1Lab.Scripts.ECS.Core;
-using _1Lab.Scripts.ECS.Components;
-using _1Lab.Scripts.Extensions;
+﻿using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Extensions.Scripts.Extensions;
+using Exerussus._1Lab.Scripts.ECS.Components;
+using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace _1Lab.Scripts.ECS.Systems
+namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
     public class RotationSystem : EasySystem
     {

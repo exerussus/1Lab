@@ -1,11 +1,11 @@
 ﻿
 using System;
-using _1Lab.Scripts.Data.GamesConfigurations;
-using _1Lab.Scripts.SignalSystem;
+using Exerussus._1Extensions.SignalSystem;
+using Exerussus._1Lab.Scripts.Data.GamesConfigurations;
 using TMPro;
 using UnityEngine;
 
-namespace _1Lab.Scripts.ECS.UI
+namespace Exerussus._1Lab.Scripts.ECS.UI
 {
     [AddComponentMenu("1Lab/UI/CurrencyShowTMP")]
     public class CurrencyShowTMPUI : MonoSignalListener
@@ -14,6 +14,9 @@ namespace _1Lab.Scripts.ECS.UI
         [SerializeField] private string prefix;
         [SerializeField] private string postfix;
         [SerializeField] private TMP_Text tmpText;
+        [SerializeField] private OneLabConfiguration oneLabConfiguration;
+        
+        public OneLabConfiguration OneLabConfiguration => oneLabConfiguration;
         
         private void OnEnable()
         {

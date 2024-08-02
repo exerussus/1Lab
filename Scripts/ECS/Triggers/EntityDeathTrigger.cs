@@ -1,12 +1,12 @@
-﻿using _1Lab.Scripts.ECS.Core.Interfaces;
-using _1Lab.Scripts.ECS.Core;
+﻿using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace _1Lab.Scripts.ECS.Triggers
+namespace Exerussus._1Lab.Scripts.ECS.Triggers
 {
     [AddComponentMenu("1Lab/Triggers/EntityDeath")]
-    public class EntityDeathTrigger : EcsComponent
+    public class EntityDeathTrigger : OneLabComponent
     {
         [SerializeField] private bool activatedOnStart = true;
         public UnityEvent<int, Componenter> onDead;

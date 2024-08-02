@@ -1,12 +1,12 @@
 ﻿
-using _1Lab.Scripts.ECS.Core;
-using _1Lab.Scripts.ECS.Core.Interfaces;
+using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
-namespace _1Lab.Scripts.ECS.Components
+namespace Exerussus._1Lab.Scripts.ECS.Components
 {
     [AddComponentMenu("1Lab/Components/KeyColliderSwitcher")]
-    public class KeyColliderSwitcherComponent : EcsComponent
+    public class KeyColliderSwitcherComponent : OneLabComponent
     {
         public bool autoRun = true;
         public KeyCode key1 = KeyCode.S;

@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
-using _1Lab.Scripts.ECS.Core.Interfaces;
-using _1Lab.Scripts.ECS.Core;
-using _1Lab.Scripts.Extensions;
+using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Extensions.Scripts.Extensions;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
-namespace _1Lab.Scripts.ECS.Components
+namespace Exerussus._1Lab.Scripts.ECS.Components
 {
     [AddComponentMenu("1Lab/Components/CompositeObject")]
-    public class CompositeObjectComponent : EcsComponent
+    public class CompositeObjectComponent : OneLabComponent
     {
         [Tooltip("Сила, которая будет воздействовать на вложенные объекты при уничтожении композитного объекта.")]
         [SerializeField] private float powerOnDestruct = 3f;

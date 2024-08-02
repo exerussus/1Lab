@@ -1,9 +1,9 @@
-﻿using _1Lab.Scripts.ECS.Core;
-using _1Lab.Scripts.ECS.Components;
-using _1Lab.Scripts.Extensions;
+﻿using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Extensions.Scripts.Extensions;
+using Exerussus._1Lab.Scripts.ECS.Components;
 using UnityEngine;
 
-namespace _1Lab.Scripts.ECS.Effects
+namespace Exerussus._1Lab.Scripts.ECS.Effects
 {
     [AddComponentMenu("1Lab/Effects/Push")]
     public class PushEffect : EcsEffect

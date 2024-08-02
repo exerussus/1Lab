@@ -1,8 +1,8 @@
-﻿using Leopotam.EcsLite;
-using _1Lab.Scripts.ECS.Core;
-using _1Lab.Scripts.ECS.Components;
+﻿using Exerussus._1EasyEcs.Scripts.Core;
+using Leopotam.EcsLite;
+using Exerussus._1Lab.Scripts.ECS.Components;
 
-namespace _1Lab.Scripts.ECS.Systems
+namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
     public class AlphaColorSystem : EasySystem
     {

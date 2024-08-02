@@ -1,14 +1,14 @@
-﻿using _1Lab.Scripts.ECS.Core.Interfaces;
-using _1Lab.Scripts.ECS.Core;
-using _1Lab.Scripts.Extensions;
+﻿using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Extensions.Scripts.Extensions;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace _1Lab.Scripts.ECS.Components
+namespace Exerussus._1Lab.Scripts.ECS.Components
 {
     [AddComponentMenu("1Lab/Components/Touchable")]
     [RequireComponent(typeof(Collider2D), typeof(TagsComponent))]
-    public class TouchableComponent : EcsComponent
+    public class TouchableComponent : OneLabComponent
     {
         [SerializeField, HideInInspector] public Collider2D touchableCollider2D;
         [SerializeField, HideInInspector] public TagsComponent tags;

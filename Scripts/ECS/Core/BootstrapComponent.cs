@@ -1,9 +1,10 @@
 ﻿
+using Exerussus._1EasyEcs.Scripts.Core;
 using UnityEngine;
 
-namespace _1Lab.Scripts.ECS.Core
+namespace Exerussus._1Lab.Scripts.ECS.Core
 {
-    public abstract class BootstrapComponent : MonoBehaviour, IGameShareItem
+    public abstract class BootstrapComponent : MonoBehaviour
     {
         protected GameShare GameShare;
 

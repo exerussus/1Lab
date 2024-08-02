@@ -1,9 +1,9 @@
-﻿using Leopotam.EcsLite;
-using _1Lab.Scripts.ECS.Core;
-using _1Lab.Scripts.ECS.Triggers;
+﻿using Exerussus._1EasyEcs.Scripts.Core;
+using Leopotam.EcsLite;
+using Exerussus._1Lab.Scripts.ECS.Triggers;
 using UnityEngine;
 
-namespace _1Lab.Scripts.ECS.Systems
+namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
     public class TriggerSystem : EasySystem
     {

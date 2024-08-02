@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Extensions.SignalSystem;
 using Leopotam.EcsLite;
-using _1Lab.Scripts.ECS.Systems;
-using _1Lab.Scripts.Data.GamesConfigurations;
-using _1Lab.SignalSystem;
+using Exerussus._1Lab.Scripts.ECS.Systems;
+using Exerussus._1Lab.Scripts.Data.GamesConfigurations;
 using UnityEngine;
 
-namespace _1Lab.Scripts.ECS.Core
+namespace Exerussus._1Lab.Scripts.ECS.Core
 {
     public class OneLab : OneLabStarter
     {

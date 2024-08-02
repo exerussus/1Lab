@@ -1,9 +1,9 @@
 ﻿
 using System;
-using _1Lab.Scripts.Data.GamesConfigurations;
+using Exerussus._1Lab.Scripts.Data.GamesConfigurations;
 using UnityEngine;
 
-namespace _1Lab.Scripts.ECS.Effects
+namespace Exerussus._1Lab.Scripts.ECS.Effects
 {
     [AddComponentMenu("1Lab/Effects/Currency")]
     public class CurrencyEffect : EcsEffect

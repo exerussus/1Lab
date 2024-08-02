@@ -1,15 +1,14 @@
 ﻿
-using System;
-using _1Lab.Scripts.ECS.Core.Interfaces;
-using _1Lab.Scripts.ECS.Core;
+using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace _1Lab.Scripts.ECS.Components
+namespace Exerussus._1Lab.Scripts.ECS.Components
 {
     [AddComponentMenu("1Lab/Components/Jump")]
     [RequireComponent(typeof(PhysicalBodyComponent))]
-    public class JumpComponent : EcsComponent
+    public class JumpComponent : OneLabComponent
     {
         [SerializeField] private KeyCode key1;
         [SerializeField] private KeyCode key2;

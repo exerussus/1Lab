@@ -1,13 +1,13 @@
 ﻿
 using System;
-using _1Lab.Scripts.ECS.Core.Interfaces;
-using _1Lab.Scripts.ECS.Core;
+using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
-namespace _1Lab.Scripts.ECS.Components
+namespace Exerussus._1Lab.Scripts.ECS.Components
 {
     [AddComponentMenu("1Lab/Components/SelfRotator")]
-    public class SelfRotatorComponent : EcsComponent
+    public class SelfRotatorComponent : OneLabComponent
     {
         [SerializeField] private RotationSettings x;
         [SerializeField] private RotationSettings y;

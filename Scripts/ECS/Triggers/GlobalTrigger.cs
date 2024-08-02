@@ -1,12 +1,12 @@
-﻿using _1Lab.Scripts.ECS.Core;
-using _1Lab.Scripts.ECS.Core.Interfaces;
+﻿using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Plugins._1Lab.Scripts.ECS.Triggers
+namespace Exerussus._1Lab.Scripts.ECS.Triggers
 {
     [AddComponentMenu("1Lab/Triggers/GlobalTrigger")]
-    public class GlobalTrigger : EcsComponent
+    public class GlobalTrigger : OneLabComponent
     {
         public bool autoRun = true;
         public string[] tags;

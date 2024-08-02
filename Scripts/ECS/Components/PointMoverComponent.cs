@@ -1,12 +1,12 @@
 ﻿
-using _1Lab.Scripts.ECS.Core.Interfaces;
-using _1Lab.Scripts.ECS.Core;
+using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
-namespace _1Lab.Scripts.ECS.Components
+namespace Exerussus._1Lab.Scripts.ECS.Components
 {
     [AddComponentMenu("1Lab/Components/PointMover")]
-    public class PointMoverComponent : EcsComponent
+    public class PointMoverComponent : OneLabComponent
     {
         [SerializeField] private float speed;
         [SerializeField] private Vector2 point;

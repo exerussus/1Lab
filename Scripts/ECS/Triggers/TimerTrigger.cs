@@ -1,12 +1,12 @@
-﻿using _1Lab.Scripts.ECS.Core.Interfaces;
-using _1Lab.Scripts.ECS.Core;
+﻿using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace _1Lab.Scripts.ECS.Triggers
+namespace Exerussus._1Lab.Scripts.ECS.Triggers
 {
     [AddComponentMenu("1Lab/Triggers/Timer")]
-    public class TimerTrigger : EcsComponent
+    public class TimerTrigger : OneLabComponent
     {
         [SerializeField] private bool autoStart = true;
         [SerializeField] private float delay = 1f;

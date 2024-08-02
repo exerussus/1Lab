@@ -1,12 +1,13 @@
-﻿using Leopotam.EcsLite;
-using _1Lab.Scripts.ECS.Core;
+﻿using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Lab.Scripts.ECS.Core;
+using Leopotam.EcsLite;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace _1Lab.Scripts.ECS.Components
+namespace Exerussus._1Lab.Scripts.ECS.Components
 {
     [AddComponentMenu("1Lab/Components/AllEntities")]
-    public class AllEntitiesComponent : EcsComponent
+    public class AllEntitiesComponent : OneLabComponent
     {
         private EcsFilter _tagsFilter;
         public UnityEvent<int, Componenter> onExist;

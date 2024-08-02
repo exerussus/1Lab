@@ -1,12 +1,12 @@
 ﻿using System;
-using _1Lab.Scripts.ECS.Core;
-using _1Lab.Scripts.ECS.Core.Interfaces;
+using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
-namespace _1Lab.Scripts.ECS.Components
+namespace Exerussus._1Lab.Scripts.ECS.Components
 {
     [AddComponentMenu("1Lab/Components/CharacterAnimator")]
-    public class CharacterAnimatorComponent : EcsComponent
+    public class CharacterAnimatorComponent : OneLabComponent
     {
         public bool autoRun = true;
         public SpriteRenderer spriteRenderer;
