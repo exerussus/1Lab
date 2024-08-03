@@ -27,5 +27,11 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
         {
             activated = false;
         }
+
+        protected override void OnValidate()
+        {
+            base.OnValidate();
+            if (oneLabConfiguration == null) oneLabConfiguration = Resources.Load<OneLabConfiguration>("OneLabConfiguration");
+        }
     }
 }
