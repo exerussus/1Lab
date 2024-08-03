@@ -8,7 +8,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
     public class EcsEffect : MonoSignalListener
     {
         [SerializeField] private bool activated = true;
-        [SerializeField] private OneLabConfiguration oneLabConfiguration;
+        [SerializeField, HideInInspector] private OneLabConfiguration oneLabConfiguration;
         
         public OneLabConfiguration OneLabConfiguration => oneLabConfiguration;
         public bool Activated => activated;

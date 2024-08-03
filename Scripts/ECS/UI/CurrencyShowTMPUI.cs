@@ -14,7 +14,7 @@ namespace Exerussus._1Lab.Scripts.ECS.UI
         [SerializeField] private string prefix;
         [SerializeField] private string postfix;
         [SerializeField] private TMP_Text tmpText;
-        [SerializeField] private OneLabConfiguration oneLabConfiguration;
+        [SerializeField, HideInInspector] private OneLabConfiguration oneLabConfiguration;
         
         public OneLabConfiguration OneLabConfiguration => oneLabConfiguration;
         
