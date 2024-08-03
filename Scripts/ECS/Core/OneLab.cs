@@ -5,6 +5,7 @@ using Exerussus._1Extensions.SignalSystem;
 using Leopotam.EcsLite;
 using Exerussus._1Lab.Scripts.ECS.Systems;
 using Exerussus._1Lab.Scripts.Data.GamesConfigurations;
+using Plugins.Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Core
@@ -22,6 +23,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         public static Signal Signal => Instance._configuration.Signal;
         private event Action OnDestroyEvent;
         private OneLabConfiguration _configuration;
+        private TagsHandler _tagsHandler = new();
         public static OneLabConfiguration Configuration => Instance._configuration;
 
         private static OneLab Instance
@@ -39,6 +41,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
                     _gameShare = new GameShare(_sharedData);
                     _gameShare.AddSharedObject(_instance._configuration.GetType(), _instance._configuration);
                     _gameShare.AddSharedObject(_instance._configuration.Signal.GetType(), _instance._configuration.Signal);
+                    _gameShare.AddSharedObject(_instance._tagsHandler.GetType(), _instance._tagsHandler);
                     
                     _instance.PreInit(_gameShare);
                     _instance.Initialize();
@@ -58,6 +61,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         
         protected override void SetInitSystems(IEcsSystems initSystems)
         {
+            initSystems.Add(new TagSystem());
             ExtraSystemsMethods.InitExecute(initSystems);
         }
 
