@@ -61,6 +61,10 @@ namespace Exerussus._1Lab.Scripts.ECS.UI
         protected override void OnValidate()
         {
             base.OnValidate();
+            if (oneLabConfiguration == null)
+            {
+                oneLabConfiguration = Resources.Load<OneLabConfiguration>("OneLabConfiguration");
+            }
             if (tmpText != null)
             {
                 switch (currency)
