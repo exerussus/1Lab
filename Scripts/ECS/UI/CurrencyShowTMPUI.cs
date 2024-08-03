@@ -65,6 +65,9 @@ namespace Exerussus._1Lab.Scripts.ECS.UI
             {
                 oneLabConfiguration = Resources.Load<OneLabConfiguration>("OneLabConfiguration");
             }
+
+            if (tmpText == null) tmpText = GetComponent<TMP_Text>();
+            
             if (tmpText != null)
             {
                 switch (currency)
