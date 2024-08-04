@@ -14,7 +14,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         
         public override void Initialize()
         {
-            _tagsFilter = Componenter.Filter<OneLabEntityData>().End();
+            _tagsFilter = Componenter.Filter<Core.TagsData>().End();
         }
 
         public void GetAllEntitiesAndExecute()

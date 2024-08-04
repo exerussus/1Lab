@@ -1,5 +1,6 @@
 ﻿
 using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Extensions.Scripts.Extensions;
 
 namespace Exerussus._1Lab.Scripts.ECS.Core
 {
@@ -10,19 +11,22 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         public void Start()
         {
             Initialize(OneLab.Componenter, OneLab.Signal);
-            ref var oneLabEntityData = ref Componenter.AddOrGet<OneLabEntityData>(Entity);
-            oneLabEntityData.Value = this;
-            Signal.RegistryRaise(new OnLabEntityInitializedSignal
+            if (tags.IsNotEmpty())
             {
-                IsInitialized = true,
-                OneLabEntity = this
-            });
+                ref var oneLabEntityData = ref Componenter.AddOrGet<TagsData>(Entity);
+                oneLabEntityData.Values = tags;
+                Signal.RegistryRaise(new OnLabEntityInitializedSignal
+                {
+                    IsInitialized = true,
+                    OneLabEntity = this
+                });
+            }
         }
     }
 
-    public struct OneLabEntityData : IEcsComponent
+    public struct TagsData : IEcsComponent
     {
-        public OneLabEntity Value;
+        public string[] Values;
     }
 
     public struct OnLabEntityInitializedSignal
