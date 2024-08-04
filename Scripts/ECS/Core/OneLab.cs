@@ -36,9 +36,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
                     _instance.gameObject.name = "OneLab";
                     _instance.OnDestroyEvent += () => _isInitialized = false;
                     
-                    _gameShare.AddSharedObject(_instance._configuration.GetType(), _instance._configuration);
-                    _gameShare.AddSharedObject(_instance._configuration.Signal.GetType(), _instance._configuration.Signal);
-                    _gameShare.AddSharedObject(_instance._tagsHandler.GetType(), _instance._tagsHandler);
+                    _gameShare.AddSharedObject(_instance._configuration);
+                    _gameShare.AddSharedObject(_instance._tagsHandler);
                     
                     _instance.PreInitialize();
                     _instance.Initialize();
@@ -94,6 +93,11 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             _gameShare.AddSharedObject(_configuration);
             _gameShare.AddSharedObject(_tagsHandler);
             _gameShare.AddSharedObject(_configuration.Signal);
+        }
+
+        protected override Signal GetSignal()
+        {
+            return _configuration.Signal;
         }
     }
 }
