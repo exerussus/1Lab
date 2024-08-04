@@ -1,12 +1,11 @@
 ﻿
-using System;
 using Exerussus._1EasyEcs.Scripts.Core;
 
 namespace Exerussus._1Lab.Scripts.ECS.Core
 {
     public class OneLabEntity : EcsMonoBehavior
     {
-        public Tags tags;
+        public string[] tags;
         
         public void Start()
         {
@@ -18,12 +17,6 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
                 IsInitialized = true,
                 OneLabEntity = this
             });
-        }
-        
-        [Serializable]
-        public class Tags
-        {
-            public string[] values;
         }
     }
 

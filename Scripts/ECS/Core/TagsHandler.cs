@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
 
 namespace Plugins.Exerussus._1Lab.Scripts.ECS.Core
 {
@@ -11,7 +12,18 @@ namespace Plugins.Exerussus._1Lab.Scripts.ECS.Core
 
         public void Add(string tag, int entity)
         {
-            var tags = _tags.TryGetValue(entity, out var result) ? result : GetTags();
+            Tags tags;
+            
+            if (_tags.TryGetValue(entity, out var result))
+            {
+                tags = result;
+            }
+            else
+            {
+                tags = GetTags();
+                _tags[entity] = tags;
+            }
+            
             tags.Values.Add(tag);
             
             var pool = GetPool(tag);
@@ -21,6 +33,7 @@ namespace Plugins.Exerussus._1Lab.Scripts.ECS.Core
         public void Remove(int entity)
         {
             if (!_tags.TryGetValue(entity, out var result)) return;
+            
             
             foreach (var tag in result.Values)
             {
@@ -44,6 +57,30 @@ namespace Plugins.Exerussus._1Lab.Scripts.ECS.Core
         {
             if (!_tags.TryGetValue(entity, out var tags)) return false;
             return tags.Values.Contains(tag);
+        }
+
+        public bool HasAny(int entity, string[] tags)
+        {
+            if (!_tags.TryGetValue(entity, out var foundedTags)) return false;
+            
+            foreach (var tag in tags)
+            {
+                if (foundedTags.Values.Contains(tag)) return true;
+            }
+
+            return false;
+        }
+
+        public bool HasAll(int entity, string[] tags)
+        {
+            if (!_tags.TryGetValue(entity, out var foundedTags)) return false;
+            
+            foreach (var tag in tags)
+            {
+                if (!foundedTags.Values.Contains(tag)) return false;
+            }
+
+            return true;
         }
 
         private Tags GetTags()
@@ -76,12 +113,12 @@ namespace Plugins.Exerussus._1Lab.Scripts.ECS.Core
         private class TagPool
         {
             public string TagID;
-            public HashSet<int> Entities;
+            public HashSet<int> Entities = new();
         }
 
         private class Tags
         {
-            public HashSet<string> Values;
+            public HashSet<string> Values = new();
         }
     }
 }

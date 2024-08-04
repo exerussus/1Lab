@@ -1,7 +1,9 @@
-﻿using Exerussus._1EasyEcs.Scripts.Core;
+﻿
+using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 using UnityEngine.Events;
+using Debug = UnityEngine.Debug;
 
 namespace Exerussus._1Lab.Scripts.ECS.Triggers
 {
@@ -21,6 +23,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
         {
             ref var globalTriggerData = ref Componenter.AddOrGet<GlobalTriggerData>(Entity);
             globalTriggerData.Value = this;
+            globalTriggerData.Tags = tags;
         }
 
         public void Stop()
@@ -31,6 +34,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
 
     public struct GlobalTriggerData : IEcsComponent
     {
+        public string[] Tags;
         public GlobalTrigger Value;
     }
 }

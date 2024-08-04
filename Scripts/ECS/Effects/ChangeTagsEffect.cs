@@ -12,19 +12,19 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
         public void SetTagsToOrigin(int originEntity, Componenter componenter)
         {
             ref var touchableData = ref componenter.Get<TouchableData>(originEntity);
-            touchableData.Value.tags.Values = tags;
+            touchableData.Value.OneLabEntity.tags = tags;
         }
         
         public void SetTagsToOrigin(int originEntity, int targetEntity, Componenter componenter)
         {
             ref var touchableData = ref componenter.Get<TouchableData>(originEntity);
-            touchableData.Value.tags.Values = tags;
+            touchableData.Value.OneLabEntity.tags = tags;
         }
         
         public void SetTagsToTarget(int originEntity, int targetEntity, Componenter componenter)
         {
             ref var touchableData = ref componenter.Get<TouchableData>(targetEntity);
-            touchableData.Value.tags.Values = tags;
+            touchableData.Value.OneLabEntity.tags = tags;
         }
         
         public void SetTargetTagsToOrigin(int originEntity, Componenter componenter)

@@ -7,20 +7,18 @@ using UnityEngine.Events;
 namespace Exerussus._1Lab.Scripts.ECS.Components
 {
     [AddComponentMenu("1Lab/Components/Touchable")]
-    [RequireComponent(typeof(Collider2D), typeof(TagsComponent))]
+    [RequireComponent(typeof(Collider2D))]
     public class TouchableComponent : OneLabComponent
     {
         [SerializeField, HideInInspector] public Collider2D touchableCollider2D;
-        [SerializeField, HideInInspector] public TagsComponent tags;
         [SerializeField] public string[] targetTags;
         [SerializeField] public bool singleUse;
-        private bool _isUsed;
         public UnityEvent<int, int, Componenter> onTouch;
         public UnityEvent<int, int, Componenter> onExit;
         public bool IsInitialized { get; private set; } = false;
-
-        public TagsComponent Tags => tags;
+        
         public string[] TargetTags => targetTags;
+        private bool _isUsed;
 
         public override void Initialize()
         {
@@ -44,7 +42,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             {
                 if (!touchable.IsInitialized) return;
 
-                if (!targetTags.ContainsAny(touchable.Tags.Values)) return;
+                if (!targetTags.ContainsAny(touchable.OneLabEntity.tags)) return;
                 onTouch?.Invoke(Entity, touchable.Entity, Componenter);
                 if (singleUse) _isUsed = true;
             }
@@ -58,7 +56,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             {
                 if (!touchable.IsInitialized) return;
 
-                if (!targetTags.ContainsAny(touchable.Tags.Values)) return;
+                if (!targetTags.ContainsAny(touchable.OneLabEntity.tags)) return;
                 onTouch?.Invoke(Entity, touchable.Entity, Componenter);
                 if (singleUse) _isUsed = true;
             }
@@ -71,7 +69,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             if (other.TryGetComponent(out TouchableComponent touchable))
             {
                 if (!touchable.IsInitialized) return;
-                if (!targetTags.ContainsAny(touchable.Tags.Values)) return;
+                if (!targetTags.ContainsAny(touchable.OneLabEntity.tags)) return;
                 onExit?.Invoke(Entity, touchable.Entity, Componenter);
                 if (singleUse) _isUsed = true;
             }
@@ -84,7 +82,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             if (other.collider.TryGetComponent(out TouchableComponent touchable))
             {
                 if (!touchable.IsInitialized) return;
-                if (!targetTags.ContainsAny(touchable.Tags.Values)) return;
+                if (!targetTags.ContainsAny(touchable.OneLabEntity.tags)) return;
                 onExit?.Invoke(Entity, touchable.Entity, Componenter);
                 if (singleUse) _isUsed = true;
             }
@@ -98,8 +96,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         protected override void OnValidate()
         {
             base.OnValidate();
-            if (tags == null) tags = GetComponent<TagsComponent>();
-            if (touchableCollider2D == null) touchableCollider2D = GetComponent<Collider2D>();
+            touchableCollider2D = gameObject.TryGetIfNull(ref touchableCollider2D);
         }
     }
 
