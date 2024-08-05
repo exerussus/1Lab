@@ -1,10 +1,10 @@
 ﻿
-using Exerussus._1Lab.Scripts.Managers.Pools;
 using Exerussus._1Lab.Scripts.ECS.Components;
 using Exerussus._1EasyEcs.Scripts.Core;
 using Leopotam.EcsLite;
 using UnityEngine;
 using System.Collections.Generic;
+using Exerussus._1Extensions.Pools;
 using Object = UnityEngine.Object;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
