@@ -1,6 +1,7 @@
 ﻿
 using Exerussus._1Extensions.SignalSystem;
 using Exerussus._1Lab.Scripts.Data.GamesConfigurations;
+using Plugins.Exerussus._1Lab.Scripts.Extensions;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Effects
@@ -31,7 +32,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
         protected override void OnValidate()
         {
             base.OnValidate();
-            if (oneLabConfiguration == null) oneLabConfiguration = Resources.Load<OneLabConfiguration>("OneLabConfiguration");
+            oneLabConfiguration = oneLabConfiguration.TryGetLabConfig();
         }
     }
 }

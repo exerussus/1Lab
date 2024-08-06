@@ -19,9 +19,10 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         private static bool _isInitialized;
         public static Componenter Componenter => Instance._componenter;
         public static EcsWorld World => Instance._world;
-        public static Signal Signal => Instance._configuration.Signal;
+        public static Signal Signal => Instance._signalHandler.Signal;
         private event Action OnDestroyEvent;
         private OneLabConfiguration _configuration;
+        private SignalHandler _signalHandler;
         private TagsHandler _tagsHandler = new();
         public static OneLabConfiguration Configuration => Instance._configuration;
 
@@ -36,6 +37,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
                     _instance.gameObject.name = "OneLab";
                     _instance.OnDestroyEvent += () => _isInitialized = false;
                     _instance._configuration = _instance.TrySetDataIfNull(ref _instance._configuration);
+                    _instance._signalHandler = _instance.TrySetDataIfNull(ref _instance._signalHandler);
                     
                     _instance.PreInitialize();
                     _instance.Initialize();
@@ -89,12 +91,12 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         {
             GameShare.AddSharedObject(_configuration);
             GameShare.AddSharedObject(_tagsHandler);
-            GameShare.AddSharedObject(_configuration.Signal);
+            GameShare.AddSharedObject(_signalHandler.Signal);
         }
 
         protected override Signal GetSignal()
         {
-            return _configuration.Signal;
+            return _signalHandler.Signal;
         }
     }
 }
