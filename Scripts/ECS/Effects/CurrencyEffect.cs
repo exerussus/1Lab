@@ -30,7 +30,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
         
         public void SetCurrency(int value)
         {
-            switch (currency)
+            switch (currency) 
             {
                 case Profile.CurrencyType.Soft:
                     OneLabConfiguration.Profile.SetSoft(value);
