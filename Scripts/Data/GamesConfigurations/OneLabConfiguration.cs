@@ -1,11 +1,9 @@
 ﻿using System;
 using Exerussus._1EasyEcs.Scripts.Core;
-using Exerussus._1Extensions;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.Data.GamesConfigurations
 {
-    [CreateAssetMenu(fileName = "OneLabConfiguration", menuName = "Exerussus/Configs/OneLabConfiguration")]
     public class OneLabConfiguration : ScriptableObject
     {
         [SerializeField] private float tickDelay = 1f;
