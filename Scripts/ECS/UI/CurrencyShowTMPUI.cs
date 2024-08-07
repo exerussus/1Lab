@@ -2,6 +2,7 @@
 using System;
 using Exerussus._1Extensions.SignalSystem;
 using Exerussus._1Lab.Scripts.Data.GamesConfigurations;
+using Plugins.Exerussus._1Lab.Scripts.Extensions;
 using TMPro;
 using UnityEngine;
 
@@ -63,7 +64,7 @@ namespace Exerussus._1Lab.Scripts.ECS.UI
             base.OnValidate();
             if (oneLabConfiguration == null)
             {
-                oneLabConfiguration = Resources.Load<OneLabConfiguration>("OneLabConfiguration");
+                oneLabConfiguration = oneLabConfiguration.TryGetLabConfig();
             }
 
             if (tmpText == null) tmpText = GetComponent<TMP_Text>();
