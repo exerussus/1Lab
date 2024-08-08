@@ -12,6 +12,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         [SerializeField] private bool fullSpeed;
         [SerializeField] private bool usePhysicalBody;
         [SerializeField] private bool stopXWithoutInput;
+        [SerializeField] private bool hasXJoystick;
+        [SerializeField] private bool hasYJoystick;
         
         public override void Initialize()
         {
@@ -36,6 +38,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             keyboardInputMoverData.UsePhysicalBody = usePhysicalBody;
             keyboardInputMoverData.FullSpeed = fullSpeed;
             keyboardInputMoverData.StopXWithoutInput = stopXWithoutInput;
+            keyboardInputMoverData.HasXJoystick = hasXJoystick;
+            keyboardInputMoverData.HasYJoystick = hasYJoystick;
         }
 
         public void Stop()
@@ -61,5 +65,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         public bool UsePhysicalBody;
         public bool StopXWithoutInput;
         public Collider2D CharacterCollider2D;
+        public bool HasXJoystick;
+        public bool HasYJoystick;
     }
 }

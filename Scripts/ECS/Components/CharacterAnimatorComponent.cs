@@ -1,6 +1,7 @@
 ﻿using System;
 using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Core;
+using Exerussus._1Lab.Scripts.ECS.Systems;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Components
@@ -42,6 +43,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             characterAnimatorData.CurrentSprite = 0;
             characterAnimatorData.CurrentPack = characterAnimatorData.Value.idle;
             characterAnimatorData.IsOneShot = false;
+            ref var animationInputData = ref Componenter.AddOrGet<AnimationInputData>(Entity);
+            animationInputData.HorizontalAxis = 0;
         }
 
         public void Stop()

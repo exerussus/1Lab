@@ -9,6 +9,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
     public class KeyColliderSwitcherComponent : OneLabComponent
     {
         public bool autoRun = true;
+        public bool useJoystickY = true;
         public KeyCode key1 = KeyCode.S;
         public KeyCode key2 = KeyCode.DownArrow;
         public Collider2D _collider2D;

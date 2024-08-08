@@ -14,7 +14,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
         protected override void Initialize()
         {
             _characterAnimatorFilter = Componenter.Filter<CharacterAnimatorData>().End();
-            _characterAnimatorExpendedFilter = Componenter.Filter<CharacterAnimatorExpendedData>().End();
+            _characterAnimatorExpendedFilter = Componenter.Filter<CharacterAnimatorExpendedData>().Inc<AnimationInputData>().End();
         }
 
         protected override void Update()
@@ -27,7 +27,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
         {
             ref var characterAnimatorData = ref Componenter.Get<CharacterAnimatorExpendedData>(entity);
             
-            var input = Input.GetAxis("Horizontal");
+            var input = Componenter.Get<AnimationInputData>(entity).HorizontalAxis;
+
             if (input != 0) characterAnimatorData.Value.spriteRenderer.flipX = input < 0;
 
             if (characterAnimatorData.Value.isTouchingCollider)
@@ -197,5 +198,10 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
                 characterAnimatorData.Value.spriteRenderer.sprite = characterAnimatorData.CurrentPack.sprites[characterAnimatorData.CurrentSprite];
             }
         }
+    }
+
+    public struct AnimationInputData : IEcsComponent
+    {
+        public float HorizontalAxis;
     }
 }
