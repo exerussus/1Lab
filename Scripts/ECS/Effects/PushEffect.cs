@@ -1,6 +1,5 @@
 ﻿using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Extensions.Scripts.Extensions;
-using Exerussus._1Lab.Scripts.ECS.Components;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Effects
@@ -15,7 +14,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
         public void PushTarget(int originEntity, int targetEntity, Componenter componenter)
         {
             if (!Activated) return;
-            if (!componenter.Has<PhysicalBodyData>(targetEntity)) return;
+            if (!componenter.Has<RigidBody2DData>(targetEntity)) return;
             
             ref var originTransform = ref componenter.Get<TransformData>(originEntity);
             ref var targetTransform = ref componenter.Get<TransformData>(targetEntity);
@@ -24,42 +23,42 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             var targetPosition = (Vector2)targetTransform.Value.position;
 
             var direction = (targetPosition - originPosition).normalized;
-            ref var physicalBodyData = ref componenter.Get<PhysicalBodyData>(targetEntity);
+            ref var physicalBodyData = ref componenter.Get<RigidBody2DData>(targetEntity);
 
-            physicalBodyData.Rigidbody2D.velocity = direction * power;
+            physicalBodyData.Value.velocity = direction * power;
         }
         
         public void PushOriginToDirection(int originEntity, Componenter componenter)
         {
             if (!Activated) return;
-            if (!componenter.Has<PhysicalBodyData>(originEntity)) return;
-            ref var physicalBodyData = ref componenter.Get<PhysicalBodyData>(originEntity);
+            if (!componenter.Has<RigidBody2DData>(originEntity)) return;
+            ref var physicalBodyData = ref componenter.Get<RigidBody2DData>(originEntity);
             var resultDirection = useTransformRotation ? transform.rotation.ToDirection() : direction;
-            physicalBodyData.Rigidbody2D.velocity = resultDirection * power;
+            physicalBodyData.Value.velocity = resultDirection * power;
         }
         
         public void PushOriginToDirection(int originEntity, int targetEntity, Componenter componenter)
         {
             if (!Activated) return;
-            if (!componenter.Has<PhysicalBodyData>(originEntity)) return;
-            ref var physicalBodyData = ref componenter.Get<PhysicalBodyData>(originEntity);
+            if (!componenter.Has<RigidBody2DData>(originEntity)) return;
+            ref var physicalBodyData = ref componenter.Get<RigidBody2DData>(originEntity);
             var resultDirection = useTransformRotation ? transform.rotation.ToDirection() : direction;
-            physicalBodyData.Rigidbody2D.velocity = resultDirection * power;
+            physicalBodyData.Value.velocity = resultDirection * power;
         }
         
         public void PushTargetToDirection(int originEntity, int targetEntity, Componenter componenter)
         {
             if (!Activated) return;
-            if (!componenter.Has<PhysicalBodyData>(targetEntity)) return;
-            ref var physicalBodyData = ref componenter.Get<PhysicalBodyData>(targetEntity);
+            if (!componenter.Has<RigidBody2DData>(targetEntity)) return;
+            ref var physicalBodyData = ref componenter.Get<RigidBody2DData>(targetEntity);
             var resultDirection = useTransformRotation ? transform.rotation.ToDirection() : direction;
-            physicalBodyData.Rigidbody2D.velocity = resultDirection * power;
+            physicalBodyData.Value.velocity = resultDirection * power;
         }
         
         public void PushOrigin(int originEntity, int targetEntity, Componenter componenter)
         {
             if (!Activated) return;
-            if (!componenter.Has<PhysicalBodyData>(originEntity)) return;
+            if (!componenter.Has<RigidBody2DData>(originEntity)) return;
             
             ref var originTransform = ref componenter.Get<TransformData>(originEntity);
             ref var targetTransform = ref componenter.Get<TransformData>(targetEntity);
@@ -68,9 +67,9 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             var targetPosition = (Vector2)targetTransform.Value.position;
 
             var direction = (originPosition - targetPosition).normalized;
-            ref var physicalBodyData = ref componenter.Get<PhysicalBodyData>(originEntity);
+            ref var physicalBodyData = ref componenter.Get<RigidBody2DData>(originEntity);
 
-            physicalBodyData.Rigidbody2D.velocity += direction * power;
+            physicalBodyData.Value.velocity += direction * power;
         }
     }
 }

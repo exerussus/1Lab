@@ -48,8 +48,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             base.OnValidate();
             if (usePhysicalBody)
             {
-                var physicalBody = GetComponent<PhysicalBodyComponent>();
-                if (physicalBody == null) gameObject.AddComponent<PhysicalBodyComponent>();
+                var physicalBody = GetComponent<Rigidbody2D>();
+                if (physicalBody == null) gameObject.AddComponent<Rigidbody2D>();
             }
         }
     }

@@ -1,5 +1,4 @@
 ﻿using Exerussus._1EasyEcs.Scripts.Core;
-using Exerussus._1Lab.Scripts.ECS.Components;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Effects
@@ -33,10 +32,10 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             result.y = position.y;
             transformData.Value.position = result;
             
-            if (componenter.Has<PhysicalBodyData>(entity))
+            if (componenter.Has<RigidBody2DData>(entity))
             {
-                ref var physicalBodyData = ref componenter.Get<PhysicalBodyData>(entity);
-                physicalBodyData.Rigidbody2D.velocity = Vector2.zero;
+                ref var physicalBodyData = ref componenter.Get<RigidBody2DData>(entity);
+                physicalBodyData.Value.velocity = Vector2.zero;
             }
             
         }

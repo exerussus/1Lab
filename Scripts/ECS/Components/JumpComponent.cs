@@ -7,7 +7,7 @@ using UnityEngine.Events;
 namespace Exerussus._1Lab.Scripts.ECS.Components
 {
     [AddComponentMenu("1Lab/Components/Jump")]
-    [RequireComponent(typeof(PhysicalBodyComponent))]
+    [RequireComponent(typeof(Rigidbody2D))]
     public class JumpComponent : OneLabComponent
     {
         [SerializeField] private KeyCode key1;

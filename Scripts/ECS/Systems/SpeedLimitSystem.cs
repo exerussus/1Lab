@@ -25,24 +25,26 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
         private void OnLimitXUpdate(int entity)
         {
             ref var speedLimitXData = ref Componenter.Get<SpeedLimitXData>(entity);
-            if (Mathf.Abs(speedLimitXData.PhysicalBody.Rigidbody2D.velocity.x) > speedLimitXData.Limit)
+            ref var rbData = ref Componenter.Get<RigidBody2DData>(entity);
+            if (Mathf.Abs(rbData.Value.velocity.x) > speedLimitXData.Limit)
             {
-                var directionMultiply = speedLimitXData.PhysicalBody.Rigidbody2D.velocity.x >= 0 ? 1 : -1;
-                var velocity = speedLimitXData.PhysicalBody.Rigidbody2D.velocity;
+                var directionMultiply = rbData.Value.velocity.x >= 0 ? 1 : -1;
+                var velocity = rbData.Value.velocity;
                 velocity.x = speedLimitXData.Limit * directionMultiply;
-                speedLimitXData.PhysicalBody.Rigidbody2D.velocity = velocity;
+                rbData.Value.velocity = velocity;
             }
         }
 
         private void OnLimitYUpdate(int entity)
         {
             ref var speedLimitYData = ref Componenter.Get<SpeedLimitYData>(entity);
-            if (Mathf.Abs(speedLimitYData.PhysicalBody.Rigidbody2D.velocity.y) > speedLimitYData.Limit)
+            ref var rbData = ref Componenter.Get<RigidBody2DData>(entity);
+            if (Mathf.Abs(rbData.Value.velocity.y) > speedLimitYData.Limit)
             {
-                var directionMultiply = speedLimitYData.PhysicalBody.Rigidbody2D.velocity.y >= 0 ? 1 : -1;
-                var velocity = speedLimitYData.PhysicalBody.Rigidbody2D.velocity;
+                var directionMultiply = rbData.Value.velocity.y >= 0 ? 1 : -1;
+                var velocity = rbData.Value.velocity;
                 velocity.y = speedLimitYData.Limit * directionMultiply;
-                speedLimitYData.PhysicalBody.Rigidbody2D.velocity = velocity;
+                rbData.Value.velocity = velocity;
             }
         }
     }

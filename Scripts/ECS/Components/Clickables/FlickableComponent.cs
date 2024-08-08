@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Exerussus._1Lab.Scripts.ECS.Components.Clickables
 {
     [AddComponentMenu("1Lab/Components/Flickable")]
-    [RequireComponent(typeof(Rigidbody2D), typeof(PhysicalBodyComponent))]
+    [RequireComponent(typeof(Rigidbody2D))]
     public class FlickableComponent : ClickableComponent
     {
         [SerializeField] private bool toMouse;

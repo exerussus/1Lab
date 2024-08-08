@@ -13,7 +13,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
         protected override void Initialize()
         {
             _keyboardInputMoverFilter = Componenter.Filter<KeyboardPlatformInputMoverData>().End();
-            _jumpFilter = Componenter.Filter<JumpData>().Inc<PhysicalBodyData>().End();
+            _jumpFilter = Componenter.Filter<JumpData>().Inc<RigidBody2DData>().End();
         }
 
         protected override void Update()
@@ -29,14 +29,14 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             
             if ((Input.GetKey(jumpData.Key1) || Input.GetKey(jumpData.Key2)) && jumpData.CoolDownTimer < 0)
             {
-                ref var physicalBodyData = ref Componenter.Get<PhysicalBodyData>(entity);
-                var velocity = physicalBodyData.Rigidbody2D.velocity;
+                ref var physicalBodyData = ref Componenter.Get<RigidBody2DData>(entity);
+                var velocity = physicalBodyData.Value.velocity;
                 
                 if (velocity.x != 0) velocity.x = 0;
                 if (velocity.y != 0) velocity.y = 0;
-                physicalBodyData.Rigidbody2D.velocity = velocity;
+                physicalBodyData.Value.velocity = velocity;
                 
-                physicalBodyData.Rigidbody2D.velocity += jumpData.Power * jumpData.Direction;
+                physicalBodyData.Value.velocity += jumpData.Power * jumpData.Direction;
                 jumpData.OnJump?.Invoke(entity, Componenter);
                 jumpData.CoolDownTimer = jumpData.CoolDownDelay;
             }
@@ -51,34 +51,34 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             {
                 if (keyboardInputMoverData.StopXWithoutInput && keyboardInputMoverData.UsePhysicalBody)
                 {
-                    ref var physicalBodyData = ref Componenter.Get<PhysicalBodyData>(entity);
-                    var resultVelocity = physicalBodyData.Rigidbody2D.velocity;
+                    ref var physicalBodyData = ref Componenter.Get<RigidBody2DData>(entity);
+                    var resultVelocity = physicalBodyData.Value.velocity;
                     resultVelocity.x = 0;
-                    physicalBodyData.Rigidbody2D.velocity = resultVelocity;
+                    physicalBodyData.Value.velocity = resultVelocity;
                 }
                 return;
             }
 
             if (keyboardInputMoverData.UsePhysicalBody)
             {
-                ref var physicalBodyData = ref Componenter.Get<PhysicalBodyData>(entity);
-                var currentVelocity = physicalBodyData.Rigidbody2D.velocity;
+                ref var physicalBodyData = ref Componenter.Get<RigidBody2DData>(entity);
+                var currentVelocity = physicalBodyData.Value.velocity;
                 
                 if (keyboardInputMoverData.FullSpeed)
                 {
                     currentVelocity.x = keyboardInputMoverData.Speed * inputX;
-                    physicalBodyData.Rigidbody2D.velocity = currentVelocity;
+                    physicalBodyData.Value.velocity = currentVelocity;
 
                     if (Mathf.Abs(currentVelocity.x) > keyboardInputMoverData.Speed)
                     {
                         currentVelocity.x = Mathf.Sign(currentVelocity.x) * keyboardInputMoverData.Speed;
-                        physicalBodyData.Rigidbody2D.velocity = currentVelocity;
+                        physicalBodyData.Value.velocity = currentVelocity;
                     }
                 }
                 else
                 {
                     currentVelocity.x += keyboardInputMoverData.Speed * Time.deltaTime * inputX;
-                    physicalBodyData.Rigidbody2D.velocity = currentVelocity;
+                    physicalBodyData.Value.velocity = currentVelocity;
                 }
             }
             else
