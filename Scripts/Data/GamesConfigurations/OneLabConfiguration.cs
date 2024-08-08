@@ -10,11 +10,19 @@ namespace Exerussus._1Lab.Scripts.Data.GamesConfigurations
         [SerializeField] private DebugSettings debug;
         [SerializeField] private Systems systems;
         [SerializeField] private Profile profile;
-        
+        [SerializeField] private LanguageType language;
+
         public DebugSettings Debug => debug;
+        public LanguageType Language => language;
         public Systems Systems => systems;
         public Profile Profile => profile;
         public float TickDelay => tickDelay;
+
+        public enum LanguageType
+        {
+            En,
+            Ru
+        }
     }
     
     [Serializable]
