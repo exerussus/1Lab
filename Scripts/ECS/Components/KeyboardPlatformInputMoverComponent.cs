@@ -58,7 +58,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         }
     }
 
-    public struct KeyboardPlatformInputMoverData : IEcsComponent
+    public struct KeyboardPlatformInputMoverData : IOneLabEcsData
     {
         public float Speed;
         public bool FullSpeed;

@@ -1,5 +1,6 @@
 ﻿
 using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Effects
@@ -9,19 +10,19 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
     {
         [SerializeField] private bool immediately = true;
         
-        public void DestroyTarget(int originEntity, int targetEntity, Componenter componenter)
+        public void DestroyTarget(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
         {
             if (!Activated) return;
             DestroyEntity(targetEntity);
         }
         
-        public void DestroyOrigin(int originEntity, int targetEntity, Componenter componenter)
+        public void DestroyOrigin(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
         {
             if (!Activated) return;
             DestroyEntity(originEntity);
         }
         
-        public void DestroyOrigin(int originEntity, Componenter componenter)
+        public void DestroyOrigin(int originEntity, Componenter<IOneLabEcsData> componenter)
         {
             if (!Activated) return;
             DestroyEntity(originEntity);

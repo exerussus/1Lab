@@ -1,5 +1,6 @@
 ﻿
 using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Components
@@ -35,14 +36,14 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         }
     }
 
-    public struct VfxData : IEcsComponent
+    public struct VfxData : IOneLabEcsData
     {
         public VfxComponent Vfx;
         public int FramesRemaining;
         public float LoopTimeRemaining;
     }
 
-    public struct CommandReleaseVfxMark
+    public struct CommandReleaseVfxMark : IOneLabEcsData
     {
         
     }

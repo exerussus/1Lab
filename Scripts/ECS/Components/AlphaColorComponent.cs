@@ -11,7 +11,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
     {
         [SerializeField] public bool makeVisable = false;
         [SerializeField] public float speed = 10;
-        public UnityEvent<int, Componenter> onSuccess;
+        public UnityEvent<int, Componenter<IOneLabEcsData>> onSuccess;
         private const float SpeedMultiply = 0.001f;
 
         public void Run()
@@ -41,10 +41,10 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         }
     }
 
-    public struct AlphaColorProcessData : IEcsComponent
+    public struct AlphaColorProcessData : IOneLabEcsData
     {
         public AlphaColorComponent AlphaColor;
         public float Speed;
-        public UnityEvent<int, Componenter> OnSuccess;
+        public UnityEvent<int, Componenter<IOneLabEcsData>> OnSuccess;
     }
 }

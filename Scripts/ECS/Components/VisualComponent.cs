@@ -28,7 +28,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         }
     }
 
-    public struct VisualData : IEcsComponent
+    public struct VisualData : IOneLabEcsData
     {
         public SpriteRenderer SpriteRenderer;
     }

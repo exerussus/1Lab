@@ -16,7 +16,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         [SerializeField] private GameObject[] objects;
         [SerializeField, HideInInspector] private Rigidbody2D[] _rigidBodies;
 
-        public UnityEvent<int, Componenter> onDestroy;
+        public UnityEvent<int, Componenter<IOneLabEcsData>> onDestroy;
 
         public override void Initialize()
         {
@@ -55,7 +55,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         }
     }
 
-    public struct CompositeObjectData : IEcsComponent
+    public struct CompositeObjectData : IOneLabEcsData
     {
         public CompositeObjectComponent Value;
     }

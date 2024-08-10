@@ -1,11 +1,12 @@
 ﻿using Exerussus._1EasyEcs.Scripts.Core;
 using Leopotam.EcsLite;
 using Exerussus._1Lab.Scripts.ECS.Components;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class SpeedLimitSystem : EasySystem
+    public class SpeedLimitSystem : EasySystem<IOneLabEcsData>
     {
         private EcsFilter _speedXLimitFilter;
         private EcsFilter _speedYLimitFilter;

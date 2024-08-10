@@ -5,11 +5,12 @@ using Leopotam.EcsLite;
 using UnityEngine;
 using System.Collections.Generic;
 using Exerussus._1Extensions.Pools;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using Object = UnityEngine.Object;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class VfxSystem : EcsSignalListener<CommandCreateVfxSignal>
+    public class VfxSystem : EcsSignalListener<IOneLabEcsData, CommandCreateVfxSignal>
     {
         private EcsFilter _vfxFilter;
         private EcsFilter _vfxReleaseCommandFilter;

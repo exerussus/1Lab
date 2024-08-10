@@ -1,13 +1,14 @@
 ﻿
 using System.Linq;
 using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using Leopotam.EcsLite;
 using Exerussus._1Lab.Scripts.ECS.Triggers;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class GlobalTriggerSystem : EcsSignalListener<CommandInvokeGlobalTrigger>
+    public class GlobalTriggerSystem : EcsSignalListener<IOneLabEcsData, CommandInvokeGlobalTrigger>
     {
         private EcsFilter _globalTriggerFilter;
         

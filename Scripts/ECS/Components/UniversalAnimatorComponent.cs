@@ -60,7 +60,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         }
     }
 
-    public struct CharacterAnimatorData : IEcsComponent
+    public struct CharacterAnimatorData : IOneLabEcsData
     {
         public bool IsOneShot;
         public int FrameRemaining;

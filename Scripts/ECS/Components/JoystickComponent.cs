@@ -1,5 +1,4 @@
 ﻿
-using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Extensions.Scripts.Extensions;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
@@ -55,13 +54,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         }
     }
 
-    public struct JoystickXData : IEcsComponent
+    public struct JoystickXData : IOneLabEcsData
     {
         public bool FullMagnitude;
         public Joystick Value;
     }
         
-    public struct JoystickYData : IEcsComponent
+    public struct JoystickYData : IOneLabEcsData
     {
         public bool FullMagnitude;
         public Joystick Value;

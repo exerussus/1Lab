@@ -1,5 +1,4 @@
 ﻿using System;
-using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using Exerussus._1Lab.Scripts.ECS.Systems;
 using UnityEngine;
@@ -81,7 +80,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         }
     }
 
-    public struct CharacterAnimatorExpendedData : IEcsComponent
+    public struct CharacterAnimatorExpendedData : IOneLabEcsData
     {
         public bool IsOneShot;
         public int FrameRemaining;

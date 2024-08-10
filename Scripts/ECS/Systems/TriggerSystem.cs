@@ -1,11 +1,12 @@
 ﻿using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using Leopotam.EcsLite;
 using Exerussus._1Lab.Scripts.ECS.Triggers;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class TriggerSystem : EasySystem
+    public class TriggerSystem : EasySystem<IOneLabEcsData>
     {
         private EcsFilter _timerTriggerFilter;
         private EcsFilter _keyPressedTriggerFilter;

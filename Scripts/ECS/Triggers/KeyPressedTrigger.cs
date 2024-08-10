@@ -9,7 +9,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
     public class KeyPressedTrigger : OneLabComponent
     {
         [SerializeField] public KeyCode key;
-        public UnityEvent<int, Componenter> onPressed;
+        public UnityEvent<int, Componenter<IOneLabEcsData>> onPressed;
         
         public override void Initialize()
         {
@@ -34,9 +34,9 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
         }
     }
 
-    public struct KeyPressedTriggerData : IEcsComponent
+    public struct KeyPressedTriggerData : IOneLabEcsData
     {
         public KeyCode Key;
-        public UnityEvent<int, Componenter> OnPressed;
+        public UnityEvent<int, Componenter<IOneLabEcsData>> OnPressed;
     }
 }

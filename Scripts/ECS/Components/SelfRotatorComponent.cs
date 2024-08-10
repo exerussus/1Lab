@@ -112,17 +112,17 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         }
     }
 
-    public struct SelfRotatorXData : IEcsComponent
+    public struct SelfRotatorXData : IOneLabEcsData
     {
         public float Speed;
     }
 
-    public struct SelfRotatorYData : IEcsComponent
+    public struct SelfRotatorYData : IOneLabEcsData
     {
         public float Speed;
     }
 
-    public struct SelfRotatorZData : IEcsComponent
+    public struct SelfRotatorZData : IOneLabEcsData
     {
         public float Speed;
     }

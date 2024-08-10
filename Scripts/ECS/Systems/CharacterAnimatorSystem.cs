@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class CharacterAnimatorSystem : EasySystem
+    public class CharacterAnimatorSystem : EasySystem<IOneLabEcsData>
     {
         public EcsFilter _characterAnimatorFilter;
         public EcsFilter _characterAnimatorExpendedFilter;
@@ -200,7 +200,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
         }
     }
 
-    public struct AnimationInputData : IEcsComponent
+    public struct AnimationInputData : IOneLabEcsData
     {
         public float HorizontalAxis;
     }

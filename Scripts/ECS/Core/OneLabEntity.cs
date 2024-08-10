@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Core
 {
-    public class OneLabEntity : EcsMonoBehavior
+    public class OneLabEntity : EcsMonoBehavior<IOneLabEcsData>
     {
         public string[] tags;
         
@@ -26,7 +26,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         }
     }
 
-    public struct TagsData : IEcsComponent
+    public struct TagsData : IOneLabEcsData
     {
         public string[] Values;
     }

@@ -11,13 +11,13 @@ using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Core
 {
-    public class OneLab : EcsStarter
+    public class OneLab : EcsStarter<IOneLabEcsData>
     {
         #region Fields And Initializing
 
         private static OneLab _instance;
         private static bool _isInitialized;
-        public static Componenter Componenter => Instance._componenter;
+        public static Componenter<IOneLabEcsData> Componenter => Instance._componenter;
         public static EcsWorld World => Instance._world;
         public static Signal Signal => Instance._signalHandler.Signal;
         private event Action OnDestroyEvent;
@@ -98,5 +98,10 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         {
             return _signalHandler.Signal;
         }
+    }
+
+    public interface IOneLabEcsData : IEcsComponent
+    {
+        
     }
 }

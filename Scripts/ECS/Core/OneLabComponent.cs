@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Exerussus._1Lab.Scripts.ECS.Core
 {
     [RequireComponent(typeof(OneLabEntity))]
-    public abstract class OneLabComponent : EcsComponent
+    public abstract class OneLabComponent : EcsComponent<IOneLabEcsData>
     {
         [SerializeField, HideInInspector] private OneLabEntity oneLabEntity;
 

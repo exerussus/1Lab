@@ -1,12 +1,13 @@
 ﻿using Exerussus._1EasyEcs.Scripts.Core;
 using Leopotam.EcsLite;
 using Exerussus._1Lab.Scripts.ECS.Components;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using Exerussus._1Lab.Scripts.ECS.Effects;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class InputMoverSystem : EcsSignalListener<CommandTryInvokeJumpSignal>
+    public class InputMoverSystem : EcsSignalListener<IOneLabEcsData, CommandTryInvokeJumpSignal>
     {
         private EcsFilter _keyboardInputMoverFilter;
         private EcsFilter _jumpFilter;
@@ -168,7 +169,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
         }
     }
 
-    public struct InputData : IEcsComponent
+    public struct InputData : IOneLabEcsData
     {
         public float Horizontal;
         public float Vertical;

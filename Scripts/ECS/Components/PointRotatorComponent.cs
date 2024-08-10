@@ -64,7 +64,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         }
     }
 
-    public struct PointRotatorData : IEcsComponent
+    public struct PointRotatorData : IOneLabEcsData
     {
         public Vector2 Point;
         public float Speed;

@@ -1,5 +1,6 @@
 ﻿
 using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using Exerussus._1Lab.Scripts.ECS.Effects;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,24 +13,24 @@ namespace Exerussus._1Lab.Scripts.ECS.Filters
         public string[] any;
         public string[] include;
         public string[] exclude;
-        public UnityEvent<int, Componenter> onSuccess;
+        public UnityEvent<int, Componenter<IOneLabEcsData>> onSuccess;
         
-        public void FilterOrigin(int originEntity, Componenter componenter)
+        public void FilterOrigin(int originEntity, Componenter<IOneLabEcsData> componenter)
         {
             FilterProcess(originEntity, componenter);
         }
         
-        public void FilterOrigin(int originEntity, int targetEntity, Componenter componenter)
+        public void FilterOrigin(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
         {
             FilterProcess(originEntity, componenter);
         }
         
-        public void FilterTarget(int originEntity, int targetEntity, Componenter componenter)
+        public void FilterTarget(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
         {
             FilterProcess(targetEntity, componenter);
         }
 
-        private void FilterProcess(int entity, Componenter componenter)
+        private void FilterProcess(int entity, Componenter<IOneLabEcsData> componenter)
         {
             Signal.RegistryRaise(new CommandFilterTagSignal
             {

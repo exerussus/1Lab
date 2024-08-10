@@ -1,5 +1,4 @@
 ﻿
-using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
@@ -66,7 +65,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         }
     }
 
-    public struct FliperData : IEcsComponent
+    public struct FliperData : IOneLabEcsData
     {
         public FliperComponent Value;
     }

@@ -1,10 +1,11 @@
 ﻿using Exerussus._1EasyEcs.Scripts.Core;
 using Leopotam.EcsLite;
 using Exerussus._1Lab.Scripts.ECS.Components;
+using Exerussus._1Lab.Scripts.ECS.Core;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class AlphaColorSystem : EasySystem
+    public class AlphaColorSystem : EasySystem<IOneLabEcsData>
     {
         private EcsFilter _alphaColorFilter;
 

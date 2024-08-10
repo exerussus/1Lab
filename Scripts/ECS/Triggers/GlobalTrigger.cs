@@ -1,9 +1,7 @@
 ﻿
-using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 using UnityEngine.Events;
-using Debug = UnityEngine.Debug;
 
 namespace Exerussus._1Lab.Scripts.ECS.Triggers
 {
@@ -32,7 +30,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
         }
     }
 
-    public struct GlobalTriggerData : IEcsComponent
+    public struct GlobalTriggerData : IOneLabEcsData
     {
         public string[] Tags;
         public GlobalTrigger Value;

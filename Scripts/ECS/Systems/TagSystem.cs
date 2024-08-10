@@ -7,7 +7,7 @@ using Plugins.Exerussus._1Lab.Scripts.ECS.Core;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class TagSystem : EcsSignalListener<OnLabEntityInitializedSignal, OnEcsMonoBehaviorStartDestroySignal, CommandFilterTagSignal>
+    public class TagSystem : EcsSignalListener<IOneLabEcsData, OnLabEntityInitializedSignal, OnEcsMonoBehaviorStartDestroySignal, CommandFilterTagSignal>
     {
         private TagsHandler _tagsHandler;
         

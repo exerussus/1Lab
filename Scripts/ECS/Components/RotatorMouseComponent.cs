@@ -37,7 +37,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         }
     }
 
-    public struct RotatorMouseData : IEcsComponent
+    public struct RotatorMouseData : IOneLabEcsData
     {
         public float Speed;
     }

@@ -1,11 +1,12 @@
 ﻿using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Components;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using Leopotam.EcsLite;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class FlipSystem : EasySystem
+    public class FlipSystem : EasySystem<IOneLabEcsData>
     {
         private EcsFilter _fliperFilter;
         private Camera _camera;

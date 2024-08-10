@@ -9,7 +9,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
     public class EntityDeathTrigger : OneLabComponent
     {
         [SerializeField] private bool activatedOnStart = true;
-        public UnityEvent<int, Componenter> onDead;
+        public UnityEvent<int, Componenter<IOneLabEcsData>> onDead;
         
         public override void Initialize()
         {
@@ -34,8 +34,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
         }
     }
 
-    public struct EntityDeathTriggerData : IEcsComponent
+    public struct EntityDeathTriggerData : IOneLabEcsData
     {
-        public UnityEvent<int, Componenter> OnDead;
+        public UnityEvent<int, Componenter<IOneLabEcsData>> OnDead;
     }
 }

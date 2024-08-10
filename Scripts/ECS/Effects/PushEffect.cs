@@ -1,5 +1,6 @@
 ﻿using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Extensions.Scripts.Extensions;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Effects
@@ -11,7 +12,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
         [SerializeField] private Vector2 direction = new Vector2(0, 1);
         [SerializeField] private float power;
         
-        public void PushTarget(int originEntity, int targetEntity, Componenter componenter)
+        public void PushTarget(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
         {
             if (!Activated) return;
             if (!componenter.Has<RigidBody2DData>(targetEntity)) return;
@@ -28,7 +29,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             physicalBodyData.Value.velocity = direction * power;
         }
         
-        public void PushOriginToDirection(int originEntity, Componenter componenter)
+        public void PushOriginToDirection(int originEntity, Componenter<IOneLabEcsData> componenter)
         {
             if (!Activated) return;
             if (!componenter.Has<RigidBody2DData>(originEntity)) return;
@@ -37,7 +38,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             physicalBodyData.Value.velocity = resultDirection * power;
         }
         
-        public void PushOriginToDirection(int originEntity, int targetEntity, Componenter componenter)
+        public void PushOriginToDirection(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
         {
             if (!Activated) return;
             if (!componenter.Has<RigidBody2DData>(originEntity)) return;
@@ -46,7 +47,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             physicalBodyData.Value.velocity = resultDirection * power;
         }
         
-        public void PushTargetToDirection(int originEntity, int targetEntity, Componenter componenter)
+        public void PushTargetToDirection(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
         {
             if (!Activated) return;
             if (!componenter.Has<RigidBody2DData>(targetEntity)) return;
@@ -55,7 +56,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             physicalBodyData.Value.velocity = resultDirection * power;
         }
         
-        public void PushOrigin(int originEntity, int targetEntity, Componenter componenter)
+        public void PushOrigin(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
         {
             if (!Activated) return;
             if (!componenter.Has<RigidBody2DData>(originEntity)) return;

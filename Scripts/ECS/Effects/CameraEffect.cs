@@ -1,5 +1,6 @@
 ﻿using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Components;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Effects
@@ -9,7 +10,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
     {
         [SerializeField] private Vector2 offset;
         
-        public void FollowOrigin(int originEntity, Componenter componenter)
+        public void FollowOrigin(int originEntity, Componenter<IOneLabEcsData> componenter)
         {
             Signal.RegistryRaise( new CommandCameraFollowTransformSignal
             {
@@ -18,14 +19,14 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             });
         }
         
-        public void FollowOrigin(int originEntity, int targetEntity, Componenter componenter)
+        public void FollowOrigin(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
         {
             Signal.RegistryRaise( new CommandCameraFollowTransformSignal {
                 TargetTransform = componenter.Get<TransformData>(originEntity).Value,
                 Offset = offset});
         }
         
-        public void FollowTarget(int originEntity, int targetEntity, Componenter componenter)
+        public void FollowTarget(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
         {
             Signal.RegistryRaise( new CommandCameraFollowTransformSignal {
                 TargetTransform = componenter.Get<TransformData>(targetEntity).Value,

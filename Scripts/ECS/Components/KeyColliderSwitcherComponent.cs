@@ -60,7 +60,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         }
     }
 
-    public struct KeyColliderSwitcherData : IEcsComponent
+    public struct KeyColliderSwitcherData : IOneLabEcsData
     {
         public KeyColliderSwitcherComponent Value;
     }

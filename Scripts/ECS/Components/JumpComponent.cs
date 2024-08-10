@@ -17,7 +17,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         [SerializeField] private float coolDown;
         [SerializeField] private bool reloadOnTouch;
         [SerializeField] private string[] touchTags;
-        public UnityEvent<int, Componenter> onJump;
+        public UnityEvent<int, Componenter<IOneLabEcsData>> onJump;
         private const float MaxReloadOnTouch = 0.2f;
         
         public override void Initialize()
@@ -82,13 +82,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         
     }
 
-    public struct JumpData : IEcsComponent
+    public struct JumpData : IOneLabEcsData
     {
         public KeyCode Key1;
         public KeyCode Key2;
         public float Power;
         public Vector2 Direction;
-        public UnityEvent<int, Componenter> OnJump;
+        public UnityEvent<int, Componenter<IOneLabEcsData>> OnJump;
         public float CoolDownDelay;
         public float CoolDownTimer;
         public bool ReloadOnTouch;

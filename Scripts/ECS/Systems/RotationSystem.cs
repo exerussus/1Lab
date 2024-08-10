@@ -1,12 +1,13 @@
 ﻿using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Extensions.Scripts.Extensions;
 using Exerussus._1Lab.Scripts.ECS.Components;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using Leopotam.EcsLite;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class RotationSystem : EasySystem
+    public class RotationSystem : EasySystem<IOneLabEcsData>
     {
         private EcsFilter _rotationMouseFilter;
         private EcsFilter _selfRotationXFilter;

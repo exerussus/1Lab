@@ -61,7 +61,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         }
     }
 
-    public struct PointMoverData : IEcsComponent
+    public struct PointMoverData : IOneLabEcsData
     {
         public float Speed;
         public Vector2 StartPoint;
