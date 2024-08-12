@@ -1,49 +1,41 @@
 ﻿
-using Exerussus._1EasyEcs.Scripts.Core;
-using Exerussus._1Extensions.SignalSystem;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Components
 {
     [AddComponentMenu("1Lab/Components/SmartCamera")]
-    public class SmartCameraComponent : MonoSignalListener<CommandCameraFollowTransformSignal, OnEcsMonoBehaviorStartDestroySignal>
+    public class SmartCameraComponent : OneLabComponent
     {
-        [SerializeField] private bool hasTarget;
-        [SerializeField] private Transform targetTransform;
-        [SerializeField] private Vector2 offset;
-        
-        protected override void OnSignal(CommandCameraFollowTransformSignal data)
+        [SerializeField] private bool autoStart = true;
+
+        private void Start()
         {
-            hasTarget = true;
-            targetTransform = data.TargetTransform;
-            offset = data.Offset;
+            if (autoStart) Run();
         }
 
-        protected override void OnSignal(OnEcsMonoBehaviorStartDestroySignal data)
+        public void Run()
         {
-            if (!hasTarget) return;
-            if (targetTransform.transform == data.EcsMonoBehavior.transform)
-            {
-                hasTarget = false;
-                targetTransform = null;
-            }
+            ref var smartCameraData = ref Componenter.AddOrGet<SmartCameraData>(Entity);
+            smartCameraData.Transform = transform;
         }
 
-        private void LateUpdate()
+        public void Stop()
         {
-            if (!hasTarget) return;
-
-            var targetPosition = targetTransform.position;
-            targetPosition.z = transform.position.z;
-            targetPosition.x += offset.x;
-            targetPosition.y += offset.y;
-            transform.position = targetPosition;
+            Componenter.Del<SmartCameraData>(Entity);
         }
+    }
+
+    public struct SmartCameraData : IOneLabEcsData
+    {
+        public Transform Transform;
     }
 
     public struct CommandCameraFollowTransformSignal
     {
-        public Transform TargetTransform;
+        public bool FollowX;
+        public bool FollowY;
+        public int TargetEntity;
         public Vector2 Offset;
     }
 }

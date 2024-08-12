@@ -1,4 +1,5 @@
-﻿using Exerussus._1Lab.Scripts.ECS.Core;
+﻿using System;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using Exerussus._1Lab.Scripts.ECS.Systems;
 using UnityEngine;
 
@@ -11,7 +12,12 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         [SerializeField] private bool isDynamic = true;
         [SerializeField] private float bottomPosition;
         public float ResultBottomPosition => transform.position.y + bottomPosition;
-        
+
+        public void Start()
+        {
+            if (autoRun) Run();
+        }
+
         public void Run()
         {
             ref var sorterData = ref Componenter.AddOrGet<SorterData>(Entity);

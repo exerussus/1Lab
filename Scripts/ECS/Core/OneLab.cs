@@ -5,7 +5,6 @@ using Exerussus._1Extensions.Scripts.Extensions;
 using Exerussus._1Extensions.SignalSystem;
 using Exerussus._1Lab.Scripts.ECS.Systems;
 using Exerussus._1Lab.Scripts.Data.GamesConfigurations;
-using Exerussus._1Lab.Scripts.ECS.Core;
 using Leopotam.EcsLite;
 using UnityEngine;
 
@@ -57,30 +56,46 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         
         protected override void SetInitSystems(IEcsSystems initSystems)
         {
-            initSystems.Add(new TagSystem());
+            initSystems
+                
+                .Add(new TagSystem());
+            
             ExtraSystemsMethods.InitExecute(initSystems);
         }
 
         protected override void SetFixedUpdateSystems(IEcsSystems fixedUpdateSystems)
         {
-            fixedUpdateSystems.Add(new RotationSystem());
-            fixedUpdateSystems.Add(new MoveSystem());
-            fixedUpdateSystems.Add(new FlipSystem());
-            fixedUpdateSystems.Add(new SpeedLimitSystem());
-            fixedUpdateSystems.Add(new AlphaColorSystem());
-            fixedUpdateSystems.Add(new VfxSystem());
-            fixedUpdateSystems.Add(new CharacterAnimatorSystem());
-            fixedUpdateSystems.Add(new GlobalTriggerSystem());
-            fixedUpdateSystems.Add(new KeyColliderSwitcherSystem());
-            fixedUpdateSystems.Add(new SorterSystem());
+            fixedUpdateSystems
+                    
+                .Add(new RotationSystem())
+                .Add(new MoveSystem())
+                .Add(new FlipSystem())
+                .Add(new SpeedLimitSystem())
+                .Add(new AlphaColorSystem())
+                .Add(new VfxSystem())
+                .Add(new CharacterAnimatorSystem())
+                .Add(new GlobalTriggerSystem())
+                .Add(new KeyColliderSwitcherSystem())
+                .Add(new SorterSystem());
+            
             ExtraSystemsMethods.FixedUpdateExecute(fixedUpdateSystems);
         }
 
         protected override void SetUpdateSystems(IEcsSystems updateSystems)
         {
-            updateSystems.Add(new InputMoverSystem());
-            updateSystems.Add(new TriggerSystem());
+            updateSystems
+                    
+                .Add(new InputMoverSystem())
+                .Add(new TriggerSystem());
+            
             ExtraSystemsMethods.UpdateExecute(updateSystems);
+        }
+
+        protected override void SetLateUpdateSystems(IEcsSystems lateUpdateSystems)
+        {
+            lateUpdateSystems
+                
+                .Add(new CameraSystem());
         }
 
         protected override void SetTickUpdateSystems(IEcsSystems tickUpdateSystems)

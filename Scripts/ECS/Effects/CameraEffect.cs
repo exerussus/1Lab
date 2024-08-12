@@ -9,28 +9,37 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
     public class CameraEffect : EcsEffect
     {
         [SerializeField] private Vector2 offset;
+        [SerializeField] private bool followX;
+        [SerializeField] private bool followY;
         
         public void FollowOrigin(int originEntity, Componenter<IOneLabEcsData> componenter)
         {
             Signal.RegistryRaise( new CommandCameraFollowTransformSignal
             {
-                TargetTransform = componenter.Get<TransformData>(originEntity).Value,
-                Offset = offset
+                TargetEntity = originEntity,
+                Offset = offset,
+                FollowX = followX,
+                FollowY = followY
             });
         }
         
         public void FollowOrigin(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
         {
             Signal.RegistryRaise( new CommandCameraFollowTransformSignal {
-                TargetTransform = componenter.Get<TransformData>(originEntity).Value,
-                Offset = offset});
+                TargetEntity = originEntity,
+                Offset = offset,
+                FollowX = followX,
+                FollowY = followY
+            });
         }
         
         public void FollowTarget(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
         {
             Signal.RegistryRaise( new CommandCameraFollowTransformSignal {
-                TargetTransform = componenter.Get<TransformData>(targetEntity).Value,
-                Offset = offset});
+                TargetEntity = originEntity,
+                Offset = offset,
+                FollowX = followX,
+                FollowY = followY});
         }
     }
 }
