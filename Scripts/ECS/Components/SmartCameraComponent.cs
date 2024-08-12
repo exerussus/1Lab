@@ -8,8 +8,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
     public class SmartCameraComponent : OneLabComponent
     {
         [SerializeField] private bool autoStart = true;
-
-        private void Start()
+        
+        public override void Initialize()
         {
             if (autoStart) Run();
         }
