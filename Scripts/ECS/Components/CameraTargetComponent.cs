@@ -12,7 +12,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         [SerializeField] private bool followY = true;
         [SerializeField] private Vector2 offset;
         
-        public void Start()
+        public override void Initialize()
         {
             if (autoRun) Run();
         }

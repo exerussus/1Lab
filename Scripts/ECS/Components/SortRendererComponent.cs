@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using Exerussus._1Lab.Scripts.ECS.Core;
 using Exerussus._1Lab.Scripts.ECS.Systems;
 using UnityEngine;
@@ -13,7 +13,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         [SerializeField] private float bottomPosition;
         public float ResultBottomPosition => transform.position.y + bottomPosition;
 
-        public void Start()
+        public override void Initialize()
         {
             if (autoRun) Run();
         }
