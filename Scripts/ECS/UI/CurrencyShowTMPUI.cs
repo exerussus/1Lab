@@ -2,7 +2,7 @@
 using System;
 using Exerussus._1Extensions.SignalSystem;
 using Exerussus._1Lab.Scripts.Data.GamesConfigurations;
-using Plugins.Exerussus._1Lab.Scripts.Extensions;
+using Exerussus._1Lab.Scripts.Extensions;
 using TMPro;
 using UnityEngine;
 

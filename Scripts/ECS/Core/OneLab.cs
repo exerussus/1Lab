@@ -5,7 +5,7 @@ using Exerussus._1Extensions.Scripts.Extensions;
 using Exerussus._1Extensions.SignalSystem;
 using Exerussus._1Lab.Scripts.ECS.Systems;
 using Exerussus._1Lab.Scripts.Data.GamesConfigurations;
-using Plugins.Exerussus._1Lab.Scripts.ECS.Core;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using Leopotam.EcsLite;
 using UnityEngine;
 
@@ -72,6 +72,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             fixedUpdateSystems.Add(new CharacterAnimatorSystem());
             fixedUpdateSystems.Add(new GlobalTriggerSystem());
             fixedUpdateSystems.Add(new KeyColliderSwitcherSystem());
+            fixedUpdateSystems.Add(new SorterSystem());
             ExtraSystemsMethods.FixedUpdateExecute(fixedUpdateSystems);
         }
 

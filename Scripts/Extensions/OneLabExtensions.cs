@@ -1,7 +1,7 @@
 ﻿using Exerussus._1Extensions;
 using UnityEngine;
 
-namespace Plugins.Exerussus._1Lab.Scripts.Extensions
+namespace Exerussus._1Lab.Scripts.Extensions
 {
     public static class OneLabExtensions
     {
