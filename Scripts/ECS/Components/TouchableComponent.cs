@@ -13,8 +13,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         [SerializeField, HideInInspector] public Collider2D touchableCollider2D;
         [SerializeField] public string[] targetTags;
         [SerializeField] public bool singleUse;
-        public UnityEvent<int, int, Componenter<IOneLabEcsData>> onTouch;
-        public UnityEvent<int, int, Componenter<IOneLabEcsData>> onExit;
+        public UnityEvent<int, int, Componenter> onTouch;
+        public UnityEvent<int, int, Componenter> onExit;
         public bool IsInitialized { get; private set; } = false;
         
         public string[] TargetTags => targetTags;

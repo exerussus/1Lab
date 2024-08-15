@@ -13,24 +13,24 @@ namespace Exerussus._1Lab.Scripts.ECS.Filters
         public string[] any;
         public string[] include;
         public string[] exclude;
-        public UnityEvent<int, Componenter<IOneLabEcsData>> onSuccess;
+        public UnityEvent<int, Componenter> onSuccess;
         
-        public void FilterOrigin(int originEntity, Componenter<IOneLabEcsData> componenter)
+        public void FilterOrigin(int originEntity, Componenter componenter)
         {
             FilterProcess(originEntity, componenter);
         }
         
-        public void FilterOrigin(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
+        public void FilterOrigin(int originEntity, int targetEntity, Componenter componenter)
         {
             FilterProcess(originEntity, componenter);
         }
         
-        public void FilterTarget(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
+        public void FilterTarget(int originEntity, int targetEntity, Componenter componenter)
         {
             FilterProcess(targetEntity, componenter);
         }
 
-        private void FilterProcess(int entity, Componenter<IOneLabEcsData> componenter)
+        private void FilterProcess(int entity, Componenter componenter)
         {
             Signal.RegistryRaise(new CommandFilterTagSignal
             {

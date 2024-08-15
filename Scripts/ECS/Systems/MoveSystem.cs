@@ -27,7 +27,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             
             var targetPoint = pointMoverData.ToEndPoint ? pointMoverData.EndPoint : pointMoverData.StartPoint;
             var returnPoint = pointMoverData.ToEndPoint ? pointMoverData.StartPoint : pointMoverData.EndPoint;
-            var step = Time.fixedDeltaTime * pointMoverData.Speed;
+            var step = Time.deltaTime * pointMoverData.Speed;
             var distance = Vector2.Distance(currentPosition, targetPoint);
             
             if (distance < 0.1f + step)

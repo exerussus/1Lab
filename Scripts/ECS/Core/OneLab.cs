@@ -16,7 +16,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
 
         private static OneLab _instance;
         private static bool _isInitialized;
-        public static Componenter<IOneLabEcsData> Componenter => Instance._componenter;
+        public static Componenter Componenter => Instance._componenter;
         public static EcsWorld World => Instance._world;
         public static Signal Signal => Instance._signalHandler.Signal;
         private event Action OnDestroyEvent;
@@ -68,7 +68,6 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             fixedUpdateSystems
                     
                 .Add(new RotationSystem())
-                .Add(new MoveSystem())
                 .Add(new FlipSystem())
                 .Add(new SpeedLimitSystem())
                 .Add(new AlphaColorSystem())
@@ -86,6 +85,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             updateSystems
                     
                 .Add(new InputMoverSystem())
+                .Add(new MoveSystem())
                 .Add(new TriggerSystem());
             
             ExtraSystemsMethods.UpdateExecute(updateSystems);

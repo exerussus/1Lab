@@ -38,7 +38,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             });
         }
 
-        public void CreateInOriginPosition(int originEntity, Componenter<IOneLabEcsData> componenter)
+        public void CreateInOriginPosition(int originEntity, Componenter componenter)
         {
             ref var transformData = ref componenter.Get<TransformData>(originEntity);
             
@@ -52,7 +52,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             });
         }
 
-        public void CreateInOriginPosition(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
+        public void CreateInOriginPosition(int originEntity, int targetEntity, Componenter componenter)
         {
             ref var transformData = ref componenter.Get<TransformData>(originEntity);
             
@@ -66,7 +66,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             });
         }
 
-        public void CreateInTargetPosition(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
+        public void CreateInTargetPosition(int originEntity, int targetEntity, Componenter componenter)
         {
             ref var transformData = ref componenter.Get<TransformData>(targetEntity);
             
@@ -80,7 +80,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             });
         }
 
-        public void CreateBetweenPositions(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
+        public void CreateBetweenPositions(int originEntity, int targetEntity, Componenter componenter)
         {
             ref var firstTransformData = ref componenter.Get<TransformData>(originEntity);
             ref var secondTransformData = ref componenter.Get<TransformData>(targetEntity);

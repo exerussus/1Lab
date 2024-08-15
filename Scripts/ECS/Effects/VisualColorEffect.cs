@@ -10,22 +10,22 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
     {
         [SerializeField] private Color color = Color.white;
         
-        public void SetToOrigin(int originEntity, Componenter<IOneLabEcsData> componenter)
+        public void SetToOrigin(int originEntity, Componenter componenter)
         {
             SetColor(originEntity, componenter);
         }
         
-        public void SetToOrigin(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
+        public void SetToOrigin(int originEntity, int targetEntity, Componenter componenter)
         {
             SetColor(originEntity, componenter);
         }
         
-        public void SetToTarget(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
+        public void SetToTarget(int originEntity, int targetEntity, Componenter componenter)
         {
             SetColor(targetEntity, componenter);
         }
 
-        private void SetColor(int entity, Componenter<IOneLabEcsData> componenter)
+        private void SetColor(int entity, Componenter componenter)
         {
             if (!componenter.Has<VisualData>(entity)) return;
 

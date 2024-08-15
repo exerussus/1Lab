@@ -8,6 +8,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
     public class SmartCameraComponent : OneLabComponent
     {
         [SerializeField] private bool autoStart = true;
+        [SerializeField] private float smoothingSpeed = 5.95f;
         
         public override void Initialize()
         {
@@ -18,6 +19,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         {
             ref var smartCameraData = ref Componenter.AddOrGet<SmartCameraData>(Entity);
             smartCameraData.Transform = transform;
+            smartCameraData.SmoothingSpeed = smoothingSpeed;
         }
 
         public void Stop()
@@ -29,6 +31,9 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
     public struct SmartCameraData : IOneLabEcsData
     {
         public Transform Transform;
+        public float SmoothingSpeed;
+        public Vector3 Velocity;
+        public float SmoothingTime;
     }
 
     public struct CommandCameraFollowTransformSignal

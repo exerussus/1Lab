@@ -12,7 +12,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
         [SerializeField] private Vector2 direction = new Vector2(0, 1);
         [SerializeField] private float power;
         
-        public void PushTarget(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
+        public void PushTarget(int originEntity, int targetEntity, Componenter componenter)
         {
             if (!Activated) return;
             if (!componenter.Has<RigidBody2DData>(targetEntity)) return;
@@ -29,7 +29,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             physicalBodyData.Value.velocity = direction * power;
         }
         
-        public void PushOriginToDirection(int originEntity, Componenter<IOneLabEcsData> componenter)
+        public void PushOriginToDirection(int originEntity, Componenter componenter)
         {
             if (!Activated) return;
             if (!componenter.Has<RigidBody2DData>(originEntity)) return;
@@ -38,7 +38,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             physicalBodyData.Value.velocity = resultDirection * power;
         }
         
-        public void PushOriginToDirection(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
+        public void PushOriginToDirection(int originEntity, int targetEntity, Componenter componenter)
         {
             if (!Activated) return;
             if (!componenter.Has<RigidBody2DData>(originEntity)) return;
@@ -47,7 +47,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             physicalBodyData.Value.velocity = resultDirection * power;
         }
         
-        public void PushTargetToDirection(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
+        public void PushTargetToDirection(int originEntity, int targetEntity, Componenter componenter)
         {
             if (!Activated) return;
             if (!componenter.Has<RigidBody2DData>(targetEntity)) return;
@@ -56,7 +56,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             physicalBodyData.Value.velocity = resultDirection * power;
         }
         
-        public void PushOrigin(int originEntity, int targetEntity, Componenter<IOneLabEcsData> componenter)
+        public void PushOrigin(int originEntity, int targetEntity, Componenter componenter)
         {
             if (!Activated) return;
             if (!componenter.Has<RigidBody2DData>(originEntity)) return;

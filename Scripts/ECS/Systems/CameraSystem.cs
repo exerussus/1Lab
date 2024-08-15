@@ -26,13 +26,21 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
                     ref var cameraData = ref Componenter.Get<SmartCameraData>(cameraEntity);
                     ref var targetData = ref Componenter.Get<CameraTargetData>(targetEntity);
                     var cameraPos = cameraData.Transform.transform.position;
-                    
-                    var position = targetData.Transform.position + targetData.Offset;
-                    position.z = cameraPos.z;
-                    if (!targetData.FollowX) position.x = cameraPos.x;
-                    if (!targetData.FollowY) position.y = cameraPos.y;
+            
+                    var targetPosition = targetData.Transform.position + targetData.Offset;
+                    targetPosition.z = cameraPos.z;
+                    if (!targetData.FollowX) targetPosition.x = cameraPos.x;
+                    if (!targetData.FollowY) targetPosition.y = cameraPos.y;
 
-                    cameraData.Transform.transform.position = position;
+                    // Используем SmoothDamp вместо Lerp для более плавного движения
+                    var smoothedPosition = Vector3.SmoothDamp(
+                        cameraPos, 
+                        targetPosition, 
+                        ref cameraData.Velocity, // Добавьте новое поле Velocity в SmartCameraData
+                        cameraData.SmoothingTime // Добавьте SmoothingTime в SmartCameraData
+                    );
+            
+                    cameraData.Transform.transform.position = smoothedPosition;
                     return;
                 }
             }
@@ -63,6 +71,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
                 transformData.Value = camera.transform;
                 ref var smartCameraData = ref Componenter.AddOrGet<SmartCameraData>(cameraEntity);
                 smartCameraData.Transform = camera.transform;
+                smartCameraData.SmoothingSpeed = 5.95f;
+                smartCameraData.SmoothingTime = 01.3f;
             }
         }
     }

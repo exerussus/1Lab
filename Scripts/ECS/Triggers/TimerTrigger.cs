@@ -12,7 +12,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
         [SerializeField] private float delay = 1f;
         [SerializeField] private bool isLoop;
 
-        public UnityEvent<int, Componenter<IOneLabEcsData>> onTick;
+        public UnityEvent<int, Componenter> onTick;
 
         public override void Initialize()
         {
@@ -40,7 +40,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
 
     public struct TimerTriggerData : IOneLabEcsData
     {
-        public UnityEvent<int, Componenter<IOneLabEcsData>> OnTick;
+        public UnityEvent<int, Componenter> OnTick;
         public float Delay;
         public float Timer;
         public bool IsLoop;

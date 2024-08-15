@@ -10,7 +10,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
     public class AllEntitiesComponent : OneLabComponent
     {
         private EcsFilter _tagsFilter;
-        public UnityEvent<int, Componenter<IOneLabEcsData>> onExist;
+        public UnityEvent<int, Componenter> onExist;
         
         public override void Initialize()
         {

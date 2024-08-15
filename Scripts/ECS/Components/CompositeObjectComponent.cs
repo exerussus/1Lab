@@ -16,7 +16,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         [SerializeField] private GameObject[] objects;
         [SerializeField, HideInInspector] private Rigidbody2D[] _rigidBodies;
 
-        public UnityEvent<int, Componenter<IOneLabEcsData>> onDestroy;
+        public UnityEvent<int, Componenter> onDestroy;
 
         public override void Initialize()
         {
