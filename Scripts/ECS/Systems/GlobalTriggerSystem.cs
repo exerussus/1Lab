@@ -11,17 +11,19 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
     public class GlobalTriggerSystem : EcsSignalListener<IOneLabEcsData, CommandInvokeGlobalTrigger>
     {
         private EcsFilter _globalTriggerFilter;
-        
+        private Pooler _pooler;
+
         protected override void Initialize()
         {
             _globalTriggerFilter = Componenter.Filter<GlobalTriggerData>().End();
+            _pooler = GameShare.GetSharedObject<Pooler>();
         }
 
         protected override void OnSignal(CommandInvokeGlobalTrigger data)
         {
             foreach (var entity in _globalTriggerFilter)
             {
-                ref var globalTriggerData = ref Componenter.Get<GlobalTriggerData>(entity);
+                ref var globalTriggerData = ref _pooler.GlobalTrigger.Get(entity);
                 if (globalTriggerData.Value.tags.Contains(data.Tag)) globalTriggerData.Value.onAction?.Invoke();
             }
         }

@@ -10,11 +10,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
     {
         private EcsFilter _keyColliderSwitcherFilter;
         private EcsFilter _joystickYFilter;
-        
+        private Pooler _pooler;
+
         protected override void Initialize()
         {
             _keyColliderSwitcherFilter = Componenter.Filter<KeyColliderSwitcherData>().End();
             _joystickYFilter = Componenter.Filter<JoystickYData>().End();
+            _pooler = GameShare.GetSharedObject<Pooler>();
         }
 
         protected override void Update()
@@ -23,13 +25,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             
             foreach (var joystickEntity in _joystickYFilter)
             {
-                ref var joystickData = ref Componenter.Get<JoystickYData>(joystickEntity);
+                ref var joystickData = ref _pooler.JoystickY.Get(joystickEntity);
                 joystickDown = joystickData.Value.Vertical < -0.3f;
             }
             
             foreach (var entity in _keyColliderSwitcherFilter)
             {
-                ref var keyColliderSwitcherData = ref Componenter.Get<KeyColliderSwitcherData>(entity);
+                ref var keyColliderSwitcherData = ref _pooler.KeyColliderSwitcher.Get(entity);
                 
                 if ((joystickDown && keyColliderSwitcherData.Value.useJoystickY) || Input.GetKey(keyColliderSwitcherData.Value.key1) || Input.GetKey(keyColliderSwitcherData.Value.key2))
                 {

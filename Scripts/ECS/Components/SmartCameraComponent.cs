@@ -36,7 +36,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         public float SmoothingTime;
     }
 
-    public struct CommandCameraFollowTransformSignal
+    public struct CommandCameraFollowTransformSignal 
     {
         public bool FollowX;
         public bool FollowY;

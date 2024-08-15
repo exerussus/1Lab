@@ -10,11 +10,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
     {
         private EcsFilter _speedXLimitFilter;
         private EcsFilter _speedYLimitFilter;
-        
+        private Pooler _pooler;
+
         protected override void Initialize()
         {
             _speedXLimitFilter = Componenter.Filter<SpeedLimitXData>().End();
             _speedYLimitFilter = Componenter.Filter<SpeedLimitYData>().End();
+            _pooler = GameShare.GetSharedObject<Pooler>();
         }
 
         protected override void Update()
@@ -25,8 +27,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         private void OnLimitXUpdate(int entity)
         {
-            ref var speedLimitXData = ref Componenter.Get<SpeedLimitXData>(entity);
-            ref var rbData = ref Componenter.Get<RigidBody2DData>(entity);
+            ref var speedLimitXData = ref _pooler.SpeedLimitX.Get(entity);
+            ref var rbData = ref _pooler.RigidBody2D.Get(entity);
             if (Mathf.Abs(rbData.Value.velocity.x) > speedLimitXData.Limit)
             {
                 var directionMultiply = rbData.Value.velocity.x >= 0 ? 1 : -1;
@@ -38,8 +40,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         private void OnLimitYUpdate(int entity)
         {
-            ref var speedLimitYData = ref Componenter.Get<SpeedLimitYData>(entity);
-            ref var rbData = ref Componenter.Get<RigidBody2DData>(entity);
+            ref var speedLimitYData = ref _pooler.SpeedLimitY.Get(entity);
+            ref var rbData = ref _pooler.RigidBody2D.Get(entity);
             if (Mathf.Abs(rbData.Value.velocity.y) > speedLimitYData.Limit)
             {
                 var directionMultiply = rbData.Value.velocity.y >= 0 ? 1 : -1;

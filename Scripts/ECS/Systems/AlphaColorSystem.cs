@@ -8,18 +8,20 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
     public class AlphaColorSystem : EasySystem<IOneLabEcsData>
     {
         private EcsFilter _alphaColorFilter;
+        private Pooler _pooler;
 
         protected override void Initialize()
         {
             _alphaColorFilter = Componenter.Filter<AlphaColorProcessData>().Inc<VisualData>().End();
+            _pooler = GameShare.GetSharedObject<Pooler>();
         }
 
         protected override void Update()
         {
             foreach (var entity in _alphaColorFilter)
             {
-                ref var alphaColorData = ref Componenter.Get<AlphaColorProcessData>(entity);
-                ref var visualData = ref Componenter.Get<VisualData>(entity);
+                ref var alphaColorData = ref _pooler.AlphaColorProcess.Get(entity);
+                ref var visualData = ref _pooler.Visual.Get(entity);
                 var color = visualData.SpriteRenderer.color;
 
                 if (!alphaColorData.AlphaColor.makeVisable)
@@ -30,7 +32,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
                     {
                         alphaColorData.OnSuccess?.Invoke(entity, Componenter);
                         alphaColorData.AlphaColor.makeVisable = false;
-                        Componenter.Del<AlphaColorProcessData>(entity);
+                        _pooler.AlphaColorProcess.Del(entity);
                     }
                 }
                 else
@@ -41,7 +43,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
                     {
                         alphaColorData.OnSuccess?.Invoke(entity, Componenter);
                         alphaColorData.AlphaColor.makeVisable = true;
-                        Componenter.Del<AlphaColorProcessData>(entity);
+                        _pooler.AlphaColorProcess.Del(entity);
                     }
                 }
             }

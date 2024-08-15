@@ -10,10 +10,12 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
     {
         private const float BaseSort = 10f;
         private EcsFilter _sorterFilter;
-        
+        private Pooler _pooler;
+
         protected override void Initialize()
         {
             _sorterFilter = Componenter.Filter<SorterData>().End();
+            _pooler = GameShare.GetSharedObject<Pooler>();
         }
 
         protected override void Update()
@@ -23,7 +25,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         private void OnSorterUpdate(int entity)
         {
-            ref var sorterData = ref Componenter.Get<SorterData>(entity);
+            ref var sorterData = ref _pooler.Sorter.Get(entity);
             SetSort(sorterData.Value.transform, sorterData.Value.ResultBottomPosition);
         }
 

@@ -10,11 +10,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
     {
         private EcsFilter _timerTriggerFilter;
         private EcsFilter _keyPressedTriggerFilter;
-        
+        private Pooler _pooler;
+
         protected override void Initialize()
         {
             _timerTriggerFilter = Componenter.Filter<TimerTriggerData>().End();
             _keyPressedTriggerFilter = Componenter.Filter<KeyPressedTriggerData>().End();
+            _pooler = GameShare.GetSharedObject<Pooler>();
         }
 
         protected override void Update()
@@ -25,20 +27,20 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         private void OnKeyPressedTriggerUpdate(int entity)
         {
-            ref var keyPressedTriggerData = ref Componenter.Get<KeyPressedTriggerData>(entity);
+            ref var keyPressedTriggerData = ref _pooler.KeyPressedTrigger.Get(entity);
             if (Input.GetKeyDown(keyPressedTriggerData.Key)) keyPressedTriggerData.OnPressed?.Invoke(entity, Componenter);
         }
 
         private void OnTimerTriggerUpdate(int entity)
         {
-            ref var timerTriggerData = ref Componenter.Get<TimerTriggerData>(entity);
+            ref var timerTriggerData = ref _pooler.TimerTrigger.Get(entity);
             
             timerTriggerData.Timer += Time.deltaTime;
             if (timerTriggerData.Timer > timerTriggerData.Delay)
             {
                 timerTriggerData.OnTick?.Invoke(entity, Componenter);
                 if (timerTriggerData.IsLoop) timerTriggerData.Timer -= timerTriggerData.Delay;
-                else Componenter.Del<TimerTriggerData>(entity);
+                else _pooler.TimerTrigger.Del(entity);
             }
         }
     }

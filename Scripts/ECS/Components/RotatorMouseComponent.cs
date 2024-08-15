@@ -30,7 +30,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             Componenter.Del<RotatorMouseData>(Entity);
         }
 
-        public void Switch()
+        public void Switch() 
         {
             if (_isActivated) Stop();
             else Run();

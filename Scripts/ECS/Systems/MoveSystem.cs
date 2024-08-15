@@ -9,6 +9,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
     public class MoveSystem : EasySystem<IOneLabEcsData>
     {
         private EcsFilter _pointMoverFilter;
+        private Pooler _pooler;
+
         protected override void Initialize()
         {
             _pointMoverFilter = Componenter.Filter<PointMoverData>().End();
@@ -17,12 +19,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
         protected override void Update()
         {
             _pointMoverFilter.Foreach(OnPointMoveUpdate);
+            _pooler = GameShare.GetSharedObject<Pooler>();
         }
 
         private void OnPointMoveUpdate(int entity)
         {
-            ref var pointMoverData = ref Componenter.Get<PointMoverData>(entity);
-            ref var transformData = ref Componenter.Get<TransformData>(entity);
+            ref var pointMoverData = ref _pooler.PointMover.Get(entity);
+            ref var transformData = ref _pooler.Transform.Get(entity);
             var currentPosition = (Vector2)transformData.Value.position;
             
             var targetPoint = pointMoverData.ToEndPoint ? pointMoverData.EndPoint : pointMoverData.StartPoint;

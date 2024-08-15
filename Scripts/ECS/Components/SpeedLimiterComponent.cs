@@ -50,7 +50,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         public float Limit;
     }
 
-    public struct SpeedLimitYData : IOneLabEcsData
+    public struct SpeedLimitYData : IOneLabEcsData 
     {
         public float Limit;
     }

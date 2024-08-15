@@ -10,11 +10,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
     {
         private EcsFilter _cameraFilter;
         private EcsFilter _targetFilter;
+        private Pooler _pooler;
 
         protected override void Initialize()
         {
             _cameraFilter = Componenter.Filter<SmartCameraData>().End();
             _targetFilter = Componenter.Filter<CameraTargetData>().End();
+            _pooler = GameShare.GetSharedObject<Pooler>();
         }
 
         protected override void Update()
@@ -23,8 +25,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             {
                 foreach (var targetEntity in _targetFilter)
                 {
-                    ref var cameraData = ref Componenter.Get<SmartCameraData>(cameraEntity);
-                    ref var targetData = ref Componenter.Get<CameraTargetData>(targetEntity);
+                    ref var cameraData = ref _pooler.SmartCamera.Get(cameraEntity);
+                    ref var targetData = ref _pooler.CameraTarget.Get(targetEntity);
                     var cameraPos = cameraData.Transform.transform.position;
             
                     var targetPosition = targetData.Transform.position + targetData.Offset;
@@ -48,12 +50,12 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
         
         protected override void OnSignal(CommandCameraFollowTransformSignal data)
         {
-            foreach (var entity in _targetFilter) Componenter.Del<CameraTargetData>(entity);
+            foreach (var entity in _targetFilter) _pooler.CameraTarget.Del(entity);
             
             TryInitCamera();
             
-            ref var cameraTargetData = ref Componenter.AddOrGet<CameraTargetData>(data.TargetEntity);
-            cameraTargetData.Transform = Componenter.Get<TransformData>(data.TargetEntity).Value;
+            ref var cameraTargetData = ref _pooler.CameraTarget.AddOrGet(data.TargetEntity);
+            cameraTargetData.Transform = _pooler.Transform.Get(data.TargetEntity).Value;
             cameraTargetData.FollowY = data.FollowY;
             cameraTargetData.FollowX = data.FollowX;
             cameraTargetData.Offset = data.Offset;
@@ -67,9 +69,9 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             if (camera != null)
             {
                 var cameraEntity = Componenter.GetNewEntity();
-                ref var transformData = ref Componenter.TransformPool.Add(cameraEntity);
+                ref var transformData = ref _pooler.Transform.Add(cameraEntity);
                 transformData.Value = camera.transform;
-                ref var smartCameraData = ref Componenter.AddOrGet<SmartCameraData>(cameraEntity);
+                ref var smartCameraData = ref _pooler.SmartCamera.AddOrGet(cameraEntity);
                 smartCameraData.Transform = camera.transform;
                 smartCameraData.SmoothingSpeed = 5.95f;
                 smartCameraData.SmoothingTime = 01.3f;

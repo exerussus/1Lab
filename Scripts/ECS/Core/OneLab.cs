@@ -23,6 +23,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         private OneLabConfiguration _configuration;
         private SignalHandler _signalHandler;
         private TagsHandler _tagsHandler = new();
+        private Pooler _oneLabPooler;
         public static OneLabConfiguration Configuration => Instance._configuration;
 
         private static OneLab Instance
@@ -103,8 +104,10 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             ExtraSystemsMethods.TickExecute(tickUpdateSystems);
         }
 
-        protected override void SetSharingData(GameShare gameShare)
+        protected override void SetSharingData(EcsWorld world, GameShare gameShare)
         {
+            _oneLabPooler = new Pooler(world);
+            GameShare.AddSharedObject(_oneLabPooler);
             GameShare.AddSharedObject(_configuration);
             GameShare.AddSharedObject(_tagsHandler);
             GameShare.AddSharedObject(_signalHandler.Signal);

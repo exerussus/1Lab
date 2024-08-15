@@ -15,11 +15,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
         private EcsFilter _vfxFilter;
         private EcsFilter _vfxReleaseCommandFilter;
         private Dictionary<GameObject, ObjectPool<VfxComponent>> _pools = new();
-        
+        private Pooler _pooler;
+
         protected override void Initialize()
         {
             _vfxFilter = Componenter.Filter<VfxData>().End();
             _vfxReleaseCommandFilter = Componenter.Filter<VfxData>().Inc<CommandReleaseVfxMark>().End();
+            _pooler = GameShare.GetSharedObject<Pooler>();
         }
 
         protected override void Update()
@@ -30,13 +32,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         private void OnReleaseCommand(int entity)
         {
-            Componenter.Del<CommandReleaseVfxMark>(entity);
+            _pooler.CommandReleaseVfx.Del(entity);
             ReleaseVfx(entity);
         }
 
         private void ReleaseVfx(int entity)
         {
-            ref var vfxData = ref Componenter.Get<VfxData>(entity);
+            ref var vfxData = ref _pooler.Vfx.Get(entity);
 
             if (vfxData.Vfx.prefab == null || !_pools.TryGetValue(vfxData.Vfx.prefab, out ObjectPool<VfxComponent> pool)) 
                 Object.Destroy(vfxData.Vfx.gameObject);
@@ -50,7 +52,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         private void OnVfxUpdate(int entity)
         {
-            ref var vfxData = ref Componenter.Get<VfxData>(entity);
+            ref var vfxData = ref _pooler.Vfx.Get(entity);
 
             vfxData.FramesRemaining -= 1;
             if (vfxData.FramesRemaining > 0) return;
@@ -84,7 +86,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             vfx.prefab = data.VfxPrefab;
 
             var newEntity = Componenter.GetNewEntity();
-            ref var dataVfx = ref Componenter.AddOrGet<VfxData>(newEntity);
+            ref var dataVfx = ref _pooler.Vfx.AddOrGet(newEntity);
             dataVfx.Vfx = vfx;
             dataVfx.FramesRemaining = vfx.frameDelay;
             dataVfx.LoopTimeRemaining = vfx.loopTime;
