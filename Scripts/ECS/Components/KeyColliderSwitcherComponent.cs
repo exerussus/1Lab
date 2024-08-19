@@ -24,13 +24,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Run()
         {
-            ref var keyColliderSwitcherData = ref Componenter.AddOrGet<OneLabData.KeyColliderSwitcherData>(Entity);
+            ref var keyColliderSwitcherData = ref Pooler.KeyColliderSwitcher.AddOrGet(Entity);
             keyColliderSwitcherData.Value = this;
         }
 
         public void Stop()
         {
-            Componenter.Del<OneLabData.KeyColliderSwitcherData>(Entity);
+            Pooler.KeyColliderSwitcher.Del(Entity);
         }
 
         private void OnTriggerEnter2D(Collider2D other)

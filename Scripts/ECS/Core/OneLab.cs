@@ -20,6 +20,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         public static Componenter Componenter => Instance._componenter;
         public static EcsWorld World => Instance._world;
         public static Signal Signal => Instance._signalHandler.Signal;
+        public static OneLabPooler Pooler => Instance._oneLabPooler;
         private event Action OnDestroyEvent;
         private OneLabConfiguration _configuration;
         private SignalHandler _signalHandler;

@@ -44,7 +44,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
                     physicalBodyData.Value.velocity = velocity;
                 
                     physicalBodyData.Value.velocity += jumpData.Power * jumpData.Direction;
-                    jumpData.OnJump?.Invoke(entity, Componenter);
+                    jumpData.OnJump?.Invoke(entity, Componenter, Pooler);
                     jumpData.CoolDownTimer = jumpData.CoolDownDelay;
                 }
             }
@@ -108,7 +108,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
                 physicalBodyData.Value.velocity = velocity;
                 
                 physicalBodyData.Value.velocity += jumpData.Power * jumpData.Direction;
-                jumpData.OnJump?.Invoke(entity, Componenter);
+                jumpData.OnJump?.Invoke(entity, Componenter, Pooler);
                 jumpData.CoolDownTimer = jumpData.CoolDownDelay;
             }
         }

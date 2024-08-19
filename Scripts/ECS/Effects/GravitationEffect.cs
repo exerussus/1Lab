@@ -10,22 +10,22 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
     {
         [SerializeField] private float gravity;
 
-        public void SetToOrigin(int originEntity, Componenter componenter)
+        public void SetToOrigin(int originEntity, Componenter componenter, OneLabPooler pooler)
         {
-            Set(originEntity, componenter);
+            Set(originEntity, componenter, pooler);
         }
         
-        public void SetToOrigin(int originEntity, int targetEntity, Componenter componenter)
+        public void SetToOrigin(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
-            Set(originEntity, componenter);
+            Set(originEntity, componenter, pooler);
         }
         
-        public void SetToTarget(int originEntity, int targetEntity, Componenter componenter)
+        public void SetToTarget(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
-            Set(targetEntity, componenter);
+            Set(targetEntity, componenter, pooler);
         }
 
-        private void Set(int entity, Componenter componenter)
+        private void Set(int entity, Componenter componenter, OneLabPooler pooler)
         {
             if (!componenter.Has<OneLabData.RigidBody2DData>(entity)) return;
             

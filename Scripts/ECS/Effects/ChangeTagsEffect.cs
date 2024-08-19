@@ -9,37 +9,37 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
     {
         [SerializeField] private string[] tags;
 
-        public void SetTagsToOrigin(int originEntity, Componenter componenter)
+        public void SetTagsToOrigin(int originEntity, Componenter componenter, OneLabPooler pooler)
         {
             ref var touchableData = ref componenter.Get<OneLabData.TouchableData>(originEntity);
             touchableData.Value.OneLabEntity.tags = tags;
         }
         
-        public void SetTagsToOrigin(int originEntity, int targetEntity, Componenter componenter)
+        public void SetTagsToOrigin(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
             ref var touchableData = ref componenter.Get<OneLabData.TouchableData>(originEntity);
             touchableData.Value.OneLabEntity.tags = tags;
         }
         
-        public void SetTagsToTarget(int originEntity, int targetEntity, Componenter componenter)
+        public void SetTagsToTarget(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
             ref var touchableData = ref componenter.Get<OneLabData.TouchableData>(targetEntity);
             touchableData.Value.OneLabEntity.tags = tags;
         }
         
-        public void SetTargetTagsToOrigin(int originEntity, Componenter componenter)
+        public void SetTargetTagsToOrigin(int originEntity, Componenter componenter, OneLabPooler pooler)
         {
             ref var touchableData = ref componenter.Get<OneLabData.TouchableData>(originEntity);
             touchableData.Value.targetTags = tags;
         }
         
-        public void SetTargetTagsToOrigin(int originEntity, int targetEntity, Componenter componenter)
+        public void SetTargetTagsToOrigin(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
             ref var touchableData = ref componenter.Get<OneLabData.TouchableData>(originEntity);
             touchableData.Value.targetTags = tags;
         }
         
-        public void SetTargetTagsToTarget(int originEntity, int targetEntity, Componenter componenter)
+        public void SetTargetTagsToTarget(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
             ref var touchableData = ref componenter.Get<OneLabData.TouchableData>(targetEntity);
             touchableData.Value.targetTags = tags;

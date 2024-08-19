@@ -17,14 +17,14 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Run()
         {
-            ref var smartCameraData = ref Componenter.AddOrGet<OneLabData.SmartCameraData>(Entity);
+            ref var smartCameraData = ref Pooler.SmartCamera.AddOrGet(Entity);
             smartCameraData.Transform = transform;
             smartCameraData.SmoothingSpeed = smoothingSpeed;
         }
 
         public void Stop()
         {
-            Componenter.Del<OneLabData.SmartCameraData>(Entity);
+            Pooler.SmartCamera.Del(Entity);
         }
     }
 }

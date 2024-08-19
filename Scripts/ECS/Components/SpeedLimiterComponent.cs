@@ -1,5 +1,4 @@
 ﻿
-using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
@@ -28,20 +27,20 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         {
             if (hasXLimit)
             {
-                ref var speedLimitXData = ref Componenter.AddOrGet<OneLabData.SpeedLimitXData>(Entity);
+                ref var speedLimitXData = ref Pooler.SpeedLimitX.AddOrGet(Entity);
                 speedLimitXData.Limit = xLimit;
             }            
             if (hasYLimit)
             {
-                ref var speedLimitXData = ref Componenter.AddOrGet<OneLabData.SpeedLimitYData>(Entity);
+                ref var speedLimitXData = ref Pooler.SpeedLimitY.AddOrGet(Entity);
                 speedLimitXData.Limit = yLimit;
             }
         }
 
         public void Stop()
         {
-            Componenter.Del<OneLabData.SpeedLimitXData>(Entity);
-            Componenter.Del<OneLabData.SpeedLimitYData>(Entity);
+            Pooler.SpeedLimitX.Del(Entity);
+            Pooler.SpeedLimitY.Del(Entity);
         }
     }
 }

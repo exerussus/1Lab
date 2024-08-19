@@ -11,22 +11,22 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
         [SerializeField] private Vector2 position;
         private readonly Color _pointColor = Color.cyan;
 
-        public void TeleportOrigin(int originEntity, Componenter componenter)
+        public void TeleportOrigin(int originEntity, Componenter componenter, OneLabPooler pooler)
         {
-            Teleport(originEntity, componenter);
+            Teleport(originEntity, componenter, pooler);
         }
         
-        public void TeleportOrigin(int originEntity, int targetEntity, Componenter componenter)
+        public void TeleportOrigin(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
-            Teleport(originEntity, componenter);
+            Teleport(originEntity, componenter, pooler);
         }
         
-        public void TeleportTarget(int originEntity, int targetEntity, Componenter componenter)
+        public void TeleportTarget(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
-            Teleport(targetEntity, componenter);
+            Teleport(targetEntity, componenter, pooler);
         }
 
-        private void Teleport(int entity, Componenter componenter)
+        private void Teleport(int entity, Componenter componenter, OneLabPooler pooler)
         {
             ref var transformData = ref componenter.Get<OneLabData.TransformData>(entity);
             var result = transformData.Value.position;

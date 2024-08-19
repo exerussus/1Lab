@@ -27,13 +27,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Run()
         {
-            ref var fliperData = ref Componenter.AddOrGet<OneLabData.FliperData>(Entity);
+            ref var fliperData = ref Pooler.Fliper.AddOrGet(Entity);
             fliperData.Value = this;
         }
 
         public void Stop()
         {
-            Componenter.Del<OneLabData.FliperData>(Entity);
+            Pooler.Fliper.Del(Entity);
         }
 
         public void Flip(bool value)

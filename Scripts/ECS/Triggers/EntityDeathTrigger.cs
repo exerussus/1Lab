@@ -9,7 +9,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
     public class EntityDeathTrigger : OneLabComponent
     {
         [SerializeField] private bool activatedOnStart = true;
-        public UnityEvent<int, Componenter> onDead;
+        public UnityEvent<int, Componenter, OneLabPooler> onDead;
         
         public override void Initialize()
         {
@@ -18,7 +18,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
 
         public override void Destroy()
         {
-            onDead?.Invoke(Entity, Componenter);
+            onDead?.Invoke(Entity, Componenter, Pooler);
             DeactivateTrigger();
         }
 

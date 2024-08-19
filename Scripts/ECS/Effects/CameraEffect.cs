@@ -12,7 +12,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
         [SerializeField] private bool followX;
         [SerializeField] private bool followY;
         
-        public void FollowOrigin(int originEntity, Componenter componenter)
+        public void FollowOrigin(int originEntity, Componenter componenter, OneLabPooler pooler)
         {
             Signal.RegistryRaise( new OneLabSignals.CommandCameraFollowTransformSignal
             {
@@ -23,7 +23,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             });
         }
         
-        public void FollowOrigin(int originEntity, int targetEntity, Componenter componenter)
+        public void FollowOrigin(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
             Signal.RegistryRaise( new OneLabSignals.CommandCameraFollowTransformSignal {
                 TargetEntity = originEntity,
@@ -33,7 +33,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             });
         }
         
-        public void FollowTarget(int originEntity, int targetEntity, Componenter componenter)
+        public void FollowTarget(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
             Signal.RegistryRaise( new OneLabSignals.CommandCameraFollowTransformSignal {
                 TargetEntity = originEntity,

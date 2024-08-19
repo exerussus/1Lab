@@ -80,26 +80,26 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         {
             if (x.enabled)
             {
-                ref var selfRotatorData = ref Componenter.AddOrGet<OneLabData.SelfRotatorXData>(Entity);
+                ref var selfRotatorData = ref Pooler.SelfRotatorX.AddOrGet(Entity);
                 selfRotatorData.Speed = x.reversed? -x.speed : x.speed;
             }
             if (y.enabled)
             {
-                ref var selfRotatorData = ref Componenter.AddOrGet<OneLabData.SelfRotatorYData>(Entity);
+                ref var selfRotatorData = ref Pooler.SelfRotatorY.AddOrGet(Entity);
                 selfRotatorData.Speed = y.reversed? -y.speed : y.speed;
             }
             if (z.enabled)
             {
-                ref var selfRotatorData = ref Componenter.AddOrGet<OneLabData.SelfRotatorZData>(Entity);
+                ref var selfRotatorData = ref Pooler.SelfRotatorZ.AddOrGet(Entity);
                 selfRotatorData.Speed = z.reversed? -z.speed : z.speed;
             }
         }
 
         public void Stop()
         {
-            Componenter.Del<OneLabData.SelfRotatorXData>(Entity);
-            Componenter.Del<OneLabData.SelfRotatorYData>(Entity);
-            Componenter.Del<OneLabData.SelfRotatorZData>(Entity);
+            Pooler.SelfRotatorX.Del(Entity);
+            Pooler.SelfRotatorY.Del(Entity);
+            Pooler.SelfRotatorZ.Del(Entity);
         }
         
         [Serializable]

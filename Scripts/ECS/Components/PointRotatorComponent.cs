@@ -38,14 +38,14 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Run()
         {
-            ref var pointRotatorData = ref Componenter.AddOrGet<OneLabData.PointRotatorData>(Entity);
+            ref var pointRotatorData = ref Pooler.PointRotator.AddOrGet(Entity);
             pointRotatorData.Point = point;
             pointRotatorData.Speed = reversed? -speed : speed;
         }
 
         public void Stop()
         {
-            Componenter.Del<OneLabData.PointRotatorData>(Entity);
+            Pooler.PointRotator.Del(Entity);
         }
 
         public void Reverse()

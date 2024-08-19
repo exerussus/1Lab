@@ -10,7 +10,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
     public class AllEntitiesComponent : OneLabComponent
     {
         private EcsFilter _tagsFilter;
-        public UnityEvent<int, Componenter> onExist;
+        public UnityEvent<int, Componenter, OneLabPooler> onExist;
         
         public override void Initialize()
         {
@@ -19,7 +19,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void GetAllEntitiesAndExecute()
         {
-            foreach (var entity in _tagsFilter) onExist?.Invoke(entity, Componenter);
+            foreach (var entity in _tagsFilter) onExist?.Invoke(entity, Componenter, Pooler);
         }
     }
 }

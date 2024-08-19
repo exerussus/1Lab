@@ -10,10 +10,10 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         
         public void Start()
         {
-            Initialize(OneLab.Componenter, OneLab.Signal);
+            Initialize(OneLab.Componenter, OneLab.Signal, OneLab.Pooler);
             if (tags.IsNotEmpty())
             {
-                ref var oneLabEntityData = ref Componenter.AddOrGet<OneLabData.TagsData>(Entity);
+                ref var oneLabEntityData = ref Pooler.Tags.AddOrGet(Entity);
                 oneLabEntityData.Values = tags;
                 Signal.RegistryRaise(new OneLabSignals.OnLabEntityInitializedSignal
                 {

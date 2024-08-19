@@ -30,13 +30,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         {
             if (hasX)
             {
-                ref var joystickXData = ref Componenter.AddOrGet<OneLabData.JoystickXData>(Entity);
+                ref var joystickXData = ref Pooler.JoystickX.AddOrGet(Entity);
                 joystickXData.Value = joystick;
                 joystickXData.FullMagnitude = fullMagnitude;
             }
             if (hasY)
             {
-                ref var joystickXData = ref Componenter.AddOrGet<OneLabData.JoystickYData>(Entity);
+                ref var joystickXData = ref Pooler.JoystickY.AddOrGet(Entity);
                 joystickXData.Value = joystick;
                 joystickXData.FullMagnitude = fullMagnitude;
             }
@@ -44,8 +44,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Stop()
         {
-            Componenter.Del<OneLabData.JoystickXData>(Entity);
-            Componenter.Del<OneLabData.JoystickYData>(Entity);
+            Pooler.JoystickX.Del(Entity);
+            Pooler.JoystickY.Del(Entity);
         }
         
         protected override void OnValidate()

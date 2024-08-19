@@ -1,6 +1,5 @@
 ﻿using System;
 using Exerussus._1Lab.Scripts.ECS.Core;
-using Exerussus._1Lab.Scripts.ECS.Systems;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Components
@@ -27,7 +26,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         public void PlayJump()
         {
             var spritePack = jump;
-            ref var characterAnimatorData = ref Componenter.AddOrGet<OneLabData.CharacterAnimatorExpendedData>(Entity);
+            ref var characterAnimatorData = ref Pooler.CharacterAnimatorExpended.AddOrGet(Entity);
             characterAnimatorData.CurrentSprite = 0;
             characterAnimatorData.CurrentPack = spritePack;
             characterAnimatorData.FrameRemaining = spritePack.frameDelay;
@@ -37,7 +36,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         
         public void Run()
         {
-            ref var characterAnimatorData = ref Componenter.AddOrGet<OneLabData.CharacterAnimatorExpendedData>(Entity);
+            ref var characterAnimatorData = ref Pooler.CharacterAnimatorExpended.AddOrGet(Entity);
             characterAnimatorData.Value = this;
             characterAnimatorData.CurrentSprite = 0;
             characterAnimatorData.CurrentPack = characterAnimatorData.Value.idle;

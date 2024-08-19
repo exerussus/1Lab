@@ -56,7 +56,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         {
             public AlphaColorComponent AlphaColor;
             public float Speed;
-            public UnityEvent<int, Componenter> OnSuccess;
+            public UnityEvent<int, Componenter, OneLabPooler> OnSuccess;
         }
         
         public struct CharacterAnimatorExpendedData : IOneLabEcsData
@@ -79,7 +79,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             public KeyCode Key2;
             public float Power;
             public Vector2 Direction;
-            public UnityEvent<int, Componenter> OnJump;
+            public UnityEvent<int, Componenter, OneLabPooler> OnJump;
             public float CoolDownDelay;
             public float CoolDownTimer;
             public bool ReloadOnTouch;
@@ -216,7 +216,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
 
         public struct EntityDeathTriggerData : IOneLabEcsData
         {
-            public UnityEvent<int, Componenter> OnDead;
+            public UnityEvent<int, Componenter, OneLabPooler> OnDead;
         }
 
         public struct GlobalTriggerData : IOneLabEcsData
@@ -228,12 +228,12 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         public struct KeyPressedTriggerData : IOneLabEcsData
         {
             public KeyCode Key;
-            public UnityEvent<int, Componenter> OnPressed;
+            public UnityEvent<int, Componenter, OneLabPooler> OnPressed;
         }
 
         public struct TimerTriggerData : IOneLabEcsData
         {
-            public UnityEvent<int, Componenter> OnTick;
+            public UnityEvent<int, Componenter, OneLabPooler> OnTick;
             public float Delay;
             public float Timer;
             public bool IsLoop;
@@ -244,7 +244,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             public FliperComponent Value;
         }
 
-        public struct EcsMonoBehaviorData : IEcsComponent
+        public struct EcsMonoBehaviorData : IOneLabEcsData
         {
             public IEcsMonoBehavior Value;
         
@@ -252,6 +252,11 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             {
                 Value = value;
             }
+        }
+
+        public struct DirectionMoverData : IOneLabEcsData
+        {
+            
         }
     }
 }

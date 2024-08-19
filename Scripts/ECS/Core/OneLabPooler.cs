@@ -1,7 +1,5 @@
-﻿using Exerussus._1EasyEcs.Scripts.Core;
-using Exerussus._1Lab.Scripts.ECS.Components;
-using Exerussus._1Lab.Scripts.ECS.Systems;
-using Exerussus._1Lab.Scripts.ECS.Triggers;
+﻿
+using Exerussus._1EasyEcs.Scripts.Core;
 using Leopotam.EcsLite;
 
 namespace Exerussus._1Lab.Scripts.ECS.Core
@@ -46,6 +44,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             KeyPressedTrigger = new PoolerModule<OneLabData.KeyPressedTriggerData>(world);
             TimerTrigger = new PoolerModule<OneLabData.TimerTriggerData>(world);
             RigidBody2D = new PoolerModule<OneLabData.RigidBody2DData>(world);
+            DirectionMover = new PoolerModule<OneLabData.DirectionMoverData>(world);
 
             #endregion
         }
@@ -86,6 +85,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         public readonly PoolerModule<OneLabData.KeyPressedTriggerData> KeyPressedTrigger;
         public readonly PoolerModule<OneLabData.TimerTriggerData> TimerTrigger;
         public readonly PoolerModule<OneLabData.RigidBody2DData> RigidBody2D;
+        public readonly PoolerModule<OneLabData.DirectionMoverData> DirectionMover;
 
         #endregion
     }

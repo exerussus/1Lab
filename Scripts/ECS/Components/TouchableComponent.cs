@@ -13,8 +13,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         [SerializeField, HideInInspector] public Collider2D touchableCollider2D;
         [SerializeField] public string[] targetTags;
         [SerializeField] public bool singleUse;
-        public UnityEvent<int, int, Componenter> onTouch;
-        public UnityEvent<int, int, Componenter> onExit;
+        public UnityEvent<int, int, Componenter, OneLabPooler> onTouch;
+        public UnityEvent<int, int, Componenter, OneLabPooler> onExit;
         public bool IsInitialized { get; private set; } = false;
         
         public string[] TargetTags => targetTags;
@@ -23,7 +23,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         public override void Initialize()
         {
             IsInitialized = true;
-            ref var touchableData = ref Componenter.AddOrGet<OneLabData.TouchableData>(Entity);
+            ref var touchableData = ref Pooler.Touchable.AddOrGet(Entity);
             touchableData.Value = this;
         }
 
@@ -31,7 +31,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         {
             IsInitialized = false;
             _isUsed = false;
-            Componenter.Del<OneLabData.TouchableData>(Entity);
+            Pooler.Touchable.Del(Entity);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -43,7 +43,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
                 if (!touchable.IsInitialized) return;
 
                 if (!targetTags.ContainsAny(touchable.OneLabEntity.tags)) return;
-                onTouch?.Invoke(Entity, touchable.Entity, Componenter);
+                onTouch?.Invoke(Entity, touchable.Entity, Componenter, Pooler);
                 if (singleUse) _isUsed = true;
             }
         }
@@ -57,7 +57,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
                 if (!touchable.IsInitialized) return;
 
                 if (!targetTags.ContainsAny(touchable.OneLabEntity.tags)) return;
-                onTouch?.Invoke(Entity, touchable.Entity, Componenter);
+                onTouch?.Invoke(Entity, touchable.Entity, Componenter, Pooler);
                 if (singleUse) _isUsed = true;
             }
         }
@@ -70,7 +70,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             {
                 if (!touchable.IsInitialized) return;
                 if (!targetTags.ContainsAny(touchable.OneLabEntity.tags)) return;
-                onExit?.Invoke(Entity, touchable.Entity, Componenter);
+                onExit?.Invoke(Entity, touchable.Entity, Componenter, Pooler);
                 if (singleUse) _isUsed = true;
             }
         }
@@ -83,7 +83,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             {
                 if (!touchable.IsInitialized) return;
                 if (!targetTags.ContainsAny(touchable.OneLabEntity.tags)) return;
-                onExit?.Invoke(Entity, touchable.Entity, Componenter);
+                onExit?.Invoke(Entity, touchable.Entity, Componenter, Pooler);
                 if (singleUse) _isUsed = true;
             }
         }

@@ -1,5 +1,4 @@
 ﻿
-using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
@@ -33,7 +32,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Run()
         {
-            ref var keyboardInputMoverData = ref Componenter.AddOrGet<OneLabData.KeyboardPlatformInputMoverData>(Entity);
+            ref var keyboardInputMoverData = ref Pooler.KeyboardPlatformInputMover.AddOrGet(Entity);
             keyboardInputMoverData.Speed = speed;
             keyboardInputMoverData.UsePhysicalBody = usePhysicalBody;
             keyboardInputMoverData.FullSpeed = fullSpeed;
@@ -44,7 +43,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Stop()
         {
-            Componenter.Del<OneLabData.KeyboardPlatformInputMoverData>(Entity);
+            Pooler.KeyboardPlatformInputMover.Del(Entity);
         }
 
         protected override void OnValidate()

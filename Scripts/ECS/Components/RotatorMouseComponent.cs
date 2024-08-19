@@ -19,14 +19,14 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         public void Run()
         {
             _isActivated = true;
-            ref var rotatorMouseData = ref Componenter.AddOrGet<OneLabData.RotatorMouseData>(Entity);
+            ref var rotatorMouseData = ref Pooler.RotatorMouse.AddOrGet(Entity);
             rotatorMouseData.Speed = speed;
         }
 
         public void Stop()
         {
             _isActivated = false;
-            Componenter.Del<OneLabData.RotatorMouseData>(Entity);
+            Pooler.RotatorMouse.Del(Entity);
         }
 
         public void Switch() 

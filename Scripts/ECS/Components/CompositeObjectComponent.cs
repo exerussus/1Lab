@@ -16,11 +16,11 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         [SerializeField] private GameObject[] objects;
         [SerializeField, HideInInspector] private Rigidbody2D[] _rigidBodies;
 
-        public UnityEvent<int, Componenter> onDestroy;
+        public UnityEvent<int, Componenter, OneLabPooler> onDestroy;
 
         public override void Initialize()
         {
-            ref var compositeObjectData = ref Componenter.AddOrGet<OneLabData.CompositeObjectData>(Entity);
+            ref var compositeObjectData = ref Pooler.CompositeObject.AddOrGet(Entity);
             compositeObjectData.Value = this;
         }
 
@@ -37,7 +37,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
                 rb.isKinematic = false;
                 rb.velocity += new Vector2(Random.Range(-powerOnDestruct, powerOnDestruct), Random.Range(-powerOnDestruct, powerOnDestruct));
             }
-            onDestroy?.Invoke(Entity, Componenter);
+            onDestroy?.Invoke(Entity, Componenter, Pooler);
         }
 
         protected override void OnValidate()

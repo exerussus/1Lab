@@ -20,13 +20,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Run()
         {
-            ref var sorterData = ref Componenter.AddOrGet<OneLabData.SorterData>(Entity);
+            ref var sorterData = ref Pooler.Sorter.AddOrGet(Entity);
             sorterData.Value = this;
         }
 
         public void Stop()
         {
-            Componenter.Del<OneLabData.SorterData>(Entity);
+            Pooler.Sorter.Del(Entity);
         }
 
         protected override void OnValidate()

@@ -11,13 +11,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public override void Initialize()
         {
-            ref var visualData = ref Componenter.AddOrGet<OneLabData.VisualData>(Entity);
+            ref var visualData = ref Pooler.Visual.AddOrGet(Entity);
             visualData.SpriteRenderer = spriteRenderer;
         }
 
         public override void Destroy()
         {
-            Componenter.Del<OneLabData.VisualData>(Entity);
+            Pooler.Visual.Del(Entity);
         }
 
         protected override void OnValidate()

@@ -37,7 +37,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             {
                 if (_tagsHandler.HasAny(data.Entity, data.TagFilter.any))
                 {
-                    data.TagFilter.onSuccess?.Invoke(data.Entity, Componenter);
+                    data.TagFilter.onSuccess?.Invoke(data.Entity, Componenter, Pooler);
                     return;
                 }
             }
@@ -56,7 +56,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
                 }
             }
             
-            if (result) data.TagFilter.onSuccess?.Invoke(data.Entity, Componenter);
+            if (result) data.TagFilter.onSuccess?.Invoke(data.Entity, Componenter, Pooler);
         }
     }
 }

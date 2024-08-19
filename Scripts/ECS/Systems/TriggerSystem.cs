@@ -26,7 +26,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
         private void OnKeyPressedTriggerUpdate(int entity)
         {
             ref var keyPressedTriggerData = ref Pooler.KeyPressedTrigger.Get(entity);
-            if (Input.GetKeyDown(keyPressedTriggerData.Key)) keyPressedTriggerData.OnPressed?.Invoke(entity, Componenter);
+            if (Input.GetKeyDown(keyPressedTriggerData.Key)) keyPressedTriggerData.OnPressed?.Invoke(entity, Componenter, Pooler);
         }
 
         private void OnTimerTriggerUpdate(int entity)
@@ -36,7 +36,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             timerTriggerData.Timer += Time.deltaTime;
             if (timerTriggerData.Timer > timerTriggerData.Delay)
             {
-                timerTriggerData.OnTick?.Invoke(entity, Componenter);
+                timerTriggerData.OnTick?.Invoke(entity, Componenter, Pooler);
                 if (timerTriggerData.IsLoop) timerTriggerData.Timer -= timerTriggerData.Delay;
                 else Pooler.TimerTrigger.Del(entity);
             }

@@ -30,7 +30,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Stop()
         {
-            Componenter.Del<OneLabData.CameraTargetData>(Entity);
+            Pooler.CameraTarget.Del(Entity);
         }
     }
 }

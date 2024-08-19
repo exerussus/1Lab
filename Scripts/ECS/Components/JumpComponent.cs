@@ -17,7 +17,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         [SerializeField] private float coolDown;
         [SerializeField] private bool reloadOnTouch;
         [SerializeField] private string[] touchTags;
-        public UnityEvent<int, Componenter> onJump;
+        public UnityEvent<int, Componenter, OneLabPooler> onJump;
         private const float MaxReloadOnTouch = 0.2f;
         
         public override void Initialize()
@@ -32,7 +32,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Run()
         {
-            ref var jumpData = ref Componenter.AddOrGet<OneLabData.JumpData>(Entity);
+            ref var jumpData = ref Pooler.Jump.AddOrGet(Entity);
             jumpData.Direction = direction;
             jumpData.Power = power;
             jumpData.Key1 = key1;
@@ -45,7 +45,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Stop()
         {
-            Componenter.Del<OneLabData.JumpData>(Entity);
+            Pooler.Jump.Del(Entity);
         }
 
         private void OnTriggerStay2D(Collider2D other)
@@ -72,9 +72,9 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             
             if (isExist)
             {
-                if (Componenter.Has<OneLabData.JumpData>(Entity))
+                if (Pooler.Jump.Has(Entity))
                 {
-                    ref var jumpData = ref Componenter.Get<OneLabData.JumpData>(Entity);
+                    ref var jumpData = ref Pooler.Jump.Get(Entity);
                     if (jumpData is { ReloadOnTouch: true, CoolDownTimer: > MaxReloadOnTouch }) jumpData.CoolDownTimer = MaxReloadOnTouch;
                 }
             }

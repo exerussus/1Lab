@@ -21,7 +21,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         public void InvokeOneShot(int packIndex)
         {
             var spritePack = animations[packIndex];
-            ref var characterAnimatorData = ref Componenter.AddOrGet<OneLabData.CharacterAnimatorData>(Entity);
+            ref var characterAnimatorData = ref Pooler.CharacterAnimator.AddOrGet(Entity);
             characterAnimatorData.CurrentSprite = 0;
             characterAnimatorData.CurrentPack = spritePack;
             characterAnimatorData.FrameRemaining = spritePack.frameDelay;
@@ -31,7 +31,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         
         public void Run()
         {
-            ref var characterAnimatorData = ref Componenter.AddOrGet<OneLabData.CharacterAnimatorData>(Entity);
+            ref var characterAnimatorData = ref Pooler.CharacterAnimator.AddOrGet(Entity);
             characterAnimatorData.Value = this;
             characterAnimatorData.CurrentSprite = 0;
             characterAnimatorData.CurrentPack = characterAnimatorData.Value.idle;
@@ -41,7 +41,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         public void Stop()
         {
             spriteRenderer.sprite = idle.sprites[0];
-            Componenter.Del<OneLabData.CharacterAnimatorData>(Entity);
+            Pooler.CharacterAnimator.Del(Entity);
         }
 
 

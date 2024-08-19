@@ -11,13 +11,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
     {
         [SerializeField] public bool makeVisable = false;
         [SerializeField] public float speed = 10;
-        public UnityEvent<int, Componenter> onSuccess;
+        public UnityEvent<int, Componenter, OneLabPooler> onSuccess;
         private const float SpeedMultiply = 0.001f;
 
         public void Run()
         {
             makeVisable = !makeVisable;
-            ref var alphaColorProcessData = ref Componenter.AddOrGet<OneLabData.AlphaColorProcessData>(Entity);
+            ref var alphaColorProcessData = ref Pooler.AlphaColorProcess.AddOrGet(Entity);
             alphaColorProcessData.AlphaColor = this;
             alphaColorProcessData.Speed = speed * SpeedMultiply;
             alphaColorProcessData.OnSuccess = onSuccess;

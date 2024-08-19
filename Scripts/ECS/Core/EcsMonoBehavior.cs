@@ -26,6 +26,7 @@ namespace Exerussus._1Lab.Scripts.Core
         public int Entity => entity;
         public bool IsAlive => isAlive;
         public Componenter Componenter { get; private set; }
+        public OneLabPooler Pooler { get; private set; }
         public Signal Signal { get; private set; }
         public event Action onInitialized;
 
@@ -33,19 +34,20 @@ namespace Exerussus._1Lab.Scripts.Core
 
         #region InitAndDestroy
 
-        public void Initialize(Componenter componenter, Signal signal)
+        public void Initialize(Componenter componenter, Signal signal, OneLabPooler pooler)
         {
             if (isInitialized) return;
             
             isInitialized = true;
             isAlive = true;
             Componenter = componenter;
+            Pooler = pooler;
             Signal = signal;
             entity = Componenter.GetNewEntity();
             ref var transformData = ref Componenter.AddOrGet<OneLabData.TransformData>(entity);
             transformData.InitializeValues(transform);
             TryInitializePhysicalBody();
-            foreach (var ecsComponent in ecsComponents) ecsComponent.PreInitialize(entity, Componenter);
+            foreach (var ecsComponent in ecsComponents) ecsComponent.PreInitialize(entity, Componenter, Pooler);
             foreach (var ecsComponent in ecsComponents) ecsComponent.Initialize();
             ref var ecsMonoBehData = ref Componenter.AddOrGet<OneLabData.EcsMonoBehaviorData>(entity);
             ecsMonoBehData.InitializeValues(this);

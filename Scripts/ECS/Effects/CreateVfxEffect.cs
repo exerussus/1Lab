@@ -51,7 +51,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             });
         }
 
-        public void CreateInOriginPosition(int originEntity, int targetEntity, Componenter componenter)
+        public void CreateInOriginPosition(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
             ref var transformData = ref componenter.Get<OneLabData.TransformData>(originEntity);
             
@@ -65,7 +65,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             });
         }
 
-        public void CreateInTargetPosition(int originEntity, int targetEntity, Componenter componenter)
+        public void CreateInTargetPosition(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
             ref var transformData = ref componenter.Get<OneLabData.TransformData>(targetEntity);
             
@@ -79,7 +79,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             });
         }
 
-        public void CreateBetweenPositions(int originEntity, int targetEntity, Componenter componenter)
+        public void CreateBetweenPositions(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
             ref var firstTransformData = ref componenter.Get<OneLabData.TransformData>(originEntity);
             ref var secondTransformData = ref componenter.Get<OneLabData.TransformData>(targetEntity);
@@ -96,7 +96,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             });
         }
 
-        public void CreateBetweenPositions(Vector3 firstPosition, Vector3 secondPosition)
+        public void CreateBetweenPositions(Vector3 firstPosition, Vector3 secondPosition, OneLabPooler pooler)
         {
             var betweenPosition = Vector3.Lerp(firstPosition, secondPosition, 0.5f);
             

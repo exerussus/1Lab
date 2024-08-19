@@ -31,7 +31,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         
         public void Run()
         {
-            ref var pointMoverData = ref Componenter.AddOrGet<OneLabData.PointMoverData>(Entity);
+            ref var pointMoverData = ref Pooler.PointMover.AddOrGet(Entity);
             pointMoverData.Speed = speed;
             pointMoverData.StartPoint = startPosition;
             pointMoverData.EndPoint = (Vector2)transform.position + point;
@@ -40,7 +40,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Stop()
         {
-            Componenter.Del<OneLabData.PointMoverData>(Entity);
+            Pooler.PointMover.Del(Entity);
         }
 
         private void OnDrawGizmos()

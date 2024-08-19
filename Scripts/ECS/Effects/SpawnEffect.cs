@@ -1,6 +1,7 @@
 ﻿
 using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.Core;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using Exerussus._1Lab.Scripts.Extensions;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,9 +13,9 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
     {
         [SerializeField] private GameObject prefab;
         [SerializeField] private Vector2 spawnPosition;
-        public UnityEvent<int, Componenter> onSpawn;
+        public UnityEvent<int, Componenter, OneLabPooler> onSpawn;
         
-        public void SpawnInBetweenTargetPosition(int originEntity, int targetEntity, Componenter componenter)
+        public void SpawnInBetweenTargetPosition(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
             if (!Activated) return;
             var originPosition = componenter.GetVector2Position(originEntity);
@@ -23,21 +24,21 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             Spawn(resultPosition);
         }
         
-        public void SpawnInTargetPosition(int originEntity, int targetEntity, Componenter componenter)
+        public void SpawnInTargetPosition(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
             if (!Activated) return;
             var targetPosition = componenter.GetVector2Position(targetEntity);
             Spawn(targetPosition);
         }
         
-        public void SpawnInOriginPosition(int originEntity, int targetEntity, Componenter componenter)
+        public void SpawnInOriginPosition(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
             if (!Activated) return;
             var originPosition = componenter.GetVector2Position(originEntity);
             Spawn(originPosition);
         }
         
-        public void SpawnInOriginPosition(int originEntity, Componenter componenter)
+        public void SpawnInOriginPosition(int originEntity, Componenter componenter, OneLabPooler pooler)
         {
             if (!Activated) return;
             var originPosition = componenter.GetVector2Position(originEntity);
@@ -51,7 +52,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             {
                 ecsMonoBehavior.onInitialized += () =>
                 {
-                    onSpawn?.Invoke(ecsMonoBehavior.Entity, ecsMonoBehavior.Componenter);
+                    onSpawn?.Invoke(ecsMonoBehavior.Entity, ecsMonoBehavior.Componenter, ecsMonoBehavior.Pooler);
                 };
             }
         }
@@ -64,7 +65,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             {
                 ecsMonoBehavior.onInitialized += () =>
                 {
-                    onSpawn?.Invoke(ecsMonoBehavior.Entity, ecsMonoBehavior.Componenter);
+                    onSpawn?.Invoke(ecsMonoBehavior.Entity, ecsMonoBehavior.Componenter, ecsMonoBehavior.Pooler);
                 };
             }
         }

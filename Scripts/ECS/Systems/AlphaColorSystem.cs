@@ -27,7 +27,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
                     visualData.SpriteRenderer.color = color;
                     if (visualData.SpriteRenderer.color.a <= 0)
                     {
-                        alphaColorData.OnSuccess?.Invoke(entity, Componenter);
+                        alphaColorData.OnSuccess?.Invoke(entity, Componenter, Pooler);
                         alphaColorData.AlphaColor.makeVisable = false;
                         Pooler.AlphaColorProcess.Del(entity);
                     }
@@ -38,7 +38,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
                     visualData.SpriteRenderer.color = color;
                     if (visualData.SpriteRenderer.color.a >= 1)
                     {
-                        alphaColorData.OnSuccess?.Invoke(entity, Componenter);
+                        alphaColorData.OnSuccess?.Invoke(entity, Componenter, Pooler);
                         alphaColorData.AlphaColor.makeVisable = true;
                         Pooler.AlphaColorProcess.Del(entity);
                     }
