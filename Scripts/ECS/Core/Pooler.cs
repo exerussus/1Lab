@@ -10,6 +10,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
     {
         public Pooler(EcsWorld world)
         {
+            #region Init
+            
             Transform = new PoolerModule<TransformData>(world);
             AlphaColorProcess = new PoolerModule<AlphaColorProcessData>(world);
             CharacterAnimatorExpended = new PoolerModule<CharacterAnimatorExpendedData>(world);
@@ -44,7 +46,11 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             KeyPressedTrigger = new PoolerModule<KeyPressedTriggerData>(world);
             TimerTrigger = new PoolerModule<TimerTriggerData>(world);
             RigidBody2D = new PoolerModule<RigidBody2DData>(world);
+
+            #endregion
         }
+
+        #region Properties
 
         public readonly PoolerModule<TransformData> Transform;
         public readonly PoolerModule<AlphaColorProcessData> AlphaColorProcess;
@@ -80,6 +86,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         public readonly PoolerModule<KeyPressedTriggerData> KeyPressedTrigger;
         public readonly PoolerModule<TimerTriggerData> TimerTrigger;
         public readonly PoolerModule<RigidBody2DData> RigidBody2D;
+
+        #endregion
     }
 
     public interface IPoolerModule<T> where T : struct, IEcsComponent
