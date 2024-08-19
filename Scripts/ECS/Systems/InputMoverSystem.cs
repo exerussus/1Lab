@@ -13,7 +13,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
         private EcsFilter _jumpFilter;
         private EcsFilter _joystickXFilter;
         private EcsFilter _joystickYFilter;
-        private Pooler _pooler;
+        private OneLabPooler _pooler;
 
         protected override void Initialize()
         {
@@ -21,7 +21,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             _jumpFilter = Componenter.Filter<JumpData>().Inc<RigidBody2DData>().End();
             _joystickXFilter = Componenter.Filter<JoystickXData>().End();
             _joystickYFilter = Componenter.Filter<JoystickYData>().End();
-            _pooler = GameShare.GetSharedObject<Pooler>();
+            GameShare.GetSharedObject(ref _pooler);
         }
 
         protected override void Update()

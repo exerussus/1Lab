@@ -6,16 +6,16 @@ using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class SorterSystem : EasySystem<IOneLabEcsData>
+    public class SorterSystem : EasySystem
     {
         private const float BaseSort = 10f;
         private EcsFilter _sorterFilter;
-        private Pooler _pooler;
+        private OneLabPooler _pooler;
 
         protected override void Initialize()
         {
             _sorterFilter = Componenter.Filter<SorterData>().End();
-            _pooler = GameShare.GetSharedObject<Pooler>();
+            GameShare.GetSharedObject(ref _pooler);
         }
 
         protected override void Update()

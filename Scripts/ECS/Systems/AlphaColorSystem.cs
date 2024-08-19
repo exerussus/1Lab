@@ -5,15 +5,15 @@ using Exerussus._1Lab.Scripts.ECS.Core;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class AlphaColorSystem : EasySystem<IOneLabEcsData>
+    public class AlphaColorSystem : EasySystem
     {
         private EcsFilter _alphaColorFilter;
-        private Pooler _pooler;
+        private OneLabPooler _pooler;
 
         protected override void Initialize()
         {
             _alphaColorFilter = Componenter.Filter<AlphaColorProcessData>().Inc<VisualData>().End();
-            _pooler = GameShare.GetSharedObject<Pooler>();
+            GameShare.GetSharedObject(ref _pooler);
         }
 
         protected override void Update()

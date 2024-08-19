@@ -6,17 +6,17 @@ using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class SpeedLimitSystem : EasySystem<IOneLabEcsData>
+    public class SpeedLimitSystem : EasySystem
     {
         private EcsFilter _speedXLimitFilter;
         private EcsFilter _speedYLimitFilter;
-        private Pooler _pooler;
+        private OneLabPooler _pooler;
 
         protected override void Initialize()
         {
             _speedXLimitFilter = Componenter.Filter<SpeedLimitXData>().End();
             _speedYLimitFilter = Componenter.Filter<SpeedLimitYData>().End();
-            _pooler = GameShare.GetSharedObject<Pooler>();
+            GameShare.GetSharedObject(ref _pooler);
         }
 
         protected override void Update()

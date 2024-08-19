@@ -6,20 +6,21 @@ using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class MoveSystem : EasySystem<IOneLabEcsData>
+    public class MoveSystem : EasySystem
     {
         private EcsFilter _pointMoverFilter;
-        private Pooler _pooler;
+        private OneLabPooler _pooler;
 
         protected override void Initialize()
         {
             _pointMoverFilter = Componenter.Filter<PointMoverData>().End();
+            GameShare.GetSharedObject(ref _pooler);
         }
 
         protected override void Update()
         {
             _pointMoverFilter.Foreach(OnPointMoveUpdate);
-            _pooler = GameShare.GetSharedObject<Pooler>();
+            GameShare.GetSharedObject(ref _pooler);
         }
 
         private void OnPointMoveUpdate(int entity)

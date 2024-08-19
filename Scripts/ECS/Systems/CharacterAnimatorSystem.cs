@@ -6,17 +6,17 @@ using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class CharacterAnimatorSystem : EasySystem<IOneLabEcsData>
+    public class CharacterAnimatorSystem : EasySystem
     {
         private EcsFilter _characterAnimatorFilter;
         private EcsFilter _characterAnimatorExpendedFilter;
-        private Pooler _pooler;
+        private OneLabPooler _pooler;
 
         protected override void Initialize()
         {
             _characterAnimatorFilter = Componenter.Filter<CharacterAnimatorData>().End();
             _characterAnimatorExpendedFilter = Componenter.Filter<CharacterAnimatorExpendedData>().Inc<AnimationInputData>().End();
-            _pooler = GameShare.GetSharedObject<Pooler>();
+            GameShare.GetSharedObject(ref _pooler);
         }
 
         protected override void Update()

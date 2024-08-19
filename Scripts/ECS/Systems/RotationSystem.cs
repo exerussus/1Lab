@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class RotationSystem : EasySystem<IOneLabEcsData>
+    public class RotationSystem : EasySystem
     {
         private EcsFilter _rotationMouseFilter;
         private EcsFilter _selfRotationXFilter;
@@ -15,7 +15,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
         private EcsFilter _selfRotationZFilter;
         private EcsFilter _pointRotationFilter;
         private Camera _camera;
-        private Pooler _pooler;
+        private OneLabPooler _pooler;
 
         protected override void Initialize()
         {
@@ -25,7 +25,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             _selfRotationYFilter = Componenter.Filter<SelfRotatorYData>().End();
             _selfRotationZFilter = Componenter.Filter<SelfRotatorZData>().End();
             _pointRotationFilter = Componenter.Filter<PointRotatorData>().End();
-            _pooler = GameShare.GetSharedObject<Pooler>();
+            GameShare.GetSharedObject(ref _pooler);
         }
 
         protected override void Update()

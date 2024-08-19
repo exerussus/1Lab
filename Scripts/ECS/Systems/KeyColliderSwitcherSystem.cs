@@ -6,17 +6,17 @@ using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class KeyColliderSwitcherSystem : EasySystem<IOneLabEcsData>
+    public class KeyColliderSwitcherSystem : EasySystem
     {
         private EcsFilter _keyColliderSwitcherFilter;
         private EcsFilter _joystickYFilter;
-        private Pooler _pooler;
+        private OneLabPooler _pooler;
 
         protected override void Initialize()
         {
             _keyColliderSwitcherFilter = Componenter.Filter<KeyColliderSwitcherData>().End();
             _joystickYFilter = Componenter.Filter<JoystickYData>().End();
-            _pooler = GameShare.GetSharedObject<Pooler>();
+            GameShare.GetSharedObject(ref _pooler);
         }
 
         protected override void Update()

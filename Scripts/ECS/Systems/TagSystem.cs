@@ -9,12 +9,12 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
     public class TagSystem : EcsSignalListener<IOneLabEcsData, OnLabEntityInitializedSignal, OnEcsMonoBehaviorStartDestroySignal, CommandFilterTagSignal>
     {
         private TagsHandler _tagsHandler;
-        private Pooler _pooler;
+        private OneLabPooler _pooler;
 
         protected override void Initialize()
         {
-            _tagsHandler = GameShare.GetSharedObject<TagsHandler>();
-            _pooler = GameShare.GetSharedObject<Pooler>();
+            GameShare.GetSharedObject(ref _tagsHandler);
+            GameShare.GetSharedObject(ref _pooler);
         }
 
         protected override void OnSignal(OnLabEntityInitializedSignal data)

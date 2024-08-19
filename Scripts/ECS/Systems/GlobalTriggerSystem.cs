@@ -11,12 +11,12 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
     public class GlobalTriggerSystem : EcsSignalListener<IOneLabEcsData, CommandInvokeGlobalTrigger>
     {
         private EcsFilter _globalTriggerFilter;
-        private Pooler _pooler;
+        private OneLabPooler _pooler;
 
         protected override void Initialize()
         {
             _globalTriggerFilter = Componenter.Filter<GlobalTriggerData>().End();
-            _pooler = GameShare.GetSharedObject<Pooler>();
+            GameShare.GetSharedObject(ref _pooler);
         }
 
         protected override void OnSignal(CommandInvokeGlobalTrigger data)

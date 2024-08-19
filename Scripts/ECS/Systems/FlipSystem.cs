@@ -6,17 +6,17 @@ using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class FlipSystem : EasySystem<IOneLabEcsData>
+    public class FlipSystem : EasySystem
     {
         private EcsFilter _fliperFilter;
         private Camera _camera;
-        private Pooler _pooler;
+        private OneLabPooler _pooler;
 
         protected override void Initialize()
         {
             _camera = Camera.main;
             _fliperFilter = Componenter.Filter<FliperData>().End();
-            _pooler = GameShare.GetSharedObject<Pooler>();
+            GameShare.GetSharedObject(ref _pooler);
         }
 
         protected override void Update()

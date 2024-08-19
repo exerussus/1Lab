@@ -6,17 +6,17 @@ using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class TriggerSystem : EasySystem<IOneLabEcsData>
+    public class TriggerSystem : EasySystem
     {
         private EcsFilter _timerTriggerFilter;
         private EcsFilter _keyPressedTriggerFilter;
-        private Pooler _pooler;
+        private OneLabPooler _pooler;
 
         protected override void Initialize()
         {
             _timerTriggerFilter = Componenter.Filter<TimerTriggerData>().End();
             _keyPressedTriggerFilter = Componenter.Filter<KeyPressedTriggerData>().End();
-            _pooler = GameShare.GetSharedObject<Pooler>();
+            GameShare.GetSharedObject(ref _pooler);
         }
 
         protected override void Update()

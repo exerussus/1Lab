@@ -6,9 +6,9 @@ using Leopotam.EcsLite;
 
 namespace Exerussus._1Lab.Scripts.ECS.Core
 {
-    public class Pooler
+    public class OneLabPooler
     {
-        public Pooler(EcsWorld world)
+        public OneLabPooler(EcsWorld world)
         {
             #region Init
             

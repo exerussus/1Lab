@@ -15,13 +15,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
         private EcsFilter _vfxFilter;
         private EcsFilter _vfxReleaseCommandFilter;
         private Dictionary<GameObject, ObjectPool<VfxComponent>> _pools = new();
-        private Pooler _pooler;
+        private OneLabPooler _pooler;
 
         protected override void Initialize()
         {
             _vfxFilter = Componenter.Filter<VfxData>().End();
             _vfxReleaseCommandFilter = Componenter.Filter<VfxData>().Inc<CommandReleaseVfxMark>().End();
-            _pooler = GameShare.GetSharedObject<Pooler>();
+            GameShare.GetSharedObject(ref _pooler);
         }
 
         protected override void Update()
