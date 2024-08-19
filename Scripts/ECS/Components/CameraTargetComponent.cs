@@ -1,5 +1,5 @@
-﻿using Exerussus._1Lab.Scripts.ECS.Core;
-using Exerussus._1Lab.Scripts.ECS.Systems;
+﻿
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Components
@@ -19,7 +19,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Run()
         {
-            Signal.RegistryRaise(new CommandCameraFollowTransformSignal
+            Signal.RegistryRaise(new OneLabSignals.CommandCameraFollowTransformSignal
             {
                 TargetEntity = Entity,
                 FollowY = followY,
@@ -30,7 +30,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Stop()
         {
-            Componenter.Del<CameraTargetData>(Entity);
+            Componenter.Del<OneLabData.CameraTargetData>(Entity);
         }
     }
 }

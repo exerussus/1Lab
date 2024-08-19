@@ -1,6 +1,6 @@
 ﻿
 using Exerussus._1EasyEcs.Scripts.Core;
-using Exerussus._1Lab.Scripts.Core;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Effects
@@ -27,9 +27,9 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
 
         private void Set(int entity, Componenter componenter)
         {
-            if (!componenter.Has<RigidBody2DData>(entity)) return;
+            if (!componenter.Has<OneLabData.RigidBody2DData>(entity)) return;
             
-            ref var physicalBodyData = ref componenter.Get<RigidBody2DData>(entity);
+            ref var physicalBodyData = ref componenter.Get<OneLabData.RigidBody2DData>(entity);
             physicalBodyData.Value.gravityScale = gravity;
         }
     }

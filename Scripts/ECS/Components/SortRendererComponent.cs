@@ -20,13 +20,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Run()
         {
-            ref var sorterData = ref Componenter.AddOrGet<SorterData>(Entity);
+            ref var sorterData = ref Componenter.AddOrGet<OneLabData.SorterData>(Entity);
             sorterData.Value = this;
         }
 
         public void Stop()
         {
-            Componenter.Del<SorterData>(Entity);
+            Componenter.Del<OneLabData.SorterData>(Entity);
         }
 
         protected override void OnValidate()
@@ -40,10 +40,5 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             Gizmos.color = Color.white;
             Gizmos.DrawLine(new Vector3(transform.position.x + 2f, ResultBottomPosition), new Vector3(transform.position.x - 2f, ResultBottomPosition));
         }
-    }
-
-    public struct SorterData : IOneLabEcsData
-    {
-        public SortRendererComponent Value;
     }
 }

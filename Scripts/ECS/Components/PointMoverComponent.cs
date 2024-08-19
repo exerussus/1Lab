@@ -32,7 +32,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         
         public void Run()
         {
-            ref var pointMoverData = ref Componenter.AddOrGet<PointMoverData>(Entity);
+            ref var pointMoverData = ref Componenter.AddOrGet<OneLabData.PointMoverData>(Entity);
             pointMoverData.Speed = speed;
             pointMoverData.StartPoint = startPosition;
             pointMoverData.EndPoint = (Vector2)transform.position + point;
@@ -41,7 +41,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Stop()
         {
-            Componenter.Del<PointMoverData>(Entity);
+            Componenter.Del<OneLabData.PointMoverData>(Entity);
         }
 
         private void OnDrawGizmos()
@@ -59,13 +59,5 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             base.OnValidate();
             startPosition = transform.position;
         }
-    }
-
-    public struct PointMoverData : IOneLabEcsData
-    {
-        public float Speed;
-        public Vector2 StartPoint;
-        public Vector2 EndPoint;
-        public bool ToEndPoint;
     }
 }

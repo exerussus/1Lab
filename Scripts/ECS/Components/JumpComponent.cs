@@ -32,7 +32,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Run()
         {
-            ref var jumpData = ref Componenter.AddOrGet<JumpData>(Entity);
+            ref var jumpData = ref Componenter.AddOrGet<OneLabData.JumpData>(Entity);
             jumpData.Direction = direction;
             jumpData.Power = power;
             jumpData.Key1 = key1;
@@ -45,7 +45,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Stop()
         {
-            Componenter.Del<JumpData>(Entity);
+            Componenter.Del<OneLabData.JumpData>(Entity);
         }
 
         private void OnTriggerStay2D(Collider2D other)
@@ -72,26 +72,12 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             
             if (isExist)
             {
-                if (Componenter.Has<JumpData>(Entity))
+                if (Componenter.Has<OneLabData.JumpData>(Entity))
                 {
-                    ref var jumpData = ref Componenter.Get<JumpData>(Entity);
+                    ref var jumpData = ref Componenter.Get<OneLabData.JumpData>(Entity);
                     if (jumpData is { ReloadOnTouch: true, CoolDownTimer: > MaxReloadOnTouch }) jumpData.CoolDownTimer = MaxReloadOnTouch;
                 }
             }
         }
-        
-    }
-
-    public struct JumpData : IOneLabEcsData
-    {
-        public KeyCode Key1;
-        public KeyCode Key2;
-        public float Power;
-        public Vector2 Direction;
-        public UnityEvent<int, Componenter> OnJump;
-        public float CoolDownDelay;
-        public float CoolDownTimer;
-        public bool ReloadOnTouch;
-        public string[] TouchTags;
     }
 }

@@ -1,5 +1,5 @@
-﻿using Exerussus._1EasyEcs.Scripts.Core;
-using Exerussus._1Lab.Scripts.ECS.Components;
+﻿
+using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using Leopotam.EcsLite;
 using UnityEngine;
@@ -14,7 +14,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         protected override void Initialize()
         {
-            _sorterFilter = Componenter.Filter<SorterData>().End();
+            _sorterFilter = Componenter.Filter<OneLabData.SorterData>().End();
             GameShare.GetSharedObject(ref _pooler);
         }
 

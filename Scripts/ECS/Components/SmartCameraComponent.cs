@@ -17,30 +17,14 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Run()
         {
-            ref var smartCameraData = ref Componenter.AddOrGet<SmartCameraData>(Entity);
+            ref var smartCameraData = ref Componenter.AddOrGet<OneLabData.SmartCameraData>(Entity);
             smartCameraData.Transform = transform;
             smartCameraData.SmoothingSpeed = smoothingSpeed;
         }
 
         public void Stop()
         {
-            Componenter.Del<SmartCameraData>(Entity);
+            Componenter.Del<OneLabData.SmartCameraData>(Entity);
         }
-    }
-
-    public struct SmartCameraData : IOneLabEcsData
-    {
-        public Transform Transform;
-        public float SmoothingSpeed;
-        public Vector3 Velocity;
-        public float SmoothingTime;
-    }
-
-    public struct CommandCameraFollowTransformSignal 
-    {
-        public bool FollowX;
-        public bool FollowY;
-        public int TargetEntity;
-        public Vector2 Offset;
     }
 }

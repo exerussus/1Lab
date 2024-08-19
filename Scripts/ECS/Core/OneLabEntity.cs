@@ -13,25 +13,14 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             Initialize(OneLab.Componenter, OneLab.Signal);
             if (tags.IsNotEmpty())
             {
-                ref var oneLabEntityData = ref Componenter.AddOrGet<TagsData>(Entity);
+                ref var oneLabEntityData = ref Componenter.AddOrGet<OneLabData.TagsData>(Entity);
                 oneLabEntityData.Values = tags;
-                Signal.RegistryRaise(new OnLabEntityInitializedSignal
+                Signal.RegistryRaise(new OneLabSignals.OnLabEntityInitializedSignal
                 {
                     IsInitialized = true,
                     OneLabEntity = this
                 });
             }
         }
-    }
-
-    public struct TagsData : IOneLabEcsData
-    {
-        public string[] Values;
-    }
-
-    public struct OnLabEntityInitializedSignal
-    {
-        public bool IsInitialized;
-        public OneLabEntity OneLabEntity;
     }
 }

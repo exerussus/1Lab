@@ -9,7 +9,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
     {
         public void Invoke(string actionTag)
         {
-            OneLab.Signal.RegistryRaise(new CommandInvokeGlobalTrigger { Tag = actionTag });
+            OneLab.Signal.RegistryRaise(new OneLabSignals.CommandInvokeGlobalTrigger { Tag = actionTag });
         }
     }
 }

@@ -27,13 +27,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Run()
         {
-            ref var fliperData = ref Componenter.AddOrGet<FliperData>(Entity);
+            ref var fliperData = ref Componenter.AddOrGet<OneLabData.FliperData>(Entity);
             fliperData.Value = this;
         }
 
         public void Stop()
         {
-            Componenter.Del<FliperData>(Entity);
+            Componenter.Del<OneLabData.FliperData>(Entity);
         }
 
         public void Flip(bool value)
@@ -63,10 +63,5 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             Axis,
             None
         }
-    }
-
-    public struct FliperData : IOneLabEcsData
-    {
-        public FliperComponent Value;
     }
 }

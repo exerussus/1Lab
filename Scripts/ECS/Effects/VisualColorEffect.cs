@@ -1,5 +1,6 @@
-﻿using Exerussus._1EasyEcs.Scripts.Core;
-using Exerussus._1Lab.Scripts.ECS.Components;
+﻿
+using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Effects
@@ -26,9 +27,9 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
 
         private void SetColor(int entity, Componenter componenter)
         {
-            if (!componenter.Has<VisualData>(entity)) return;
+            if (!componenter.Has<OneLabData.VisualData>(entity)) return;
 
-            ref var visualData = ref componenter.Get<VisualData>(entity);
+            ref var visualData = ref componenter.Get<OneLabData.VisualData>(entity);
             visualData.SpriteRenderer.color = color;
         }
     }

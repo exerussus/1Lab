@@ -58,6 +58,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
 
         private void Spawn(Vector2 position)
         {
+            
             var newObject = Instantiate(prefab, rotation: Quaternion.identity, position: position);
             if (newObject.TryGetComponent(out EcsMonoBehavior ecsMonoBehavior))
             {
@@ -68,4 +69,5 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             }
         }
     }
+    
 }

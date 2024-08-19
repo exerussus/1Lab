@@ -1,12 +1,11 @@
 ﻿using Exerussus._1EasyEcs.Scripts.Core;
-using Exerussus._1Lab.Scripts.ECS.Components;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using Leopotam.EcsLite;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class CameraSystem : EcsSignalListener<CommandCameraFollowTransformSignal>
+    public class CameraSystem : EcsSignalListener<OneLabSignals.CommandCameraFollowTransformSignal>
     {
         private EcsFilter _cameraFilter;
         private EcsFilter _targetFilter;
@@ -14,8 +13,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         protected override void Initialize()
         {
-            _cameraFilter = Componenter.Filter<SmartCameraData>().End();
-            _targetFilter = Componenter.Filter<CameraTargetData>().End();
+            _cameraFilter = Componenter.Filter<OneLabData.SmartCameraData>().End();
+            _targetFilter = Componenter.Filter<OneLabData.CameraTargetData>().End();
             GameShare.GetSharedObject(ref _pooler);
         }
 
@@ -48,7 +47,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             }
         }
         
-        protected override void OnSignal(CommandCameraFollowTransformSignal data)
+        protected override void OnSignal(OneLabSignals.CommandCameraFollowTransformSignal data)
         {
             foreach (var entity in _targetFilter) _pooler.CameraTarget.Del(entity);
             
@@ -77,13 +76,5 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
                 smartCameraData.SmoothingTime = 01.3f;
             }
         }
-    }
-    
-    public struct CameraTargetData : IOneLabEcsData
-    {
-        public bool FollowX;
-        public bool FollowY;
-        public Vector3 Offset;
-        public Transform Transform;
     }
 }

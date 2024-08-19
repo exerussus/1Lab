@@ -20,13 +20,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public override void Initialize()
         {
-            ref var compositeObjectData = ref Componenter.AddOrGet<CompositeObjectData>(Entity);
+            ref var compositeObjectData = ref Componenter.AddOrGet<OneLabData.CompositeObjectData>(Entity);
             compositeObjectData.Value = this;
         }
 
         public override void Destroy()
         {
-            Componenter.Del<CompositeObjectData>(Entity);
+            Componenter.Del<OneLabData.CompositeObjectData>(Entity);
         }
 
         public void DestroyComposite()
@@ -53,10 +53,5 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             }
             _rigidBodies = list.ToArray();
         }
-    }
-
-    public struct CompositeObjectData : IOneLabEcsData
-    {
-        public CompositeObjectComponent Value;
     }
 }

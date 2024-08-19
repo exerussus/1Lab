@@ -1,4 +1,5 @@
-﻿using Exerussus._1EasyEcs.Scripts.Core;
+﻿
+using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Components;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using Leopotam.EcsLite;
@@ -15,7 +16,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
         protected override void Initialize()
         {
             _camera = Camera.main;
-            _fliperFilter = Componenter.Filter<FliperData>().End();
+            _fliperFilter = Componenter.Filter<OneLabData.FliperData>().End();
             GameShare.GetSharedObject(ref _pooler);
         }
 

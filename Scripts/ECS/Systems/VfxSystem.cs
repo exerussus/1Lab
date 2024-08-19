@@ -10,7 +10,7 @@ using Object = UnityEngine.Object;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class VfxSystem : EcsSignalListener<CommandCreateVfxSignal>
+    public class VfxSystem : EcsSignalListener<OneLabSignals.CommandCreateVfxSignal>
     {
         private EcsFilter _vfxFilter;
         private EcsFilter _vfxReleaseCommandFilter;
@@ -19,8 +19,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         protected override void Initialize()
         {
-            _vfxFilter = Componenter.Filter<VfxData>().End();
-            _vfxReleaseCommandFilter = Componenter.Filter<VfxData>().Inc<CommandReleaseVfxMark>().End();
+            _vfxFilter = Componenter.Filter<OneLabData.VfxData>().End();
+            _vfxReleaseCommandFilter = Componenter.Filter<OneLabData.VfxData>().Inc<OneLabData.CommandReleaseVfxMark>().End();
             GameShare.GetSharedObject(ref _pooler);
         }
 
@@ -72,7 +72,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             else vfxData.Vfx.spriteRenderer.sprite = vfxData.Vfx.sprites[vfxData.Vfx.currentSprite];
         }
 
-        protected override void OnSignal(CommandCreateVfxSignal data)
+        protected override void OnSignal(OneLabSignals.CommandCreateVfxSignal data)
         {
             if (!_pools.ContainsKey(data.VfxPrefab))
             {
@@ -92,14 +92,5 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             dataVfx.LoopTimeRemaining = vfx.loopTime;
             vfx.Run();
         }
-    }
-
-    public struct CommandCreateVfxSignal
-    {
-        public GameObject VfxPrefab;
-        public Vector3 Position;
-        public Vector3 Rotation;
-        public Vector3 Scale;
-        public bool IsLoop;
     }
 }

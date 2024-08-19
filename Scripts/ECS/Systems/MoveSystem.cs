@@ -1,6 +1,6 @@
-﻿using Exerussus._1EasyEcs.Scripts.Core;
+﻿
+using Exerussus._1EasyEcs.Scripts.Core;
 using Leopotam.EcsLite;
-using Exerussus._1Lab.Scripts.ECS.Components;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         protected override void Initialize()
         {
-            _pointMoverFilter = Componenter.Filter<PointMoverData>().End();
+            _pointMoverFilter = Componenter.Filter<OneLabData.PointMoverData>().End();
             GameShare.GetSharedObject(ref _pooler);
         }
 

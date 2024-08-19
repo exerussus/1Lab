@@ -1,6 +1,5 @@
 ﻿
 using System;
-using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
@@ -81,26 +80,26 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         {
             if (x.enabled)
             {
-                ref var selfRotatorData = ref Componenter.AddOrGet<SelfRotatorXData>(Entity);
+                ref var selfRotatorData = ref Componenter.AddOrGet<OneLabData.SelfRotatorXData>(Entity);
                 selfRotatorData.Speed = x.reversed? -x.speed : x.speed;
             }
             if (y.enabled)
             {
-                ref var selfRotatorData = ref Componenter.AddOrGet<SelfRotatorYData>(Entity);
+                ref var selfRotatorData = ref Componenter.AddOrGet<OneLabData.SelfRotatorYData>(Entity);
                 selfRotatorData.Speed = y.reversed? -y.speed : y.speed;
             }
             if (z.enabled)
             {
-                ref var selfRotatorData = ref Componenter.AddOrGet<SelfRotatorZData>(Entity);
+                ref var selfRotatorData = ref Componenter.AddOrGet<OneLabData.SelfRotatorZData>(Entity);
                 selfRotatorData.Speed = z.reversed? -z.speed : z.speed;
             }
         }
 
         public void Stop()
         {
-            Componenter.Del<SelfRotatorXData>(Entity);
-            Componenter.Del<SelfRotatorYData>(Entity);
-            Componenter.Del<SelfRotatorZData>(Entity);
+            Componenter.Del<OneLabData.SelfRotatorXData>(Entity);
+            Componenter.Del<OneLabData.SelfRotatorYData>(Entity);
+            Componenter.Del<OneLabData.SelfRotatorZData>(Entity);
         }
         
         [Serializable]
@@ -110,20 +109,5 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             [SerializeField] public float speed = 25;
             [SerializeField] public bool reversed;
         }
-    }
-
-    public struct SelfRotatorXData : IOneLabEcsData
-    {
-        public float Speed;
-    }
-
-    public struct SelfRotatorYData : IOneLabEcsData
-    {
-        public float Speed;
-    }
-
-    public struct SelfRotatorZData : IOneLabEcsData
-    {
-        public float Speed;
     }
 }

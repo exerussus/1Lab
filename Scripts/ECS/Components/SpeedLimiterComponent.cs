@@ -28,30 +28,20 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         {
             if (hasXLimit)
             {
-                ref var speedLimitXData = ref Componenter.AddOrGet<SpeedLimitXData>(Entity);
+                ref var speedLimitXData = ref Componenter.AddOrGet<OneLabData.SpeedLimitXData>(Entity);
                 speedLimitXData.Limit = xLimit;
             }            
             if (hasYLimit)
             {
-                ref var speedLimitXData = ref Componenter.AddOrGet<SpeedLimitYData>(Entity);
+                ref var speedLimitXData = ref Componenter.AddOrGet<OneLabData.SpeedLimitYData>(Entity);
                 speedLimitXData.Limit = yLimit;
             }
         }
 
         public void Stop()
         {
-            Componenter.Del<SpeedLimitXData>(Entity);
-            Componenter.Del<SpeedLimitYData>(Entity);
+            Componenter.Del<OneLabData.SpeedLimitXData>(Entity);
+            Componenter.Del<OneLabData.SpeedLimitYData>(Entity);
         }
-    }
-
-    public struct SpeedLimitXData : IOneLabEcsData
-    {
-        public float Limit;
-    }
-
-    public struct SpeedLimitYData : IOneLabEcsData 
-    {
-        public float Limit;
     }
 }

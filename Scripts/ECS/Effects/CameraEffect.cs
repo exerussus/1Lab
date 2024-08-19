@@ -1,5 +1,5 @@
-﻿using Exerussus._1EasyEcs.Scripts.Core;
-using Exerussus._1Lab.Scripts.ECS.Components;
+﻿
+using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
@@ -14,7 +14,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
         
         public void FollowOrigin(int originEntity, Componenter componenter)
         {
-            Signal.RegistryRaise( new CommandCameraFollowTransformSignal
+            Signal.RegistryRaise( new OneLabSignals.CommandCameraFollowTransformSignal
             {
                 TargetEntity = originEntity,
                 Offset = offset,
@@ -25,7 +25,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
         
         public void FollowOrigin(int originEntity, int targetEntity, Componenter componenter)
         {
-            Signal.RegistryRaise( new CommandCameraFollowTransformSignal {
+            Signal.RegistryRaise( new OneLabSignals.CommandCameraFollowTransformSignal {
                 TargetEntity = originEntity,
                 Offset = offset,
                 FollowX = followX,
@@ -35,7 +35,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
         
         public void FollowTarget(int originEntity, int targetEntity, Componenter componenter)
         {
-            Signal.RegistryRaise( new CommandCameraFollowTransformSignal {
+            Signal.RegistryRaise( new OneLabSignals.CommandCameraFollowTransformSignal {
                 TargetEntity = originEntity,
                 Offset = offset,
                 FollowX = followX,

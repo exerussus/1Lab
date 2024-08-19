@@ -1,6 +1,5 @@
 ﻿
 using Exerussus._1EasyEcs.Scripts.Core;
-using Exerussus._1Lab.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
@@ -31,7 +30,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
 
         private void DestroyEntity(int entity)
         {
-            Signal.RegistryRaise(new CommandKillEntitySignal {Entity = entity, Immediately = immediately});
+            Signal.RegistryRaise(new OneLabSignals.CommandKillEntitySignal {Entity = entity, Immediately = immediately});
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
         
         public void Run()
         {
-            ref var timerTriggerData = ref Componenter.AddOrGet<TimerTriggerData>(Entity);
+            ref var timerTriggerData = ref Componenter.AddOrGet<OneLabData.TimerTriggerData>(Entity);
             timerTriggerData.OnTick = onTick;
             timerTriggerData.Delay = delay;
             timerTriggerData.IsLoop = isLoop;
@@ -34,15 +34,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
 
         public void Stop()
         {
-            Componenter.Del<TimerTriggerData>(Entity);
+            Componenter.Del<OneLabData.TimerTriggerData>(Entity);
         }
-    }
-
-    public struct TimerTriggerData : IOneLabEcsData
-    {
-        public UnityEvent<int, Componenter> OnTick;
-        public float Delay;
-        public float Timer;
-        public bool IsLoop;
     }
 }

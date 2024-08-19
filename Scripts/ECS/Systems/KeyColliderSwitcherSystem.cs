@@ -1,5 +1,5 @@
-﻿using Exerussus._1EasyEcs.Scripts.Core;
-using Exerussus._1Lab.Scripts.ECS.Components;
+﻿
+using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using Leopotam.EcsLite;
 using UnityEngine;
@@ -14,8 +14,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         protected override void Initialize()
         {
-            _keyColliderSwitcherFilter = Componenter.Filter<KeyColliderSwitcherData>().End();
-            _joystickYFilter = Componenter.Filter<JoystickYData>().End();
+            _keyColliderSwitcherFilter = Componenter.Filter<OneLabData.KeyColliderSwitcherData>().End();
+            _joystickYFilter = Componenter.Filter<OneLabData.JoystickYData>().End();
             GameShare.GetSharedObject(ref _pooler);
         }
 

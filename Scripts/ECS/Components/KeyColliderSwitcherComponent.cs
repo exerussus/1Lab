@@ -24,13 +24,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Run()
         {
-            ref var keyColliderSwitcherData = ref Componenter.AddOrGet<KeyColliderSwitcherData>(Entity);
+            ref var keyColliderSwitcherData = ref Componenter.AddOrGet<OneLabData.KeyColliderSwitcherData>(Entity);
             keyColliderSwitcherData.Value = this;
         }
 
         public void Stop()
         {
-            Componenter.Del<KeyColliderSwitcherData>(Entity);
+            Componenter.Del<OneLabData.KeyColliderSwitcherData>(Entity);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -58,10 +58,5 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             base.OnValidate();
             if (_collider2D == null) _collider2D = GetComponent<Collider2D>();
         }
-    }
-
-    public struct KeyColliderSwitcherData : IOneLabEcsData
-    {
-        public KeyColliderSwitcherComponent Value;
     }
 }

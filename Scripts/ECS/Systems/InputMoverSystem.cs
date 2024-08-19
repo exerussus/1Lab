@@ -1,14 +1,12 @@
-﻿using Exerussus._1EasyEcs.Scripts.Core;
-using Exerussus._1Lab.Scripts.Core;
+﻿
+using Exerussus._1EasyEcs.Scripts.Core;
 using Leopotam.EcsLite;
-using Exerussus._1Lab.Scripts.ECS.Components;
 using Exerussus._1Lab.Scripts.ECS.Core;
-using Exerussus._1Lab.Scripts.ECS.Effects;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class InputMoverSystem : EcsSignalListener<CommandTryInvokeJumpSignal>
+    public class InputMoverSystem : EcsSignalListener<OneLabSignals.CommandTryInvokeJumpSignal>
     {
         private EcsFilter _keyboardInputMoverFilter;
         private EcsFilter _jumpFilter;
@@ -18,10 +16,10 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         protected override void Initialize()
         {
-            _keyboardInputMoverFilter = Componenter.Filter<KeyboardPlatformInputMoverData>().End();
-            _jumpFilter = Componenter.Filter<JumpData>().Inc<RigidBody2DData>().End();
-            _joystickXFilter = Componenter.Filter<JoystickXData>().End();
-            _joystickYFilter = Componenter.Filter<JoystickYData>().End();
+            _keyboardInputMoverFilter = Componenter.Filter<OneLabData.KeyboardPlatformInputMoverData>().End();
+            _jumpFilter = Componenter.Filter<OneLabData.JumpData>().Inc<OneLabData.RigidBody2DData>().End();
+            _joystickXFilter = Componenter.Filter<OneLabData.JoystickXData>().End();
+            _joystickYFilter = Componenter.Filter<OneLabData.JoystickYData>().End();
             GameShare.GetSharedObject(ref _pooler);
         }
 
@@ -33,7 +31,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             _jumpFilter.Foreach(OnJumpUpdate);
         }
 
-        protected override void OnSignal(CommandTryInvokeJumpSignal data)
+        protected override void OnSignal(OneLabSignals.CommandTryInvokeJumpSignal data)
         {
             foreach (var entity in _jumpFilter)
             {
@@ -170,11 +168,5 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
                 transformData.Value.Translate(keyboardInputMoverData.Speed * Time.deltaTime * new Vector2(inputX, 0));
             }
         }
-    }
-
-    public struct InputData : IOneLabEcsData
-    {
-        public float Horizontal;
-        public float Vertical;
     }
 }

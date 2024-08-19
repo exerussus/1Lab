@@ -1,5 +1,6 @@
 ﻿
 using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using Exerussus._1Lab.Scripts.ECS.Effects;
 using UnityEngine;
 using UnityEngine.Events;
@@ -31,17 +32,11 @@ namespace Exerussus._1Lab.Scripts.ECS.Filters
 
         private void FilterProcess(int entity, Componenter componenter)
         {
-            Signal.RegistryRaise(new CommandFilterTagSignal
+            Signal.RegistryRaise(new OneLabSignals.CommandFilterTagSignal
             {
                 Entity = entity,
                 TagFilter = this
             });
         }
-    }
-
-    public struct CommandFilterTagSignal
-    {
-        public TagFilter TagFilter;
-        public int Entity;
     }
 }

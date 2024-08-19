@@ -1,5 +1,4 @@
 ﻿using Exerussus._1EasyEcs.Scripts.Core;
-using Exerussus._1Lab.Scripts.ECS.Components;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using Leopotam.EcsLite;
 using UnityEngine;
@@ -14,8 +13,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         protected override void Initialize()
         {
-            _characterAnimatorFilter = Componenter.Filter<CharacterAnimatorData>().End();
-            _characterAnimatorExpendedFilter = Componenter.Filter<CharacterAnimatorExpendedData>().Inc<AnimationInputData>().End();
+            _characterAnimatorFilter = Componenter.Filter<OneLabData.CharacterAnimatorData>().End();
+            _characterAnimatorExpendedFilter = Componenter.Filter<OneLabData.CharacterAnimatorExpendedData>().Inc<OneLabData.AnimationInputData>().End();
             GameShare.GetSharedObject(ref _pooler);
         }
 
@@ -200,10 +199,5 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
                 characterAnimatorData.Value.spriteRenderer.sprite = characterAnimatorData.CurrentPack.sprites[characterAnimatorData.CurrentSprite];
             }
         }
-    }
-
-    public struct AnimationInputData : IOneLabEcsData
-    {
-        public float HorizontalAxis;
     }
 }

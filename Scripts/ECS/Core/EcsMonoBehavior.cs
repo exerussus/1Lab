@@ -3,6 +3,7 @@ using System;
 using UnityEngine;
 using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Extensions.SignalSystem;
+using Exerussus._1Lab.Scripts.ECS.Core;
 
 namespace Exerussus._1Lab.Scripts.Core
 {
@@ -41,14 +42,14 @@ namespace Exerussus._1Lab.Scripts.Core
             Componenter = componenter;
             Signal = signal;
             entity = Componenter.GetNewEntity();
-            ref var transformData = ref Componenter.AddOrGet<TransformData>(entity);
+            ref var transformData = ref Componenter.AddOrGet<OneLabData.TransformData>(entity);
             transformData.InitializeValues(transform);
             TryInitializePhysicalBody();
             foreach (var ecsComponent in ecsComponents) ecsComponent.PreInitialize(entity, Componenter);
             foreach (var ecsComponent in ecsComponents) ecsComponent.Initialize();
-            ref var ecsMonoBehData = ref Componenter.AddOrGet<EcsMonoBehaviorData>(entity);
+            ref var ecsMonoBehData = ref Componenter.AddOrGet<OneLabData.EcsMonoBehaviorData>(entity);
             ecsMonoBehData.InitializeValues(this);
-            Signal.RegistryRaise(new OnEcsMonoBehaviorInitializedSignal { EcsMonoBehavior = this });
+            Signal.RegistryRaise(new OneLabSignals.OnEcsMonoBehaviorInitializedSignal { EcsMonoBehavior = this });
             onInitialized?.Invoke();
             onInitialized = null;
         }
@@ -59,8 +60,8 @@ namespace Exerussus._1Lab.Scripts.Core
             isAlive = false;
             isInitialized = false;
             foreach (var ecsComponent in ecsComponents) ecsComponent.Destroy();
-            Signal.RegistryRaise(new OnEcsMonoBehaviorStartDestroySignal { EcsMonoBehavior = this });
-            ref var destroyingData = ref Componenter.AddOrGet<OnDestroyData>(entity);
+            Signal.RegistryRaise(new OneLabSignals.OnEcsMonoBehaviorStartDestroySignal { EcsMonoBehavior = this });
+            ref var destroyingData = ref Componenter.AddOrGet<OneLabData.OnDestroyData>(entity);
             destroyingData.InitializeValues(gameObject, delay);
         }
 
@@ -68,12 +69,12 @@ namespace Exerussus._1Lab.Scripts.Core
         {
             if (rb2D != null)
             {
-                ref var physicalBodyData = ref Componenter.AddOrGet<RigidBody2DData>(Entity);
+                ref var physicalBodyData = ref Componenter.AddOrGet<OneLabData.RigidBody2DData>(Entity);
                 physicalBodyData.Value = rb2D;
             }
             else if (rb3D != null)
             {
-                ref var physicalBodyData = ref Componenter.AddOrGet<RigidBody3DData>(Entity);
+                ref var physicalBodyData = ref Componenter.AddOrGet<OneLabData.RigidBody3DData>(Entity);
                 physicalBodyData.Value = rb3D;
             }
         }
@@ -119,16 +120,6 @@ namespace Exerussus._1Lab.Scripts.Core
             public void Destroy();
         }
     }
-
-    public struct EcsMonoBehaviorData : IEcsComponent
-    {
-        public IEcsMonoBehavior Value;
-        
-        public void InitializeValues(IEcsMonoBehavior value)
-        {
-            Value = value;
-        }
-    }
     
     public interface IEcsMonoBehavior
     {
@@ -136,75 +127,4 @@ namespace Exerussus._1Lab.Scripts.Core
         public void DestroyEcsMonoBehavior(float delay);
         public Transform transform { get; }
     }
-
-    #region Data
-
-    public struct TransformData : IEcsComponent
-    {
-        public Transform Value;
-        public void InitializeValues(Transform value)
-        {
-            Value = value;
-        }
-    }
-
-    public struct RigidBody2DData : IEcsComponent
-    {
-        public Rigidbody2D Value;
-    }
-
-    public struct RigidBody3DData : IEcsComponent
-    {
-        public Rigidbody Value;
-    }
-    
-    public struct OnDestroyData : IEcsData<GameObject, float>
-    {
-        public float TimeRemaining;
-        public GameObject ObjectToDelete;
-        public void InitializeValues(GameObject objectToDelete, float value)
-        {
-            TimeRemaining = value;
-            ObjectToDelete = objectToDelete;
-        }
-    }
-
-    #endregion
-    
-    #region Signals
-
-    /// <summary>
-    /// Команда на уничтожение Entity 
-    /// </summary>
-    public struct CommandKillEntitySignal
-    {
-        public int Entity;
-        public bool Immediately;
-    }
-    
-    /// <summary>
-    /// MonoBehaviourView проинициализировался.
-    /// </summary>
-    public struct OnEcsMonoBehaviorInitializedSignal
-    {
-        public IEcsMonoBehavior EcsMonoBehavior;
-    }
-    
-    /// <summary>
-    /// MonoBehaviourView уничтожился.
-    /// </summary>
-    public struct OnEcsMonoBehaviorStartDestroySignal
-    {
-        public IEcsMonoBehavior EcsMonoBehavior;
-    }
-    
-    /// <summary>
-    /// MonoBehaviourView уничтожился.
-    /// </summary>
-    public struct OnEcsMonoBehaviorDestroyedSignal
-    {
-        public IEcsMonoBehavior EcsMonoBehavior;
-    }
-
-    #endregion
 }

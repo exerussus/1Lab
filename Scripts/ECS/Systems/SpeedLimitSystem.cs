@@ -1,6 +1,6 @@
-﻿using Exerussus._1EasyEcs.Scripts.Core;
+﻿
+using Exerussus._1EasyEcs.Scripts.Core;
 using Leopotam.EcsLite;
-using Exerussus._1Lab.Scripts.ECS.Components;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
@@ -14,8 +14,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         protected override void Initialize()
         {
-            _speedXLimitFilter = Componenter.Filter<SpeedLimitXData>().End();
-            _speedYLimitFilter = Componenter.Filter<SpeedLimitYData>().End();
+            _speedXLimitFilter = Componenter.Filter<OneLabData.SpeedLimitXData>().End();
+            _speedYLimitFilter = Componenter.Filter<OneLabData.SpeedLimitYData>().End();
             GameShare.GetSharedObject(ref _pooler);
         }
 

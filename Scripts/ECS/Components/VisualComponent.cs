@@ -1,5 +1,4 @@
 ﻿
-using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
@@ -12,13 +11,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public override void Initialize()
         {
-            ref var visualData = ref Componenter.AddOrGet<VisualData>(Entity);
+            ref var visualData = ref Componenter.AddOrGet<OneLabData.VisualData>(Entity);
             visualData.SpriteRenderer = spriteRenderer;
         }
 
         public override void Destroy()
         {
-            Componenter.Del<VisualData>(Entity);
+            Componenter.Del<OneLabData.VisualData>(Entity);
         }
 
         protected override void OnValidate()
@@ -26,10 +25,5 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             base.OnValidate();
             if (spriteRenderer == null) spriteRenderer = GetComponent<SpriteRenderer>();
         }
-    }
-
-    public struct VisualData : IOneLabEcsData
-    {
-        public SpriteRenderer SpriteRenderer;
     }
 }

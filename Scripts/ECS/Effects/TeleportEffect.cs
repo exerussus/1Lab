@@ -1,5 +1,6 @@
-﻿using Exerussus._1EasyEcs.Scripts.Core;
-using Exerussus._1Lab.Scripts.Core;
+﻿
+using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Effects
@@ -27,15 +28,15 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
 
         private void Teleport(int entity, Componenter componenter)
         {
-            ref var transformData = ref componenter.Get<TransformData>(entity);
+            ref var transformData = ref componenter.Get<OneLabData.TransformData>(entity);
             var result = transformData.Value.position;
             result.x = position.x;
             result.y = position.y;
             transformData.Value.position = result;
             
-            if (componenter.Has<RigidBody2DData>(entity))
+            if (componenter.Has<OneLabData.RigidBody2DData>(entity))
             {
-                ref var physicalBodyData = ref componenter.Get<RigidBody2DData>(entity);
+                ref var physicalBodyData = ref componenter.Get<OneLabData.RigidBody2DData>(entity);
                 physicalBodyData.Value.velocity = Vector2.zero;
             }
             

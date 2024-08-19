@@ -1,6 +1,7 @@
-﻿using Exerussus._1EasyEcs.Scripts.Core;
+﻿
+using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Extensions;
-using Exerussus._1Lab.Scripts.Core;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.Extensions
@@ -21,23 +22,23 @@ namespace Exerussus._1Lab.Scripts.Extensions
         }
         public static float GetDistance<TData>(this Componenter componenter, int firstEntity, int secondEntity) where TData : IEcsComponent
         {
-            var firstTransform = componenter.Get<TransformData>(firstEntity).Value;
-            var secondTransform = componenter.Get<TransformData>(secondEntity).Value;
+            var firstTransform = componenter.Get<OneLabData.TransformData>(firstEntity).Value;
+            var secondTransform = componenter.Get<OneLabData.TransformData>(secondEntity).Value;
 
             return Vector2.Distance(firstTransform.position, secondTransform.position);
         }
 
         public static bool GetIsDistanceLessThan<TData>(this Componenter componenter, int firstEntity, int secondEntity, float distance) where TData : IEcsComponent
         {
-            var firstTransform = componenter.Get<TransformData>(firstEntity).Value;
-            var secondTransform = componenter.Get<TransformData>(secondEntity).Value;
+            var firstTransform = componenter.Get<OneLabData.TransformData>(firstEntity).Value;
+            var secondTransform = componenter.Get<OneLabData.TransformData>(secondEntity).Value;
 
             return Vector2.Distance(firstTransform.position, secondTransform.position) > distance;
         }
         
         public static Vector2 GetVector2Position(this Componenter componenter, int entity)
         {
-            ref var transformData = ref componenter.Get<TransformData>(entity);
+            ref var transformData = ref componenter.Get<OneLabData.TransformData>(entity);
             return transformData.Value.position;
         }
     }

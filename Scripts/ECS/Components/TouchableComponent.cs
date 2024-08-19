@@ -23,7 +23,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         public override void Initialize()
         {
             IsInitialized = true;
-            ref var touchableData = ref Componenter.AddOrGet<TouchableData>(Entity);
+            ref var touchableData = ref Componenter.AddOrGet<OneLabData.TouchableData>(Entity);
             touchableData.Value = this;
         }
 
@@ -31,7 +31,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         {
             IsInitialized = false;
             _isUsed = false;
-            Componenter.Del<TouchableData>(Entity);
+            Componenter.Del<OneLabData.TouchableData>(Entity);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -98,10 +98,5 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             base.OnValidate();
             touchableCollider2D = gameObject.TryGetIfNull(ref touchableCollider2D);
         }
-    }
-
-    public struct TouchableData : IOneLabEcsData
-    {
-        public TouchableComponent Value;
     }
 }

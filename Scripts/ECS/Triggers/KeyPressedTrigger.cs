@@ -23,20 +23,14 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
 
         public void Run()
         {
-            ref var keyPressedTriggerData = ref Componenter.AddOrGet<KeyPressedTriggerData>(Entity);
+            ref var keyPressedTriggerData = ref Componenter.AddOrGet<OneLabData.KeyPressedTriggerData>(Entity);
             keyPressedTriggerData.Key = key;
             keyPressedTriggerData.OnPressed = onPressed;
         }
 
         public void Stop()
         {
-            Componenter.Del<KeyPressedTriggerData>(Entity);
+            Componenter.Del<OneLabData.KeyPressedTriggerData>(Entity);
         }
-    }
-
-    public struct KeyPressedTriggerData : IOneLabEcsData
-    {
-        public KeyCode Key;
-        public UnityEvent<int, Componenter> OnPressed;
     }
 }

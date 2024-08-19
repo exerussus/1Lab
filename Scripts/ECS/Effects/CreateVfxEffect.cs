@@ -1,7 +1,5 @@
 ﻿using Exerussus._1EasyEcs.Scripts.Core;
-using Exerussus._1Lab.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Core;
-using Exerussus._1Lab.Scripts.ECS.Systems;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Effects
@@ -17,7 +15,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
         
         public void CreateInPosition()
         {
-            OneLab.Signal.RegistryRaise(new CommandCreateVfxSignal
+            OneLab.Signal.RegistryRaise(new OneLabSignals.CommandCreateVfxSignal
             {
                 VfxPrefab = vfxPrefab,
                 Position = position,
@@ -29,7 +27,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
 
         public void CreateInPosition(Vector3 worldPosition)
         {
-            OneLab.Signal.RegistryRaise(new CommandCreateVfxSignal
+            OneLab.Signal.RegistryRaise(new OneLabSignals.CommandCreateVfxSignal
             {
                 VfxPrefab = vfxPrefab,
                 Position = worldPosition,
@@ -41,9 +39,9 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
 
         public void CreateInOriginPosition(int originEntity, Componenter componenter)
         {
-            ref var transformData = ref componenter.Get<TransformData>(originEntity);
+            ref var transformData = ref componenter.Get<OneLabData.TransformData>(originEntity);
             
-            OneLab.Signal.RegistryRaise(new CommandCreateVfxSignal
+            OneLab.Signal.RegistryRaise(new OneLabSignals.CommandCreateVfxSignal
             {
                 VfxPrefab = vfxPrefab,
                 Position = transformData.Value.position,
@@ -55,9 +53,9 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
 
         public void CreateInOriginPosition(int originEntity, int targetEntity, Componenter componenter)
         {
-            ref var transformData = ref componenter.Get<TransformData>(originEntity);
+            ref var transformData = ref componenter.Get<OneLabData.TransformData>(originEntity);
             
-            OneLab.Signal.RegistryRaise(new CommandCreateVfxSignal
+            OneLab.Signal.RegistryRaise(new OneLabSignals.CommandCreateVfxSignal
             {
                 VfxPrefab = vfxPrefab,
                 Position = transformData.Value.position,
@@ -69,9 +67,9 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
 
         public void CreateInTargetPosition(int originEntity, int targetEntity, Componenter componenter)
         {
-            ref var transformData = ref componenter.Get<TransformData>(targetEntity);
+            ref var transformData = ref componenter.Get<OneLabData.TransformData>(targetEntity);
             
-            OneLab.Signal.RegistryRaise(new CommandCreateVfxSignal
+            OneLab.Signal.RegistryRaise(new OneLabSignals.CommandCreateVfxSignal
             {
                 VfxPrefab = vfxPrefab,
                 Position = transformData.Value.position,
@@ -83,12 +81,12 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
 
         public void CreateBetweenPositions(int originEntity, int targetEntity, Componenter componenter)
         {
-            ref var firstTransformData = ref componenter.Get<TransformData>(originEntity);
-            ref var secondTransformData = ref componenter.Get<TransformData>(targetEntity);
+            ref var firstTransformData = ref componenter.Get<OneLabData.TransformData>(originEntity);
+            ref var secondTransformData = ref componenter.Get<OneLabData.TransformData>(targetEntity);
 
             var betweenPosition = Vector3.Lerp(firstTransformData.Value.position, secondTransformData.Value.position, 0.5f);
             
-            OneLab.Signal.RegistryRaise(new CommandCreateVfxSignal
+            OneLab.Signal.RegistryRaise(new OneLabSignals.CommandCreateVfxSignal
             {
                 VfxPrefab = vfxPrefab,
                 Position = betweenPosition,
@@ -102,7 +100,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
         {
             var betweenPosition = Vector3.Lerp(firstPosition, secondPosition, 0.5f);
             
-            OneLab.Signal.RegistryRaise(new CommandCreateVfxSignal
+            OneLab.Signal.RegistryRaise(new OneLabSignals.CommandCreateVfxSignal
             {
                 VfxPrefab = vfxPrefab,
                 Position = betweenPosition,

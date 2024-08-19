@@ -1,5 +1,4 @@
 ﻿
-using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
@@ -20,14 +19,14 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         public void Run()
         {
             _isActivated = true;
-            ref var rotatorMouseData = ref Componenter.AddOrGet<RotatorMouseData>(Entity);
+            ref var rotatorMouseData = ref Componenter.AddOrGet<OneLabData.RotatorMouseData>(Entity);
             rotatorMouseData.Speed = speed;
         }
 
         public void Stop()
         {
             _isActivated = false;
-            Componenter.Del<RotatorMouseData>(Entity);
+            Componenter.Del<OneLabData.RotatorMouseData>(Entity);
         }
 
         public void Switch() 
@@ -35,10 +34,5 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             if (_isActivated) Stop();
             else Run();
         }
-    }
-
-    public struct RotatorMouseData : IOneLabEcsData
-    {
-        public float Speed;
     }
 }

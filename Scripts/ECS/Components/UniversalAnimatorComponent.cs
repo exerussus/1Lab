@@ -21,7 +21,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         public void InvokeOneShot(int packIndex)
         {
             var spritePack = animations[packIndex];
-            ref var characterAnimatorData = ref Componenter.AddOrGet<CharacterAnimatorData>(Entity);
+            ref var characterAnimatorData = ref Componenter.AddOrGet<OneLabData.CharacterAnimatorData>(Entity);
             characterAnimatorData.CurrentSprite = 0;
             characterAnimatorData.CurrentPack = spritePack;
             characterAnimatorData.FrameRemaining = spritePack.frameDelay;
@@ -31,7 +31,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         
         public void Run()
         {
-            ref var characterAnimatorData = ref Componenter.AddOrGet<CharacterAnimatorData>(Entity);
+            ref var characterAnimatorData = ref Componenter.AddOrGet<OneLabData.CharacterAnimatorData>(Entity);
             characterAnimatorData.Value = this;
             characterAnimatorData.CurrentSprite = 0;
             characterAnimatorData.CurrentPack = characterAnimatorData.Value.idle;
@@ -41,7 +41,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         public void Stop()
         {
             spriteRenderer.sprite = idle.sprites[0];
-            Componenter.Del<CharacterAnimatorData>(Entity);
+            Componenter.Del<OneLabData.CharacterAnimatorData>(Entity);
         }
 
 
@@ -58,14 +58,5 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             public KeyCode key;
             public bool isFlip;
         }
-    }
-
-    public struct CharacterAnimatorData : IOneLabEcsData
-    {
-        public bool IsOneShot;
-        public int FrameRemaining;
-        public UniversalAnimatorComponent.SpritePack CurrentPack;
-        public int CurrentSprite;
-        public UniversalAnimatorComponent Value;
     }
 }

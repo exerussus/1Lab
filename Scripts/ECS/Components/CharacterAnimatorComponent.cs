@@ -27,7 +27,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         public void PlayJump()
         {
             var spritePack = jump;
-            ref var characterAnimatorData = ref Componenter.AddOrGet<CharacterAnimatorExpendedData>(Entity);
+            ref var characterAnimatorData = ref Componenter.AddOrGet<OneLabData.CharacterAnimatorExpendedData>(Entity);
             characterAnimatorData.CurrentSprite = 0;
             characterAnimatorData.CurrentPack = spritePack;
             characterAnimatorData.FrameRemaining = spritePack.frameDelay;
@@ -37,19 +37,19 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         
         public void Run()
         {
-            ref var characterAnimatorData = ref Componenter.AddOrGet<CharacterAnimatorExpendedData>(Entity);
+            ref var characterAnimatorData = ref Componenter.AddOrGet<OneLabData.CharacterAnimatorExpendedData>(Entity);
             characterAnimatorData.Value = this;
             characterAnimatorData.CurrentSprite = 0;
             characterAnimatorData.CurrentPack = characterAnimatorData.Value.idle;
             characterAnimatorData.IsOneShot = false;
-            ref var animationInputData = ref Componenter.AddOrGet<AnimationInputData>(Entity);
+            ref var animationInputData = ref Componenter.AddOrGet<OneLabData.AnimationInputData>(Entity);
             animationInputData.HorizontalAxis = 0;
         }
 
         public void Stop()
         {
             spriteRenderer.sprite = idle.sprites[0];
-            Componenter.Del<CharacterAnimatorExpendedData>(Entity);
+            Componenter.Del<OneLabData.CharacterAnimatorExpendedData>(Entity);
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -78,14 +78,5 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             public int frameDelay;
             public Sprite[] sprites;
         }
-    }
-
-    public struct CharacterAnimatorExpendedData : IOneLabEcsData
-    {
-        public bool IsOneShot;
-        public int FrameRemaining;
-        public CharacterAnimatorComponent.SpritePack CurrentPack;
-        public int CurrentSprite;
-        public CharacterAnimatorComponent Value;
     }
 }

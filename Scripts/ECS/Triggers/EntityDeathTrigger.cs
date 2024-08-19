@@ -24,18 +24,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
 
         public void ActivateTrigger()
         {
-            ref var entityDeathTriggerData = ref Componenter.AddOrGet<EntityDeathTriggerData>(Entity);
+            ref var entityDeathTriggerData = ref Componenter.AddOrGet<OneLabData.EntityDeathTriggerData>(Entity);
             entityDeathTriggerData.OnDead = onDead;
         }
 
         public void DeactivateTrigger()
         {
-            Componenter.Del<EntityDeathTriggerData>(Entity);
+            Componenter.Del<OneLabData.EntityDeathTriggerData>(Entity);
         }
-    }
-
-    public struct EntityDeathTriggerData : IOneLabEcsData
-    {
-        public UnityEvent<int, Componenter> OnDead;
     }
 }

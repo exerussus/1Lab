@@ -38,14 +38,14 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Run()
         {
-            ref var pointRotatorData = ref Componenter.AddOrGet<PointRotatorData>(Entity);
+            ref var pointRotatorData = ref Componenter.AddOrGet<OneLabData.PointRotatorData>(Entity);
             pointRotatorData.Point = point;
             pointRotatorData.Speed = reversed? -speed : speed;
         }
 
         public void Stop()
         {
-            Componenter.Del<PointRotatorData>(Entity);
+            Componenter.Del<OneLabData.PointRotatorData>(Entity);
         }
 
         public void Reverse()
@@ -62,11 +62,5 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             Gizmos.DrawLine(transform.position, point);
             Gizmos.DrawWireSphere(point, Vector2.Distance(transform.position, point));
         }
-    }
-
-    public struct PointRotatorData : IOneLabEcsData
-    {
-        public Vector2 Point;
-        public float Speed;
     }
 }

@@ -17,7 +17,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         public void Run()
         {
             makeVisable = !makeVisable;
-            ref var alphaColorProcessData = ref Componenter.AddOrGet<AlphaColorProcessData>(Entity);
+            ref var alphaColorProcessData = ref Componenter.AddOrGet<OneLabData.AlphaColorProcessData>(Entity);
             alphaColorProcessData.AlphaColor = this;
             alphaColorProcessData.Speed = speed * SpeedMultiply;
             alphaColorProcessData.OnSuccess = onSuccess;
@@ -25,7 +25,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         
         public void Stop()
         {
-            Componenter.Del<AlphaColorProcessData>(Entity);
+            Componenter.Del<OneLabData.AlphaColorProcessData>(Entity);
         }
 
         protected override void OnValidate()
@@ -39,12 +39,5 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
                 spriteRenderer.color = color;
             }
         }
-    }
-
-    public struct AlphaColorProcessData : IOneLabEcsData
-    {
-        public AlphaColorComponent AlphaColor;
-        public float Speed;
-        public UnityEvent<int, Componenter> OnSuccess;
     }
 }

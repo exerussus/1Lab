@@ -1,6 +1,6 @@
-﻿using Exerussus._1EasyEcs.Scripts.Core;
+﻿
+using Exerussus._1EasyEcs.Scripts.Core;
 using Leopotam.EcsLite;
-using Exerussus._1Lab.Scripts.ECS.Components;
 using Exerussus._1Lab.Scripts.ECS.Core;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
@@ -12,7 +12,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         protected override void Initialize()
         {
-            _alphaColorFilter = Componenter.Filter<AlphaColorProcessData>().Inc<VisualData>().End();
+            _alphaColorFilter = Componenter.Filter<OneLabData.AlphaColorProcessData>().Inc<OneLabData.VisualData>().End();
             GameShare.GetSharedObject(ref _pooler);
         }
 

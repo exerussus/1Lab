@@ -33,7 +33,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Run()
         {
-            ref var keyboardInputMoverData = ref Componenter.AddOrGet<KeyboardPlatformInputMoverData>(Entity);
+            ref var keyboardInputMoverData = ref Componenter.AddOrGet<OneLabData.KeyboardPlatformInputMoverData>(Entity);
             keyboardInputMoverData.Speed = speed;
             keyboardInputMoverData.UsePhysicalBody = usePhysicalBody;
             keyboardInputMoverData.FullSpeed = fullSpeed;
@@ -44,7 +44,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Stop()
         {
-            Componenter.Del<KeyboardPlatformInputMoverData>(Entity);
+            Componenter.Del<OneLabData.KeyboardPlatformInputMoverData>(Entity);
         }
 
         protected override void OnValidate()
@@ -56,16 +56,5 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
                 if (physicalBody == null) gameObject.AddComponent<Rigidbody2D>();
             }
         }
-    }
-
-    public struct KeyboardPlatformInputMoverData : IOneLabEcsData
-    {
-        public float Speed;
-        public bool FullSpeed;
-        public bool UsePhysicalBody;
-        public bool StopXWithoutInput;
-        public Collider2D CharacterCollider2D;
-        public bool HasXJoystick;
-        public bool HasYJoystick;
     }
 }

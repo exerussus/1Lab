@@ -3,6 +3,7 @@ using Exerussus._1Extensions.Scripts.Extensions;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
+
 namespace Exerussus._1Lab.Scripts.ECS.Components
 {
     [AddComponentMenu("1Lab/Components/Joystick")]
@@ -29,13 +30,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         {
             if (hasX)
             {
-                ref var joystickXData = ref Componenter.AddOrGet<JoystickXData>(Entity);
+                ref var joystickXData = ref Componenter.AddOrGet<OneLabData.JoystickXData>(Entity);
                 joystickXData.Value = joystick;
                 joystickXData.FullMagnitude = fullMagnitude;
             }
             if (hasY)
             {
-                ref var joystickXData = ref Componenter.AddOrGet<JoystickYData>(Entity);
+                ref var joystickXData = ref Componenter.AddOrGet<OneLabData.JoystickYData>(Entity);
                 joystickXData.Value = joystick;
                 joystickXData.FullMagnitude = fullMagnitude;
             }
@@ -43,8 +44,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void Stop()
         {
-            Componenter.Del<JoystickXData>(Entity);
-            Componenter.Del<JoystickYData>(Entity);
+            Componenter.Del<OneLabData.JoystickXData>(Entity);
+            Componenter.Del<OneLabData.JoystickYData>(Entity);
         }
         
         protected override void OnValidate()
@@ -52,17 +53,5 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             base.OnValidate();
             joystick = gameObject.TryGetIfNull(ref joystick);
         }
-    }
-
-    public struct JoystickXData : IOneLabEcsData
-    {
-        public bool FullMagnitude;
-        public Joystick Value;
-    }
-        
-    public struct JoystickYData : IOneLabEcsData
-    {
-        public bool FullMagnitude;
-        public Joystick Value;
     }
 }
