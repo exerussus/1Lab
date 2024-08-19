@@ -1,11 +1,11 @@
-﻿using Exerussus._1EasyEcs.Scripts.Core;
+﻿
 using Exerussus._1Lab.Scripts.ECS.Core;
 using Leopotam.EcsLite;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class CameraSystem : EcsSignalListener<OneLabSignals.CommandCameraFollowTransformSignal>
+    public class CameraSystem : OneLabEcsListener<OneLabSignals.CommandCameraFollowTransformSignal>
     {
         private EcsFilter _cameraFilter;
         private EcsFilter _targetFilter;

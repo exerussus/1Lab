@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class RotationSystem : EasySystem
+    public class RotationSystem : OneLabSystem
     {
         private EcsFilter _rotationMouseFilter;
         private EcsFilter _selfRotationXFilter;
@@ -15,7 +15,6 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
         private EcsFilter _selfRotationZFilter;
         private EcsFilter _pointRotationFilter;
         private Camera _camera;
-        private OneLabPooler _pooler;
 
         protected override void Initialize()
         {
@@ -25,7 +24,6 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             _selfRotationYFilter = Componenter.Filter<OneLabData.SelfRotatorYData>().End();
             _selfRotationZFilter = Componenter.Filter<OneLabData.SelfRotatorZData>().End();
             _pointRotationFilter = Componenter.Filter<OneLabData.PointRotatorData>().End();
-            GameShare.GetSharedObject(ref _pooler);
         }
 
         protected override void Update()
@@ -39,39 +37,39 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         private void OnPointRotateUpdate(int entity)
         {
-            ref var transformData = ref _pooler.Transform.Get(entity);
-            ref var pointRotatorData = ref _pooler.PointRotator.Get(entity);
+            ref var transformData = ref Pooler.Transform.Get(entity);
+            ref var pointRotatorData = ref Pooler.PointRotator.Get(entity);
             transformData.Value.RotateAround(pointRotatorData.Point, Vector3.forward, pointRotatorData.Speed * Time.fixedDeltaTime);
         }
 
         private void OnSelfRotateXUpdate(int entity)
         {
-            ref var transformData = ref _pooler.Transform.Get(entity);
-            ref var selfRotatorData = ref _pooler.SelfRotatorX.Get(entity);
+            ref var transformData = ref Pooler.Transform.Get(entity);
+            ref var selfRotatorData = ref Pooler.SelfRotatorX.Get(entity);
             
             transformData.Value.Rotate(selfRotatorData.Speed * Time.deltaTime, 0, 0);
         }
 
         private void OnSelfRotateYUpdate(int entity)
         {
-            ref var transformData = ref _pooler.Transform.Get(entity);
-            ref var selfRotatorData = ref _pooler.SelfRotatorY.Get(entity);
+            ref var transformData = ref Pooler.Transform.Get(entity);
+            ref var selfRotatorData = ref Pooler.SelfRotatorY.Get(entity);
             
             transformData.Value.Rotate(0, selfRotatorData.Speed * Time.deltaTime, 0);
         }
 
         private void OnSelfRotateZUpdate(int entity)
         {
-            ref var transformData = ref _pooler.Transform.Get(entity);
-            ref var selfRotatorData = ref _pooler.SelfRotatorZ.Get(entity);
+            ref var transformData = ref Pooler.Transform.Get(entity);
+            ref var selfRotatorData = ref Pooler.SelfRotatorZ.Get(entity);
             
             transformData.Value.Rotate(0, 0, selfRotatorData.Speed * Time.deltaTime);
         }
 
         private void OnRotateMouseUpdate(int entity)
         {
-            ref var rotatorMouseData = ref _pooler.RotatorMouse.Get(entity);
-            ref var transformData = ref _pooler.Transform.Get(entity);
+            ref var rotatorMouseData = ref Pooler.RotatorMouse.Get(entity);
+            ref var transformData = ref Pooler.Transform.Get(entity);
 
             var mouseWorldPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
             var mousePosition2D = new Vector2(mouseWorldPosition.x, mouseWorldPosition.y);

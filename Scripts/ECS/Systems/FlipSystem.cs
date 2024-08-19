@@ -7,17 +7,15 @@ using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class FlipSystem : EasySystem
+    public class FlipSystem : OneLabSystem
     {
         private EcsFilter _fliperFilter;
         private Camera _camera;
-        private OneLabPooler _pooler;
 
         protected override void Initialize()
         {
             _camera = Camera.main;
             _fliperFilter = Componenter.Filter<OneLabData.FliperData>().End();
-            GameShare.GetSharedObject(ref _pooler);
         }
 
         protected override void Update()
@@ -27,11 +25,11 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         private void OnFliperUpdate(int entity)
         {
-            ref var fliperData = ref _pooler.Fliper.Get(entity);
+            ref var fliperData = ref Pooler.Fliper.Get(entity);
 
             if (fliperData.Value.Mode == FliperComponent.ControlType.Mouse)
             {
-                ref var transformData = ref _pooler.Transform.Get(entity);
+                ref var transformData = ref Pooler.Transform.Get(entity);
                 var mouseWorldPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
                 if (transformData.Value.position.x > mouseWorldPosition.x)
                 {

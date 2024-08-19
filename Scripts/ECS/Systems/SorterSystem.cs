@@ -6,16 +6,14 @@ using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class SorterSystem : EasySystem
+    public class SorterSystem : OneLabSystem
     {
         private const float BaseSort = 10f;
         private EcsFilter _sorterFilter;
-        private OneLabPooler _pooler;
 
         protected override void Initialize()
         {
             _sorterFilter = Componenter.Filter<OneLabData.SorterData>().End();
-            GameShare.GetSharedObject(ref _pooler);
         }
 
         protected override void Update()
@@ -25,7 +23,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         private void OnSorterUpdate(int entity)
         {
-            ref var sorterData = ref _pooler.Sorter.Get(entity);
+            ref var sorterData = ref Pooler.Sorter.Get(entity);
             SetSort(sorterData.Value.transform, sorterData.Value.ResultBottomPosition);
         }
 

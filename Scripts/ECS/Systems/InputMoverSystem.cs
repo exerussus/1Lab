@@ -6,13 +6,12 @@ using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class InputMoverSystem : EcsSignalListener<OneLabSignals.CommandTryInvokeJumpSignal>
+    public class InputMoverSystem : OneLabEcsListener<OneLabSignals.CommandTryInvokeJumpSignal>
     {
         private EcsFilter _keyboardInputMoverFilter;
         private EcsFilter _jumpFilter;
         private EcsFilter _joystickXFilter;
         private EcsFilter _joystickYFilter;
-        private OneLabPooler _pooler;
 
         protected override void Initialize()
         {
@@ -20,7 +19,6 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             _jumpFilter = Componenter.Filter<OneLabData.JumpData>().Inc<OneLabData.RigidBody2DData>().End();
             _joystickXFilter = Componenter.Filter<OneLabData.JoystickXData>().End();
             _joystickYFilter = Componenter.Filter<OneLabData.JoystickYData>().End();
-            GameShare.GetSharedObject(ref _pooler);
         }
 
         protected override void Update()
@@ -35,10 +33,10 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
         {
             foreach (var entity in _jumpFilter)
             {
-                ref var jumpData = ref _pooler.Jump.Get(entity);
+                ref var jumpData = ref Pooler.Jump.Get(entity);
                 if (jumpData.CoolDownTimer < 0)
                 {
-                    ref var physicalBodyData = ref _pooler.RigidBody2D.Get(entity);
+                    ref var physicalBodyData = ref Pooler.RigidBody2D.Get(entity);
                     var velocity = physicalBodyData.Value.velocity;
                 
                     if (velocity.x != 0) velocity.x = 0;
@@ -54,13 +52,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         private void UpdateYInput(int joystickEntity)
         {
-            ref var joystickData = ref _pooler.JoystickY.Get(joystickEntity);
+            ref var joystickData = ref Pooler.JoystickY.Get(joystickEntity);
             foreach (var entity in _keyboardInputMoverFilter)
             {
-                ref var keyboardData = ref _pooler.KeyboardPlatformInputMover.Get(entity);
+                ref var keyboardData = ref Pooler.KeyboardPlatformInputMover.Get(entity);
                 if (!keyboardData.HasYJoystick) continue;
                 
-                ref var inputData = ref _pooler.Input.AddOrGet(entity);
+                ref var inputData = ref Pooler.Input.AddOrGet(entity);
                 inputData.Vertical = joystickData.Value.Vertical;
                 
                 if (joystickData.FullMagnitude)
@@ -73,13 +71,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         private void UpdateXInput(int joystickEntity)
         {
-            ref var joystickData = ref _pooler.JoystickX.Get(joystickEntity);
+            ref var joystickData = ref Pooler.JoystickX.Get(joystickEntity);
             foreach (var entity in _keyboardInputMoverFilter)
             {
-                ref var keyboardData = ref _pooler.KeyboardPlatformInputMover.Get(entity);
+                ref var keyboardData = ref Pooler.KeyboardPlatformInputMover.Get(entity);
                 if (!keyboardData.HasXJoystick) continue;
                 
-                ref var inputData = ref _pooler.Input.AddOrGet(entity);
+                ref var inputData = ref Pooler.Input.AddOrGet(entity);
                 inputData.Horizontal = joystickData.Value.Horizontal;
 
                 if (joystickData.FullMagnitude)
@@ -92,17 +90,17 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         private bool InputYCondition(int entity)
         {
-            return _pooler.Input.Has(entity) && _pooler.Input.Get(entity).Vertical > 0.3f;
+            return Pooler.Input.Has(entity) && Pooler.Input.Get(entity).Vertical > 0.3f;
         }
         
         private void OnJumpUpdate(int entity)
         {
-            ref var jumpData = ref _pooler.Jump.Get(entity);
+            ref var jumpData = ref Pooler.Jump.Get(entity);
             jumpData.CoolDownTimer -= Time.deltaTime;
             
             if ((InputYCondition(entity) || Input.GetKey(jumpData.Key1) || Input.GetKey(jumpData.Key2)) && jumpData.CoolDownTimer < 0)
             {
-                ref var physicalBodyData = ref _pooler.RigidBody2D.Get(entity);
+                ref var physicalBodyData = ref Pooler.RigidBody2D.Get(entity);
                 var velocity = physicalBodyData.Value.velocity;
                 
                 if (velocity.x != 0) velocity.x = 0;
@@ -117,14 +115,14 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         private void OnKeyboardInputMoverUpdate(int entity)
         {
-            ref var keyboardInputMoverData = ref _pooler.KeyboardPlatformInputMover.Get(entity);
+            ref var keyboardInputMoverData = ref Pooler.KeyboardPlatformInputMover.Get(entity);
             float inputX;
-            if (keyboardInputMoverData.HasXJoystick && _pooler.Input.Has(entity)) inputX = _pooler.Input.Get(entity).Horizontal;
+            if (keyboardInputMoverData.HasXJoystick && Pooler.Input.Has(entity)) inputX = Pooler.Input.Get(entity).Horizontal;
             else inputX = Input.GetAxis("Horizontal");
 
-            if (_pooler.AnimationInput.Has(entity))
+            if (Pooler.AnimationInput.Has(entity))
             {
-                ref var animationInputData = ref _pooler.AnimationInput.Get(entity);
+                ref var animationInputData = ref Pooler.AnimationInput.Get(entity);
                 animationInputData.HorizontalAxis = inputX;
             }
             
@@ -132,7 +130,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             {
                 if (keyboardInputMoverData.StopXWithoutInput && keyboardInputMoverData.UsePhysicalBody)
                 {
-                    ref var physicalBodyData = ref _pooler.RigidBody2D.Get(entity);
+                    ref var physicalBodyData = ref Pooler.RigidBody2D.Get(entity);
                     var resultVelocity = physicalBodyData.Value.velocity;
                     resultVelocity.x = 0;
                     physicalBodyData.Value.velocity = resultVelocity;
@@ -142,7 +140,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
             if (keyboardInputMoverData.UsePhysicalBody)
             {
-                ref var physicalBodyData = ref _pooler.RigidBody2D.Get(entity);
+                ref var physicalBodyData = ref Pooler.RigidBody2D.Get(entity);
                 var currentVelocity = physicalBodyData.Value.velocity;
                 
                 if (keyboardInputMoverData.FullSpeed)
@@ -164,7 +162,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             }
             else
             {
-                ref var transformData = ref _pooler.Transform.Get(entity);
+                ref var transformData = ref Pooler.Transform.Get(entity);
                 transformData.Value.Translate(keyboardInputMoverData.Speed * Time.deltaTime * new Vector2(inputX, 0));
             }
         }

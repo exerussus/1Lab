@@ -1,22 +1,19 @@
 ﻿
-using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Extensions.Scripts.Extensions;
 using Exerussus._1Lab.Scripts.ECS.Core;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class TagSystem : EcsSignalListener<
+    public class TagSystem : OneLabEcsListener<
         OneLabSignals.OnLabEntityInitializedSignal, 
         OneLabSignals.OnEcsMonoBehaviorStartDestroySignal, 
         OneLabSignals.CommandFilterTagSignal>
     {
         private TagsHandler _tagsHandler;
-        private OneLabPooler _pooler;
 
         protected override void Initialize()
         {
             GameShare.GetSharedObject(ref _tagsHandler);
-            GameShare.GetSharedObject(ref _pooler);
         }
 
         protected override void OnSignal(OneLabSignals.OnLabEntityInitializedSignal data)
@@ -29,7 +26,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         protected override void OnSignal(OneLabSignals.OnEcsMonoBehaviorStartDestroySignal data)
         {
-            if (_pooler.Tags.Has(data.EcsMonoBehavior.Entity)) _tagsHandler.Remove(data.EcsMonoBehavior.Entity);
+            if (Pooler.Tags.Has(data.EcsMonoBehavior.Entity)) _tagsHandler.Remove(data.EcsMonoBehavior.Entity);
         }
 
         protected override void OnSignal(OneLabSignals.CommandFilterTagSignal data)

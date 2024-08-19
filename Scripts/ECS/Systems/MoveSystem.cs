@@ -6,27 +6,24 @@ using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class MoveSystem : EasySystem
+    public class MoveSystem : OneLabSystem
     {
         private EcsFilter _pointMoverFilter;
-        private OneLabPooler _pooler;
 
         protected override void Initialize()
         {
             _pointMoverFilter = Componenter.Filter<OneLabData.PointMoverData>().End();
-            GameShare.GetSharedObject(ref _pooler);
         }
 
         protected override void Update()
         {
             _pointMoverFilter.Foreach(OnPointMoveUpdate);
-            GameShare.GetSharedObject(ref _pooler);
         }
 
         private void OnPointMoveUpdate(int entity)
         {
-            ref var pointMoverData = ref _pooler.PointMover.Get(entity);
-            ref var transformData = ref _pooler.Transform.Get(entity);
+            ref var pointMoverData = ref Pooler.PointMover.Get(entity);
+            ref var transformData = ref Pooler.Transform.Get(entity);
             var currentPosition = (Vector2)transformData.Value.position;
             
             var targetPoint = pointMoverData.ToEndPoint ? pointMoverData.EndPoint : pointMoverData.StartPoint;

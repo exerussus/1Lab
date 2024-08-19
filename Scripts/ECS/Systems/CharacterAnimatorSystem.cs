@@ -1,21 +1,20 @@
-﻿using Exerussus._1EasyEcs.Scripts.Core;
+﻿
+using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using Leopotam.EcsLite;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class CharacterAnimatorSystem : EasySystem
+    public class CharacterAnimatorSystem : OneLabSystem
     {
         private EcsFilter _characterAnimatorFilter;
         private EcsFilter _characterAnimatorExpendedFilter;
-        private OneLabPooler _pooler;
 
         protected override void Initialize()
         {
             _characterAnimatorFilter = Componenter.Filter<OneLabData.CharacterAnimatorData>().End();
             _characterAnimatorExpendedFilter = Componenter.Filter<OneLabData.CharacterAnimatorExpendedData>().Inc<OneLabData.AnimationInputData>().End();
-            GameShare.GetSharedObject(ref _pooler);
         }
 
         protected override void Update()
@@ -26,9 +25,9 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         private void OnCharacterAnimatorExpendedUpdate(int entity)
         {
-            ref var characterAnimatorData = ref _pooler.CharacterAnimatorExpended.Get(entity);
+            ref var characterAnimatorData = ref Pooler.CharacterAnimatorExpended.Get(entity);
             
-            var input = _pooler.AnimationInput.Get(entity).HorizontalAxis;
+            var input = Pooler.AnimationInput.Get(entity).HorizontalAxis;
 
             if (input != 0) characterAnimatorData.Value.spriteRenderer.flipX = input < 0;
 
@@ -125,7 +124,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         private void OnCharacterAnimatorUpdate(int entity)
         {
-            ref var characterAnimatorData = ref _pooler.CharacterAnimator.Get(entity);
+            ref var characterAnimatorData = ref Pooler.CharacterAnimator.Get(entity);
 
             if (characterAnimatorData.IsOneShot)
             {
