@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class InputMoverSystem : EcsSignalListener<IOneLabEcsData, CommandTryInvokeJumpSignal>
+    public class InputMoverSystem : EcsSignalListener<CommandTryInvokeJumpSignal>
     {
         private EcsFilter _keyboardInputMoverFilter;
         private EcsFilter _jumpFilter;

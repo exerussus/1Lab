@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class CameraSystem : EcsSignalListener<IOneLabEcsData, CommandCameraFollowTransformSignal>
+    public class CameraSystem : EcsSignalListener<CommandCameraFollowTransformSignal>
     {
         private EcsFilter _cameraFilter;
         private EcsFilter _targetFilter;

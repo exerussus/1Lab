@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class GlobalTriggerSystem : EcsSignalListener<IOneLabEcsData, CommandInvokeGlobalTrigger>
+    public class GlobalTriggerSystem : EcsSignalListener<CommandInvokeGlobalTrigger>
     {
         private EcsFilter _globalTriggerFilter;
         private OneLabPooler _pooler;

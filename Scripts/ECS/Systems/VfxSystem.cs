@@ -10,7 +10,7 @@ using Object = UnityEngine.Object;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class VfxSystem : EcsSignalListener<IOneLabEcsData, CommandCreateVfxSignal>
+    public class VfxSystem : EcsSignalListener<CommandCreateVfxSignal>
     {
         private EcsFilter _vfxFilter;
         private EcsFilter _vfxReleaseCommandFilter;

@@ -6,7 +6,7 @@ using Exerussus._1Lab.Scripts.ECS.Filters;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {
-    public class TagSystem : EcsSignalListener<IOneLabEcsData, OnLabEntityInitializedSignal, OnEcsMonoBehaviorStartDestroySignal, CommandFilterTagSignal>
+    public class TagSystem : EcsSignalListener<OnLabEntityInitializedSignal, OnEcsMonoBehaviorStartDestroySignal, CommandFilterTagSignal>
     {
         private TagsHandler _tagsHandler;
         private OneLabPooler _pooler;
