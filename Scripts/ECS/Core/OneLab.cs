@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Core
 {
-    public class OneLab : EcsStarter<IOneLabEcsData>
+    public class OneLab : EcsStarter
     {
         #region Fields And Initializing
 
@@ -76,7 +76,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
                 .Add(new CharacterAnimatorSystem())
                 .Add(new GlobalTriggerSystem())
                 .Add(new KeyColliderSwitcherSystem())
-                .Add(new SorterSystem());
+                .Add(new SorterSystem())
+                .Add(new DestroySystem());
             
             ExtraSystemsMethods.FixedUpdateExecute(fixedUpdateSystems);
         }

@@ -1,5 +1,6 @@
-﻿using Exerussus._1EasyEcs.Scripts.Core;
-using Exerussus._1EasyEcs.Scripts.Extensions;
+﻿
+using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Lab.Scripts.Extensions;
 using UnityEngine;
 using UnityEngine.Events;
 
