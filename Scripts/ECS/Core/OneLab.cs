@@ -3,6 +3,7 @@ using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1EasyEcs.Scripts.Custom;
 using Exerussus._1Extensions.Scripts.Extensions;
 using Exerussus._1Extensions.SignalSystem;
+using Exerussus._1Lab.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Systems;
 using Exerussus._1Lab.Scripts.Data.GamesConfigurations;
 using Leopotam.EcsLite;

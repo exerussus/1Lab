@@ -1,4 +1,5 @@
 ﻿using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Lab.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Components;
 using Exerussus._1Lab.Scripts.ECS.Systems;
 using Exerussus._1Lab.Scripts.ECS.Triggers;

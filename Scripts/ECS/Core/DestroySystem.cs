@@ -1,9 +1,10 @@
 ﻿using System;
+using Exerussus._1EasyEcs.Scripts.Core;
 using Leopotam.EcsLite;
 using UnityEngine.Scripting;
 using Object = UnityEngine.Object;
 
-namespace Exerussus._1EasyEcs.Scripts.Core
+namespace Exerussus._1Lab.Scripts.Core
 {
     [Preserve]
     public class DestroySystem : EcsSignalListener<CommandKillEntitySignal>

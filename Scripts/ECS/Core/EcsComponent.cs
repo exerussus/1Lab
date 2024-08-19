@@ -1,8 +1,9 @@
 ﻿
+using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Extensions.SignalSystem;
 using UnityEngine;
 
-namespace Exerussus._1EasyEcs.Scripts.Core
+namespace Exerussus._1Lab.Scripts.Core
 {
     [RequireComponent(typeof(IEcsMonoBehavior))]
     public abstract class EcsComponent : MonoSignalListener

@@ -1,9 +1,10 @@
 ﻿
 using System;
 using UnityEngine;
+using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Extensions.SignalSystem;
 
-namespace Exerussus._1EasyEcs.Scripts.Core
+namespace Exerussus._1Lab.Scripts.Core
 {
     [SelectionBase]
     public abstract class EcsMonoBehavior : MonoBehaviour, IEcsMonoBehavior

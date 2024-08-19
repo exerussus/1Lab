@@ -1,6 +1,5 @@
 ﻿using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Components;
-using Exerussus._1Lab.Scripts.ECS.Core;
 
 namespace Exerussus._1Lab.Scripts.ECS.Effects
 {

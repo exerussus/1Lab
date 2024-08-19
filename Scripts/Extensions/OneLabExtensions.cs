@@ -1,5 +1,6 @@
 ﻿using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Extensions;
+using Exerussus._1Lab.Scripts.Core;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.Extensions

@@ -1,5 +1,5 @@
 ﻿using System;
-using Exerussus._1EasyEcs.Scripts.Core;
+using Exerussus._1Lab.Scripts.Core;
 using Exerussus._1Lab.Scripts.Data.GamesConfigurations.Luguages;
 using UnityEngine;
 
