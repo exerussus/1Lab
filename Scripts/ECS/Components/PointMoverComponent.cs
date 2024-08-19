@@ -1,5 +1,4 @@
 ﻿
-using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
@@ -47,7 +46,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         private void OnDrawGizmos()
         {
             Gizmos.color = _pointColor;
-            var resultTargetPoint = (Vector2)transform.position + point;
+            var resultTargetPoint = startPosition + point;
             Gizmos.DrawSphere(resultTargetPoint, 0.1f);
             Gizmos.DrawSphere(startPosition, 0.1f);
             Gizmos.color = _lineColor;
