@@ -27,6 +27,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         public override void PreInit(GameShare gameShare, float tickTime,
             InitializeType initializeType = InitializeType.None)
         {
+            base.PreInit(gameShare, tickTime, initializeType);
             gameShare.GetSharedObject(ref Configuration);
             gameShare.GetSharedObject(ref TagsHandler);
         }
@@ -43,6 +44,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         public override void PreInit(GameShare gameShare, float tickTime,
             InitializeType initializeType = InitializeType.None)
         {
+            base.PreInit(gameShare, tickTime, initializeType);
             gameShare.GetSharedObject(ref Configuration);
             gameShare.GetSharedObject(ref TagsHandler);
         }
@@ -60,6 +62,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         public override void PreInit(GameShare gameShare, float tickTime,
             InitializeType initializeType = InitializeType.None)
         {
+            base.PreInit(gameShare, tickTime, initializeType);
             gameShare.GetSharedObject(ref Configuration);
             gameShare.GetSharedObject(ref TagsHandler);
         }
@@ -78,6 +81,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         public override void PreInit(GameShare gameShare, float tickTime,
             InitializeType initializeType = InitializeType.None)
         {
+            base.PreInit(gameShare, tickTime, initializeType);
             gameShare.GetSharedObject(ref Configuration);
             gameShare.GetSharedObject(ref TagsHandler);
         }
@@ -97,6 +101,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         public override void PreInit(GameShare gameShare, float tickTime,
             InitializeType initializeType = InitializeType.None)
         {
+            base.PreInit(gameShare, tickTime, initializeType);
             gameShare.GetSharedObject(ref Configuration);
             gameShare.GetSharedObject(ref TagsHandler);
         }

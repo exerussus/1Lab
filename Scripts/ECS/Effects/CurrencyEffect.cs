@@ -1,6 +1,7 @@
 ﻿
 using System;
 using Exerussus._1Lab.Scripts.Data.GamesConfigurations;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Effects
@@ -10,18 +11,18 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
     {
         [SerializeField] private Profile.CurrencyType currency;
         
-        public void ChangeCurrency(int value)
+        public void AddCurrency(int value)
         {
             switch (currency)
             {
                 case Profile.CurrencyType.Soft:
-                    OneLabConfiguration.Profile.SetSoft(OneLabConfiguration.Profile.Soft + value);
+                    OneLabConfiguration.Profile.SetSoft(AddPref(OneLabConstants.Currency.Soft, value));
                     break;
                 case Profile.CurrencyType.Hard:
-                    OneLabConfiguration.Profile.SetHard(OneLabConfiguration.Profile.Hard + value);
+                    OneLabConfiguration.Profile.SetHard(AddPref(OneLabConstants.Currency.Hard, value));
                     break;
                 case Profile.CurrencyType.Points:
-                    OneLabConfiguration.Profile.SetPoints(OneLabConfiguration.Profile.Points + value);
+                    OneLabConfiguration.Profile.SetPoints(AddPref(OneLabConstants.Currency.Points, value));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -33,17 +34,31 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             switch (currency) 
             {
                 case Profile.CurrencyType.Soft:
-                    OneLabConfiguration.Profile.SetSoft(value);
+                    OneLabConfiguration.Profile.SetSoft(SetPref(OneLabConstants.Currency.Soft, value));
                     break;
                 case Profile.CurrencyType.Hard:
-                    OneLabConfiguration.Profile.SetHard(value);
+                    OneLabConfiguration.Profile.SetHard(SetPref(OneLabConstants.Currency.Hard, value));
                     break;
                 case Profile.CurrencyType.Points:
-                    OneLabConfiguration.Profile.SetPoints(value);
+                    OneLabConfiguration.Profile.SetPoints(SetPref(OneLabConstants.Currency.Points, value));
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+        }
+
+        private int AddPref(string key, int value)
+        {
+            var currencyAmount = PlayerPrefs.GetInt(key);
+            var result = currencyAmount + value;
+            PlayerPrefs.SetInt(key, result);
+            return result;
+        }
+
+        private int SetPref(string key, int value)
+        {
+            PlayerPrefs.SetInt(key, value);
+            return value;
         }
     }
 }

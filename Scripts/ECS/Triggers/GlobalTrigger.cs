@@ -21,7 +21,6 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
         {
             ref var globalTriggerData = ref Pooler.GlobalTrigger.AddOrGet(Entity);
             globalTriggerData.Value = this;
-            globalTriggerData.Tags = tags;
         }
 
         public void Stop()

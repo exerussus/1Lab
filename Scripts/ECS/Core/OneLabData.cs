@@ -221,7 +221,6 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
 
         public struct GlobalTrigger : IOneLabEcsData
         {
-            public string[] Tags;
             public Triggers.GlobalTrigger Value;
         }
 

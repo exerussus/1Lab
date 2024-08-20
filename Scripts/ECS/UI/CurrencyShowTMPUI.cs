@@ -2,6 +2,7 @@
 using System;
 using Exerussus._1Extensions.SignalSystem;
 using Exerussus._1Lab.Scripts.Data.GamesConfigurations;
+using Exerussus._1Lab.Scripts.ECS.Core;
 using Exerussus._1Lab.Scripts.Extensions;
 using TMPro;
 using UnityEngine;
@@ -18,21 +19,26 @@ namespace Exerussus._1Lab.Scripts.ECS.UI
         [SerializeField, HideInInspector] private OneLabConfiguration oneLabConfiguration;
         
         public OneLabConfiguration OneLabConfiguration => oneLabConfiguration;
-        
+
+        private void Start()
+        {
+            UpdateText();
+        }
+
         private void OnEnable()
         {
             if (tmpText == null) return;
-
+            
             switch (currency)
             {
                 case Profile.CurrencyType.Soft:
-                    OneLabConfiguration.Profile.OnSoftUpdate += UpdateText;
+                    OneLabConfiguration.Profile.OnSoftUpdate += SetTMPText;
                     break;
                 case Profile.CurrencyType.Hard:
-                    OneLabConfiguration.Profile.OnHardUpdate += UpdateText;
+                    OneLabConfiguration.Profile.OnHardUpdate += SetTMPText;
                     break;
                 case Profile.CurrencyType.Points:
-                    OneLabConfiguration.Profile.OnPointsUpdate += UpdateText;
+                    OneLabConfiguration.Profile.OnPointsUpdate += SetTMPText;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -46,13 +52,13 @@ namespace Exerussus._1Lab.Scripts.ECS.UI
             switch (currency)
             {
                 case Profile.CurrencyType.Soft:
-                    OneLabConfiguration.Profile.OnSoftUpdate -= UpdateText;
+                    OneLabConfiguration.Profile.OnSoftUpdate -= SetTMPText;
                     break;
                 case Profile.CurrencyType.Hard:
-                    OneLabConfiguration.Profile.OnHardUpdate -= UpdateText;
+                    OneLabConfiguration.Profile.OnHardUpdate -= SetTMPText;
                     break;
                 case Profile.CurrencyType.Points:
-                    OneLabConfiguration.Profile.OnPointsUpdate -= UpdateText;
+                    OneLabConfiguration.Profile.OnPointsUpdate -= SetTMPText;
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -71,24 +77,29 @@ namespace Exerussus._1Lab.Scripts.ECS.UI
             
             if (tmpText != null)
             {
-                switch (currency)
-                {
-                    case Profile.CurrencyType.Soft:
-                        UpdateText(OneLabConfiguration.Profile.Soft);
-                        break;
-                    case Profile.CurrencyType.Hard:
-                        UpdateText(OneLabConfiguration.Profile.Hard);
-                        break;
-                    case Profile.CurrencyType.Points:
-                        UpdateText(OneLabConfiguration.Profile.Points);
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
+                UpdateText();
             }
         }
 
-        private void UpdateText(int value)
+        private void UpdateText()
+        {
+            switch (currency)
+            {
+                case Profile.CurrencyType.Soft:
+                    SetTMPText(PlayerPrefs.GetInt(OneLabConstants.Currency.Soft));
+                    break;
+                case Profile.CurrencyType.Hard:
+                    SetTMPText(PlayerPrefs.GetInt(OneLabConstants.Currency.Hard));
+                    break;
+                case Profile.CurrencyType.Points:
+                    SetTMPText(PlayerPrefs.GetInt(OneLabConstants.Currency.Points));
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+        
+        private void SetTMPText(int value)
         {
             tmpText.text = $"{prefix}{value}{postfix}";
         }
