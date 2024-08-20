@@ -19,8 +19,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         public void Run()
         {
             ref var directionMoverData = ref Pooler.DirectionMover.AddOrGet(Entity);
-            directionMoverData.Speed = speed;
-            directionMoverData.Direction = direction.normalized;
+            directionMoverData.Value = this;
         }
 
         public void Stop()

@@ -28,7 +28,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             ref var directionMoverData = ref Pooler.DirectionMover.Get(entity);
             ref var transformData = ref Pooler.Transform.Get(entity);
             
-            transformData.Value.Translate(directionMoverData.Speed * DeltaTime * directionMoverData.Direction);
+            transformData.Value.Translate(directionMoverData.Value.speed * DeltaTime * directionMoverData.Value.direction);
         }
 
         private void OnPointMoveUpdate(int entity)

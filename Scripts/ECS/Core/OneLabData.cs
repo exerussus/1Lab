@@ -256,8 +256,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
 
         public struct DirectionMover : IOneLabEcsData
         {
-            public float Speed;
-            public Vector2 Direction;
+            public DirectionMoverComponent Value;
         }
     }
 }
