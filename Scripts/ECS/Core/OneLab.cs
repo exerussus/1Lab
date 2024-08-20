@@ -61,8 +61,6 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             initSystems
                 
                 .Add(new TagSystem());
-            
-            ExtraSystemsMethods.InitExecute(initSystems);
         }
 
         protected override void SetFixedUpdateSystems(IEcsSystems fixedUpdateSystems)
@@ -79,8 +77,6 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
                 .Add(new KeyColliderSwitcherSystem())
                 .Add(new SorterSystem())
                 .Add(new DestroySystem());
-            
-            ExtraSystemsMethods.FixedUpdateExecute(fixedUpdateSystems);
         }
 
         protected override void SetUpdateSystems(IEcsSystems updateSystems)
@@ -90,8 +86,6 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
                 .Add(new InputMoverSystem())
                 .Add(new MoveSystem())
                 .Add(new TriggerSystem());
-            
-            ExtraSystemsMethods.UpdateExecute(updateSystems);
         }
 
         protected override void SetLateUpdateSystems(IEcsSystems lateUpdateSystems)
@@ -103,7 +97,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
 
         protected override void SetTickUpdateSystems(IEcsSystems tickUpdateSystems)
         {
-            ExtraSystemsMethods.TickExecute(tickUpdateSystems);
+            
         }
 
         protected override void SetSharingData(EcsWorld world, GameShare gameShare)
