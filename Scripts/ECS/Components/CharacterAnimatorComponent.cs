@@ -41,14 +41,14 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
             characterAnimatorData.CurrentSprite = 0;
             characterAnimatorData.CurrentPack = characterAnimatorData.Value.idle;
             characterAnimatorData.IsOneShot = false;
-            ref var animationInputData = ref Componenter.AddOrGet<OneLabData.AnimationInputData>(Entity);
+            ref var animationInputData = ref Pooler.AnimationInput.AddOrGet(Entity);
             animationInputData.HorizontalAxis = 0;
         }
 
         public void Stop()
         {
             spriteRenderer.sprite = idle.sprites[0];
-            Componenter.Del<OneLabData.CharacterAnimatorExpendedData>(Entity);
+            Pooler.CharacterAnimatorExpended.Del(Entity);
         }
 
         private void OnCollisionEnter2D(Collision2D other)

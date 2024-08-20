@@ -13,8 +13,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         protected override void Initialize()
         {
-            _speedXLimitFilter = Componenter.Filter<OneLabData.SpeedLimitXData>().End();
-            _speedYLimitFilter = Componenter.Filter<OneLabData.SpeedLimitYData>().End();
+            _speedXLimitFilter = Componenter.Filter<OneLabData.SpeedLimitX>().End();
+            _speedYLimitFilter = Componenter.Filter<OneLabData.SpeedLimitY>().End();
         }
 
         protected override void Update()

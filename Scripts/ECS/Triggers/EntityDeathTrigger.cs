@@ -24,13 +24,13 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
 
         public void ActivateTrigger()
         {
-            ref var entityDeathTriggerData = ref Componenter.AddOrGet<OneLabData.EntityDeathTriggerData>(Entity);
+            ref var entityDeathTriggerData = ref Pooler.EntityDeathTrigger.AddOrGet(Entity);
             entityDeathTriggerData.OnDead = onDead;
         }
 
         public void DeactivateTrigger()
         {
-            Componenter.Del<OneLabData.EntityDeathTriggerData>(Entity);
+            Pooler.EntityDeathTrigger.Del(Entity);
         }
     }
 }

@@ -12,7 +12,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         protected override void Initialize()
         {
-            _pointMoverFilter = Componenter.Filter<OneLabData.PointMoverData>().End();
+            _pointMoverFilter = Componenter.Filter<OneLabData.PointMover>().End();
         }
 
         protected override void Update()

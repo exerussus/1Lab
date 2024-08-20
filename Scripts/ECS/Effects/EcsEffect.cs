@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Effects
 {
-    public class EcsEffect : MonoSignalListener
+    public abstract class EcsEffect : MonoSignalListener
     {
         [SerializeField] private bool activated = true;
         [SerializeField, HideInInspector] private OneLabConfiguration oneLabConfiguration;

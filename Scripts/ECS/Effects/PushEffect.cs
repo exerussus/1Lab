@@ -15,16 +15,16 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
         public void PushTarget(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
             if (!Activated) return;
-            if (!componenter.Has<OneLabData.RigidBody2DData>(targetEntity)) return;
+            if (!pooler.RigidBody2D.Has(targetEntity)) return;
             
-            ref var originTransform = ref componenter.Get<OneLabData.TransformData>(originEntity);
-            ref var targetTransform = ref componenter.Get<OneLabData.TransformData>(targetEntity);
+            ref var originTransform = ref pooler.Transform.Get(originEntity);
+            ref var targetTransform = ref pooler.Transform.Get(targetEntity);
 
             var originPosition = (Vector2)originTransform.Value.position;
             var targetPosition = (Vector2)targetTransform.Value.position;
 
             var direction = (targetPosition - originPosition).normalized;
-            ref var physicalBodyData = ref componenter.Get<OneLabData.RigidBody2DData>(targetEntity);
+            ref var physicalBodyData = ref pooler.RigidBody2D.Get(targetEntity);
 
             physicalBodyData.Value.velocity = direction * power;
         }
@@ -32,8 +32,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
         public void PushOriginToDirection(int originEntity, Componenter componenter, OneLabPooler pooler)
         {
             if (!Activated) return;
-            if (!componenter.Has<OneLabData.RigidBody2DData>(originEntity)) return;
-            ref var physicalBodyData = ref componenter.Get<OneLabData.RigidBody2DData>(originEntity);
+            if (!pooler.RigidBody2D.Has(originEntity)) return;
+            ref var physicalBodyData = ref pooler.RigidBody2D.Get(originEntity);
             var resultDirection = useTransformRotation ? transform.rotation.ToDirection() : direction;
             physicalBodyData.Value.velocity = resultDirection * power;
         }
@@ -41,8 +41,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
         public void PushOriginToDirection(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
             if (!Activated) return;
-            if (!componenter.Has<OneLabData.RigidBody2DData>(originEntity)) return;
-            ref var physicalBodyData = ref componenter.Get<OneLabData.RigidBody2DData>(originEntity);
+            if (!pooler.RigidBody2D.Has(originEntity)) return;
+            ref var physicalBodyData = ref pooler.RigidBody2D.Get(originEntity);
             var resultDirection = useTransformRotation ? transform.rotation.ToDirection() : direction;
             physicalBodyData.Value.velocity = resultDirection * power;
         }
@@ -50,8 +50,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
         public void PushTargetToDirection(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
             if (!Activated) return;
-            if (!componenter.Has<OneLabData.RigidBody2DData>(targetEntity)) return;
-            ref var physicalBodyData = ref componenter.Get<OneLabData.RigidBody2DData>(targetEntity);
+            if (!pooler.RigidBody2D.Has(targetEntity)) return;
+            ref var physicalBodyData = ref pooler.RigidBody2D.Get(targetEntity);
             var resultDirection = useTransformRotation ? transform.rotation.ToDirection() : direction;
             physicalBodyData.Value.velocity = resultDirection * power;
         }
@@ -59,16 +59,16 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
         public void PushOrigin(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
             if (!Activated) return;
-            if (!componenter.Has<OneLabData.RigidBody2DData>(originEntity)) return;
+            if (!pooler.RigidBody2D.Has(originEntity)) return;
             
-            ref var originTransform = ref componenter.Get<OneLabData.TransformData>(originEntity);
-            ref var targetTransform = ref componenter.Get<OneLabData.TransformData>(targetEntity);
+            ref var originTransform = ref pooler.Transform.Get(originEntity);
+            ref var targetTransform = ref pooler.Transform.Get(targetEntity);
 
             var originPosition = (Vector2)originTransform.Value.position;
             var targetPosition = (Vector2)targetTransform.Value.position;
 
             var direction = (originPosition - targetPosition).normalized;
-            ref var physicalBodyData = ref componenter.Get<OneLabData.RigidBody2DData>(originEntity);
+            ref var physicalBodyData = ref pooler.RigidBody2D.Get(originEntity);
 
             physicalBodyData.Value.velocity += direction * power;
         }

@@ -11,7 +11,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         protected override void Initialize()
         {
-            _globalTriggerFilter = Componenter.Filter<OneLabData.GlobalTriggerData>().End();
+            _globalTriggerFilter = Componenter.Filter<OneLabData.GlobalTrigger>().End();
         }
 
         protected override void OnSignal(OneLabSignals.CommandInvokeGlobalTrigger data)

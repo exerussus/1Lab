@@ -26,7 +26,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
         
         public void Run()
         {
-            ref var timerTriggerData = ref Componenter.AddOrGet<OneLabData.TimerTriggerData>(Entity);
+            ref var timerTriggerData = ref Pooler.TimerTrigger.AddOrGet(Entity);
             timerTriggerData.OnTick = onTick;
             timerTriggerData.Delay = delay;
             timerTriggerData.IsLoop = isLoop;
@@ -34,7 +34,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
 
         public void Stop()
         {
-            Componenter.Del<OneLabData.TimerTriggerData>(Entity);
+            Pooler.TimerTrigger.Del(Entity);
         }
     }
 }

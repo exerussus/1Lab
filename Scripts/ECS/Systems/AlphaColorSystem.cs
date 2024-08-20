@@ -10,7 +10,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         protected override void Initialize()
         {
-            _alphaColorFilter = Componenter.Filter<OneLabData.AlphaColorProcessData>().Inc<OneLabData.VisualData>().End();
+            _alphaColorFilter = Componenter.Filter<OneLabData.AlphaColorProcess>().Inc<OneLabData.Visual>().End();
         }
 
         protected override void Update()

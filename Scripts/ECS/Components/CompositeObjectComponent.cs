@@ -26,7 +26,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public override void Destroy()
         {
-            Componenter.Del<OneLabData.CompositeObjectData>(Entity);
+            Pooler.CompositeObject.Del(Entity);
         }
 
         public void DestroyComposite()

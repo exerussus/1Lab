@@ -13,7 +13,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         protected override void Initialize()
         {
-            _sorterFilter = Componenter.Filter<OneLabData.SorterData>().End();
+            _sorterFilter = Componenter.Filter<OneLabData.Sorter>().End();
         }
 
         protected override void Update()

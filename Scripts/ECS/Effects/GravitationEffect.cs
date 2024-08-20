@@ -27,9 +27,9 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
 
         private void Set(int entity, Componenter componenter, OneLabPooler pooler)
         {
-            if (!componenter.Has<OneLabData.RigidBody2DData>(entity)) return;
+            if (!pooler.RigidBody2D.Has(entity)) return;
             
-            ref var physicalBodyData = ref componenter.Get<OneLabData.RigidBody2DData>(entity);
+            ref var physicalBodyData = ref pooler.RigidBody2D.Get(entity);
             physicalBodyData.Value.gravityScale = gravity;
         }
     }

@@ -13,8 +13,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         protected override void Initialize()
         {
-            _cameraFilter = Componenter.Filter<OneLabData.SmartCameraData>().End();
-            _targetFilter = Componenter.Filter<OneLabData.CameraTargetData>().End();
+            _cameraFilter = Componenter.Filter<OneLabData.SmartCamera>().End();
+            _targetFilter = Componenter.Filter<OneLabData.CameraTarget>().End();
             GameShare.GetSharedObject(ref _pooler);
         }
 

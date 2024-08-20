@@ -12,8 +12,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         protected override void Initialize()
         {
-            _keyColliderSwitcherFilter = Componenter.Filter<OneLabData.KeyColliderSwitcherData>().End();
-            _joystickYFilter = Componenter.Filter<OneLabData.JoystickYData>().End();
+            _keyColliderSwitcherFilter = Componenter.Filter<OneLabData.KeyColliderSwitcher>().End();
+            _joystickYFilter = Componenter.Filter<OneLabData.JoystickY>().End();
         }
 
         protected override void Update()

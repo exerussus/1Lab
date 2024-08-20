@@ -44,12 +44,12 @@ namespace Exerussus._1Lab.Scripts.Core
             Pooler = pooler;
             Signal = signal;
             entity = Componenter.GetNewEntity();
-            ref var transformData = ref Componenter.AddOrGet<OneLabData.TransformData>(entity);
+            ref var transformData = ref Pooler.Transform.AddOrGet(entity);
             transformData.InitializeValues(transform);
             TryInitializePhysicalBody();
             foreach (var ecsComponent in ecsComponents) ecsComponent.PreInitialize(entity, Componenter, Pooler);
             foreach (var ecsComponent in ecsComponents) ecsComponent.Initialize();
-            ref var ecsMonoBehData = ref Componenter.AddOrGet<OneLabData.EcsMonoBehaviorData>(entity);
+            ref var ecsMonoBehData = ref Pooler.EcsMonoBehavior.AddOrGet(entity);
             ecsMonoBehData.InitializeValues(this);
             Signal.RegistryRaise(new OneLabSignals.OnEcsMonoBehaviorInitializedSignal { EcsMonoBehavior = this });
             onInitialized?.Invoke();
@@ -63,7 +63,7 @@ namespace Exerussus._1Lab.Scripts.Core
             isInitialized = false;
             foreach (var ecsComponent in ecsComponents) ecsComponent.Destroy();
             Signal.RegistryRaise(new OneLabSignals.OnEcsMonoBehaviorStartDestroySignal { EcsMonoBehavior = this });
-            ref var destroyingData = ref Componenter.AddOrGet<OneLabData.OnDestroyData>(entity);
+            ref var destroyingData = ref Pooler.OnDestroy.AddOrGet(entity);
             destroyingData.InitializeValues(gameObject, delay);
         }
 
@@ -71,12 +71,12 @@ namespace Exerussus._1Lab.Scripts.Core
         {
             if (rb2D != null)
             {
-                ref var physicalBodyData = ref Componenter.AddOrGet<OneLabData.RigidBody2DData>(Entity);
+                ref var physicalBodyData = ref Pooler.RigidBody2D.AddOrGet(Entity);
                 physicalBodyData.Value = rb2D;
             }
             else if (rb3D != null)
             {
-                ref var physicalBodyData = ref Componenter.AddOrGet<OneLabData.RigidBody3DData>(Entity);
+                ref var physicalBodyData = ref Pooler.RigidBody3D.AddOrGet(Entity);
                 physicalBodyData.Value = rb3D;
             }
         }

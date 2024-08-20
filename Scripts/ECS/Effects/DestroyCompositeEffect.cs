@@ -8,22 +8,22 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
     {
         public void DestroyCompositeToOrigin(int originEntity, Componenter componenter, OneLabPooler pooler)
         {
-            if (!componenter.Has<OneLabData.CompositeObjectData>(originEntity)) return;
-            ref var compositeData = ref componenter.Get<OneLabData.CompositeObjectData>(originEntity);
+            if (!pooler.CompositeObject.Has(originEntity)) return;
+            ref var compositeData = ref pooler.CompositeObject.Get(originEntity);
             compositeData.Value.DestroyComposite();
         }
         
         public void DestroyCompositeToOrigin(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
-            if (!componenter.Has<OneLabData.CompositeObjectData>(originEntity)) return;
-            ref var compositeData = ref componenter.Get<OneLabData.CompositeObjectData>(originEntity);
+            if (!pooler.CompositeObject.Has(originEntity)) return;
+            ref var compositeData = ref pooler.CompositeObject.Get(originEntity);
             compositeData.Value.DestroyComposite();
         }
         
         public void DestroyCompositeToTarget(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
-            if (!componenter.Has<OneLabData.CompositeObjectData>(targetEntity)) return;
-            ref var compositeData = ref componenter.Get<OneLabData.CompositeObjectData>(targetEntity);
+            if (!pooler.CompositeObject.Has(targetEntity)) return;
+            ref var compositeData = ref pooler.CompositeObject.Get(targetEntity);
             compositeData.Value.DestroyComposite();
         }
     }

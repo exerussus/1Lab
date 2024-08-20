@@ -18,8 +18,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
         public void SpawnInBetweenTargetPosition(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
             if (!Activated) return;
-            var originPosition = componenter.GetVector2Position(originEntity);
-            var targetPosition = componenter.GetVector2Position(targetEntity);
+            var originPosition = pooler.GetVector2Position(originEntity);
+            var targetPosition = pooler.GetVector2Position(targetEntity);
             var resultPosition = Vector2.Lerp(originPosition, targetPosition, 0.5f);        
             Spawn(resultPosition);
         }
@@ -27,21 +27,21 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
         public void SpawnInTargetPosition(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
             if (!Activated) return;
-            var targetPosition = componenter.GetVector2Position(targetEntity);
+            var targetPosition = pooler.GetVector2Position(targetEntity);
             Spawn(targetPosition);
         }
         
         public void SpawnInOriginPosition(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
             if (!Activated) return;
-            var originPosition = componenter.GetVector2Position(originEntity);
+            var originPosition = pooler.GetVector2Position(originEntity);
             Spawn(originPosition);
         }
         
         public void SpawnInOriginPosition(int originEntity, Componenter componenter, OneLabPooler pooler)
         {
             if (!Activated) return;
-            var originPosition = componenter.GetVector2Position(originEntity);
+            var originPosition = pooler.GetVector2Position(originEntity);
             Spawn(originPosition);
         }
 

@@ -28,15 +28,15 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
 
         private void Teleport(int entity, Componenter componenter, OneLabPooler pooler)
         {
-            ref var transformData = ref componenter.Get<OneLabData.TransformData>(entity);
+            ref var transformData = ref pooler.Transform.Get(entity);
             var result = transformData.Value.position;
             result.x = position.x;
             result.y = position.y;
             transformData.Value.position = result;
             
-            if (componenter.Has<OneLabData.RigidBody2DData>(entity))
+            if (pooler.RigidBody2D.Has(entity))
             {
-                ref var physicalBodyData = ref componenter.Get<OneLabData.RigidBody2DData>(entity);
+                ref var physicalBodyData = ref pooler.RigidBody2D.Get(entity);
                 physicalBodyData.Value.velocity = Vector2.zero;
             }
             

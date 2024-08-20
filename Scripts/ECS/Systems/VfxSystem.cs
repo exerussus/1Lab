@@ -18,8 +18,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         protected override void Initialize()
         {
-            _vfxFilter = Componenter.Filter<OneLabData.VfxData>().End();
-            _vfxReleaseCommandFilter = Componenter.Filter<OneLabData.VfxData>().Inc<OneLabData.CommandReleaseVfxMark>().End();
+            _vfxFilter = Componenter.Filter<OneLabData.Vfx>().End();
+            _vfxReleaseCommandFilter = Componenter.Filter<OneLabData.Vfx>().Inc<OneLabData.CommandReleaseVfxMark>().End();
         }
 
         protected override void Update()
@@ -38,12 +38,12 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
         {
             ref var vfxData = ref Pooler.Vfx.Get(entity);
 
-            if (vfxData.Vfx.prefab == null || !_pools.TryGetValue(vfxData.Vfx.prefab, out ObjectPool<VfxComponent> pool)) 
-                Object.Destroy(vfxData.Vfx.gameObject);
+            if (vfxData.Value.prefab == null || !_pools.TryGetValue(vfxData.Value.prefab, out ObjectPool<VfxComponent> pool)) 
+                Object.Destroy(vfxData.Value.gameObject);
             else
             {
-                vfxData.Vfx.OnRelease();
-                pool.ReleaseObject(vfxData.Vfx);
+                vfxData.Value.OnRelease();
+                pool.ReleaseObject(vfxData.Value);
             }
             Componenter.DelEntity(entity);
         }
@@ -55,19 +55,19 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             vfxData.FramesRemaining -= 1;
             if (vfxData.FramesRemaining > 0) return;
 
-            vfxData.FramesRemaining = vfxData.Vfx.frameDelay;
-            vfxData.Vfx.currentSprite++;
+            vfxData.FramesRemaining = vfxData.Value.frameDelay;
+            vfxData.Value.currentSprite++;
 
-            if (vfxData.Vfx.sprites.Length == vfxData.Vfx.currentSprite)
+            if (vfxData.Value.sprites.Length == vfxData.Value.currentSprite)
             {
-                if (vfxData.Vfx.isLoop)
+                if (vfxData.Value.isLoop)
                 {
-                    vfxData.Vfx.currentSprite = 0;
-                    vfxData.Vfx.spriteRenderer.sprite = vfxData.Vfx.sprites[vfxData.Vfx.currentSprite];
+                    vfxData.Value.currentSprite = 0;
+                    vfxData.Value.spriteRenderer.sprite = vfxData.Value.sprites[vfxData.Value.currentSprite];
                 }
                 else ReleaseVfx(entity);
             }
-            else vfxData.Vfx.spriteRenderer.sprite = vfxData.Vfx.sprites[vfxData.Vfx.currentSprite];
+            else vfxData.Value.spriteRenderer.sprite = vfxData.Value.sprites[vfxData.Value.currentSprite];
         }
 
         protected override void OnSignal(OneLabSignals.CommandCreateVfxSignal data)
@@ -85,7 +85,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
             var newEntity = Componenter.GetNewEntity();
             ref var dataVfx = ref Pooler.Vfx.AddOrGet(newEntity);
-            dataVfx.Vfx = vfx;
+            dataVfx.Value = vfx;
             dataVfx.FramesRemaining = vfx.frameDelay;
             dataVfx.LoopTimeRemaining = vfx.loopTime;
             vfx.Run();

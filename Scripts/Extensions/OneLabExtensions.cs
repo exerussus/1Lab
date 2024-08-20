@@ -20,25 +20,25 @@ namespace Exerussus._1Lab.Scripts.Extensions
 
             return component;
         }
-        public static float GetDistance<TData>(this Componenter componenter, int firstEntity, int secondEntity) where TData : IEcsComponent
+        public static float GetDistance(this OneLabPooler pooler, int firstEntity, int secondEntity)
         {
-            var firstTransform = componenter.Get<OneLabData.TransformData>(firstEntity).Value;
-            var secondTransform = componenter.Get<OneLabData.TransformData>(secondEntity).Value;
+            var firstTransform = pooler.Transform.Get(firstEntity).Value;
+            var secondTransform = pooler.Transform.Get(secondEntity).Value;
 
             return Vector2.Distance(firstTransform.position, secondTransform.position);
         }
 
-        public static bool GetIsDistanceLessThan<TData>(this Componenter componenter, int firstEntity, int secondEntity, float distance) where TData : IEcsComponent
+        public static bool GetIsDistanceLessThan(this OneLabPooler pooler, int firstEntity, int secondEntity, float distance)
         {
-            var firstTransform = componenter.Get<OneLabData.TransformData>(firstEntity).Value;
-            var secondTransform = componenter.Get<OneLabData.TransformData>(secondEntity).Value;
+            var firstTransform = pooler.Transform.Get(firstEntity).Value;
+            var secondTransform = pooler.Transform.Get(secondEntity).Value;
 
             return Vector2.Distance(firstTransform.position, secondTransform.position) > distance;
         }
         
-        public static Vector2 GetVector2Position(this Componenter componenter, int entity)
+        public static Vector2 GetVector2Position(this OneLabPooler pooler, int entity)
         {
-            ref var transformData = ref componenter.Get<OneLabData.TransformData>(entity);
+            ref var transformData = ref pooler.Transform.Get(entity);
             return transformData.Value.position;
         }
     }

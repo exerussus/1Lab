@@ -13,8 +13,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         protected override void Initialize()
         {
-            _timerTriggerFilter = Componenter.Filter<OneLabData.TimerTriggerData>().End();
-            _keyPressedTriggerFilter = Componenter.Filter<OneLabData.KeyPressedTriggerData>().End();
+            _timerTriggerFilter = Componenter.Filter<OneLabData.TimerTrigger>().End();
+            _keyPressedTriggerFilter = Componenter.Filter<OneLabData.KeyPressedTrigger>().End();
         }
 
         protected override void Update()

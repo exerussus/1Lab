@@ -27,9 +27,9 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
 
         private void SetColor(int entity, Componenter componenter, OneLabPooler pooler)
         {
-            if (!componenter.Has<OneLabData.VisualData>(entity)) return;
+            if (!pooler.Visual.Has(entity)) return;
 
-            ref var visualData = ref componenter.Get<OneLabData.VisualData>(entity);
+            ref var visualData = ref pooler.Visual.Get(entity);
             visualData.SpriteRenderer.color = color;
         }
     }

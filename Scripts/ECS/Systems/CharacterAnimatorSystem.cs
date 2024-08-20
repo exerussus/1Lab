@@ -13,8 +13,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         protected override void Initialize()
         {
-            _characterAnimatorFilter = Componenter.Filter<OneLabData.CharacterAnimatorData>().End();
-            _characterAnimatorExpendedFilter = Componenter.Filter<OneLabData.CharacterAnimatorExpendedData>().Inc<OneLabData.AnimationInputData>().End();
+            _characterAnimatorFilter = Componenter.Filter<OneLabData.CharacterAnimator>().End();
+            _characterAnimatorExpendedFilter = Componenter.Filter<OneLabData.CharacterAnimatorExpended>().Inc<OneLabData.AnimationInput>().End();
         }
 
         protected override void Update()

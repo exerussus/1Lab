@@ -19,14 +19,14 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
 
         public void Run()
         {
-            ref var globalTriggerData = ref Componenter.AddOrGet<OneLabData.GlobalTriggerData>(Entity);
+            ref var globalTriggerData = ref Pooler.GlobalTrigger.AddOrGet(Entity);
             globalTriggerData.Value = this;
             globalTriggerData.Tags = tags;
         }
 
         public void Stop()
         {
-            Componenter.Del<OneLabData.GlobalTriggerData>(Entity);
+            Pooler.GlobalTrigger.Del(Entity);
         }
     }
 }

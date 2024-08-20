@@ -37,9 +37,9 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             });
         }
 
-        public void CreateInOriginPosition(int originEntity, Componenter componenter)
+        public void CreateInOriginPosition(int originEntity, Componenter componenter, OneLabPooler pooler)
         {
-            ref var transformData = ref componenter.Get<OneLabData.TransformData>(originEntity);
+            ref var transformData = ref pooler.Transform.Get(originEntity);
             
             OneLab.Signal.RegistryRaise(new OneLabSignals.CommandCreateVfxSignal
             {
@@ -53,7 +53,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
 
         public void CreateInOriginPosition(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
-            ref var transformData = ref componenter.Get<OneLabData.TransformData>(originEntity);
+            ref var transformData = ref pooler.Transform.Get(originEntity);
             
             OneLab.Signal.RegistryRaise(new OneLabSignals.CommandCreateVfxSignal
             {
@@ -67,7 +67,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
 
         public void CreateInTargetPosition(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
-            ref var transformData = ref componenter.Get<OneLabData.TransformData>(targetEntity);
+            ref var transformData = ref pooler.Transform.Get(targetEntity);
             
             OneLab.Signal.RegistryRaise(new OneLabSignals.CommandCreateVfxSignal
             {
@@ -81,8 +81,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
 
         public void CreateBetweenPositions(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
         {
-            ref var firstTransformData = ref componenter.Get<OneLabData.TransformData>(originEntity);
-            ref var secondTransformData = ref componenter.Get<OneLabData.TransformData>(targetEntity);
+            ref var firstTransformData = ref pooler.Transform.Get(originEntity);
+            ref var secondTransformData = ref pooler.Transform.Get(targetEntity);
 
             var betweenPosition = Vector3.Lerp(firstTransformData.Value.position, secondTransformData.Value.position, 0.5f);
             

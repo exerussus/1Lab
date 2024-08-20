@@ -25,7 +25,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
         
         public void Stop()
         {
-            Componenter.Del<OneLabData.AlphaColorProcessData>(Entity);
+            Pooler.AlphaColorProcess.Del(Entity);
         }
 
         protected override void OnValidate()

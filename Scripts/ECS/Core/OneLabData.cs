@@ -1,7 +1,6 @@
 ﻿using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Components;
-using Exerussus._1Lab.Scripts.ECS.Triggers;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,38 +9,38 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
     public static class OneLabData
     {
         
-        public struct JoystickYData : IOneLabEcsData
+        public struct JoystickY : IOneLabEcsData
         {
             public bool FullMagnitude;
             public Joystick Value;
         }
 
-        public struct JoystickXData : IOneLabEcsData
+        public struct JoystickX : IOneLabEcsData
         {
             public bool FullMagnitude;
             public Joystick Value;
         }
         
-        public struct TransformData : IOneLabEcsData
+        public struct Transform : IOneLabEcsData
         {
-            public Transform Value;
-            public void InitializeValues(Transform value)
+            public UnityEngine.Transform Value;
+            public void InitializeValues(UnityEngine.Transform value)
             {
                 Value = value;
             }
         }
 
-        public struct RigidBody2DData : IOneLabEcsData
+        public struct RigidBody2D : IOneLabEcsData
         {
             public Rigidbody2D Value;
         }
 
-        public struct RigidBody3DData : IOneLabEcsData
+        public struct RigidBody3D : IOneLabEcsData
         {
             public Rigidbody Value;
         }
     
-        public struct OnDestroyData : IEcsData<GameObject, float>
+        public struct OnDestroy : IOneLabEcsData
         {
             public float TimeRemaining;
             public GameObject ObjectToDelete;
@@ -52,14 +51,14 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             }
         }
 
-        public struct AlphaColorProcessData : IOneLabEcsData
+        public struct AlphaColorProcess : IOneLabEcsData
         {
             public AlphaColorComponent AlphaColor;
             public float Speed;
             public UnityEvent<int, Componenter, OneLabPooler> OnSuccess;
         }
         
-        public struct CharacterAnimatorExpendedData : IOneLabEcsData
+        public struct CharacterAnimatorExpended : IOneLabEcsData
         {
             public bool IsOneShot;
             public int FrameRemaining;
@@ -68,12 +67,12 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             public CharacterAnimatorComponent Value;
         }
 
-        public struct CompositeObjectData : IOneLabEcsData
+        public struct CompositeObject : IOneLabEcsData
         {
             public CompositeObjectComponent Value;
         }
 
-        public struct JumpData : IOneLabEcsData
+        public struct Jump : IOneLabEcsData
         {
             public KeyCode Key1;
             public KeyCode Key2;
@@ -86,12 +85,12 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             public string[] TouchTags;
         }
 
-        public struct KeyColliderSwitcherData : IOneLabEcsData
+        public struct KeyColliderSwitcher : IOneLabEcsData
         {
             public KeyColliderSwitcherComponent Value;
         }
 
-        public struct KeyboardPlatformInputMoverData : IOneLabEcsData
+        public struct KeyboardPlatformInputMover : IOneLabEcsData
         {
             public float Speed;
             public bool FullSpeed;
@@ -102,7 +101,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             public bool HasYJoystick;
         }
 
-        public struct PointMoverData : IOneLabEcsData
+        public struct PointMover : IOneLabEcsData
         {
             public float Speed;
             public Vector2 StartPoint;
@@ -110,61 +109,61 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             public bool ToEndPoint;
         }
 
-        public struct PointRotatorData : IOneLabEcsData
+        public struct PointRotator : IOneLabEcsData
         {
             public Vector2 Point;
             public float Speed;
         }
 
-        public struct RotatorMouseData : IOneLabEcsData
+        public struct RotatorMouse : IOneLabEcsData
         {
             public float Speed;
         }
 
-        public struct SelfRotatorXData : IOneLabEcsData
+        public struct SelfRotatorX : IOneLabEcsData
         {
             public float Speed;
         }
 
-        public struct SelfRotatorYData : IOneLabEcsData
+        public struct SelfRotatorY : IOneLabEcsData
         {
             public float Speed;
         }
 
-        public struct SelfRotatorZData : IOneLabEcsData
+        public struct SelfRotatorZ : IOneLabEcsData
         {
             public float Speed;
         }
 
-        public struct SmartCameraData : IOneLabEcsData
+        public struct SmartCamera : IOneLabEcsData
         {
-            public Transform Transform;
+            public UnityEngine.Transform Transform;
             public float SmoothingSpeed;
             public Vector3 Velocity;
             public float SmoothingTime;
         }
 
-        public struct SorterData : IOneLabEcsData
+        public struct Sorter : IOneLabEcsData
         {
             public SortRendererComponent Value;
         }
 
-        public struct SpeedLimitXData : IOneLabEcsData
+        public struct SpeedLimitX : IOneLabEcsData
         {
             public float Limit;
         }
 
-        public struct SpeedLimitYData : IOneLabEcsData 
+        public struct SpeedLimitY : IOneLabEcsData 
         {
             public float Limit;
         }
 
-        public struct TouchableData : IOneLabEcsData
+        public struct Touchable : IOneLabEcsData
         {
             public TouchableComponent Value;
         }
 
-        public struct CharacterAnimatorData : IOneLabEcsData
+        public struct CharacterAnimator : IOneLabEcsData
         {
             public bool IsOneShot;
             public int FrameRemaining;
@@ -173,9 +172,9 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             public UniversalAnimatorComponent Value;
         }
 
-        public struct VfxData : IOneLabEcsData
+        public struct Vfx : IOneLabEcsData
         {
-            public VfxComponent Vfx;
+            public VfxComponent Value;
             public int FramesRemaining;
             public float LoopTimeRemaining;
         }
@@ -185,53 +184,53 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         
         }
 
-        public struct VisualData : IOneLabEcsData
+        public struct Visual : IOneLabEcsData
         {
             public SpriteRenderer SpriteRenderer;
         }
 
-        public struct TagsData : IOneLabEcsData
+        public struct Tags : IOneLabEcsData
         {
             public string[] Values;
         }
     
-        public struct CameraTargetData : IOneLabEcsData
+        public struct CameraTarget : IOneLabEcsData
         {
             public bool FollowX;
             public bool FollowY;
             public Vector3 Offset;
-            public Transform Transform;
+            public UnityEngine.Transform Transform;
         }
 
-        public struct AnimationInputData : IOneLabEcsData
+        public struct AnimationInput : IOneLabEcsData
         {
             public float HorizontalAxis;
         }
 
-        public struct InputData : IOneLabEcsData
+        public struct Input : IOneLabEcsData
         {
             public float Horizontal;
             public float Vertical;
         }
 
-        public struct EntityDeathTriggerData : IOneLabEcsData
+        public struct EntityDeathTrigger : IOneLabEcsData
         {
             public UnityEvent<int, Componenter, OneLabPooler> OnDead;
         }
 
-        public struct GlobalTriggerData : IOneLabEcsData
+        public struct GlobalTrigger : IOneLabEcsData
         {
             public string[] Tags;
-            public GlobalTrigger Value;
+            public Triggers.GlobalTrigger Value;
         }
 
-        public struct KeyPressedTriggerData : IOneLabEcsData
+        public struct KeyPressedTrigger : IOneLabEcsData
         {
             public KeyCode Key;
             public UnityEvent<int, Componenter, OneLabPooler> OnPressed;
         }
 
-        public struct TimerTriggerData : IOneLabEcsData
+        public struct TimerTrigger : IOneLabEcsData
         {
             public UnityEvent<int, Componenter, OneLabPooler> OnTick;
             public float Delay;
@@ -239,12 +238,12 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             public bool IsLoop;
         }
 
-        public struct FliperData : IOneLabEcsData
+        public struct Fliper : IOneLabEcsData
         {
             public FliperComponent Value;
         }
 
-        public struct EcsMonoBehaviorData : IOneLabEcsData
+        public struct EcsMonoBehavior : IOneLabEcsData
         {
             public IEcsMonoBehavior Value;
         
@@ -254,7 +253,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             }
         }
 
-        public struct DirectionMoverData : IOneLabEcsData
+        public struct DirectionMover : IOneLabEcsData
         {
             
         }

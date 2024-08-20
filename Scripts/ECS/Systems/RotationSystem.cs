@@ -19,11 +19,11 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
         protected override void Initialize()
         {
             _camera = Camera.main;
-            _rotationMouseFilter = Componenter.Filter<OneLabData.RotatorMouseData>().End();
-            _selfRotationXFilter = Componenter.Filter<OneLabData.SelfRotatorXData>().End();
-            _selfRotationYFilter = Componenter.Filter<OneLabData.SelfRotatorYData>().End();
-            _selfRotationZFilter = Componenter.Filter<OneLabData.SelfRotatorZData>().End();
-            _pointRotationFilter = Componenter.Filter<OneLabData.PointRotatorData>().End();
+            _rotationMouseFilter = Componenter.Filter<OneLabData.RotatorMouse>().End();
+            _selfRotationXFilter = Componenter.Filter<OneLabData.SelfRotatorX>().End();
+            _selfRotationYFilter = Componenter.Filter<OneLabData.SelfRotatorY>().End();
+            _selfRotationZFilter = Componenter.Filter<OneLabData.SelfRotatorZ>().End();
+            _pointRotationFilter = Componenter.Filter<OneLabData.PointRotator>().End();
         }
 
         protected override void Update()

@@ -15,10 +15,10 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
 
         protected override void Initialize()
         {
-            _keyboardInputMoverFilter = Componenter.Filter<OneLabData.KeyboardPlatformInputMoverData>().End();
-            _jumpFilter = Componenter.Filter<OneLabData.JumpData>().Inc<OneLabData.RigidBody2DData>().End();
-            _joystickXFilter = Componenter.Filter<OneLabData.JoystickXData>().End();
-            _joystickYFilter = Componenter.Filter<OneLabData.JoystickYData>().End();
+            _keyboardInputMoverFilter = Componenter.Filter<OneLabData.KeyboardPlatformInputMover>().End();
+            _jumpFilter = Componenter.Filter<OneLabData.Jump>().Inc<OneLabData.RigidBody2D>().End();
+            _joystickXFilter = Componenter.Filter<OneLabData.JoystickX>().End();
+            _joystickYFilter = Componenter.Filter<OneLabData.JoystickY>().End();
         }
 
         protected override void Update()
