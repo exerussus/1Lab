@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Exerussus._1Lab.Scripts.ECS.Core
 {
-    public class OneLab : EcsStarter
+    public class OneLab : EcsStarter<OneLabPooler>
     {
         #region Fields And Initializing
 
@@ -20,12 +20,11 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         public static Componenter Componenter => Instance._componenter;
         public static EcsWorld World => Instance._world;
         public static Signal Signal => Instance._signalHandler.Signal;
-        public static OneLabPooler Pooler => Instance._oneLabPooler;
+        public static OneLabPooler Pooler => Instance._pooler;
         private event Action OnDestroyEvent;
         private OneLabConfiguration _configuration;
         private SignalHandler _signalHandler;
         private TagsHandler _tagsHandler = new();
-        private OneLabPooler _oneLabPooler;
         public static OneLabConfiguration Configuration => Instance._configuration;
 
         private static OneLab Instance
@@ -109,8 +108,6 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
 
         protected override void SetSharingData(EcsWorld world, GameShare gameShare)
         {
-            _oneLabPooler = new OneLabPooler(world);
-            GameShare.AddSharedObject(_oneLabPooler);
             GameShare.AddSharedObject(_configuration);
             GameShare.AddSharedObject(_tagsHandler);
             GameShare.AddSharedObject(_signalHandler.Signal);
@@ -119,6 +116,11 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         protected override Signal GetSignal()
         {
             return _signalHandler.Signal;
+        }
+
+        protected override OneLabPooler GetPooler(EcsWorld world)
+        {
+            return new OneLabPooler(world);
         }
     }
 

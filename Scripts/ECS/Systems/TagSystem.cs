@@ -9,24 +9,17 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
         OneLabSignals.OnEcsMonoBehaviorStartDestroySignal, 
         OneLabSignals.CommandFilterTagSignal>
     {
-        private TagsHandler _tagsHandler;
-
-        protected override void Initialize()
-        {
-            GameShare.GetSharedObject(ref _tagsHandler);
-        }
-
         protected override void OnSignal(OneLabSignals.OnLabEntityInitializedSignal data)
         {
             foreach (var tag in data.OneLabEntity.tags)
             {
-                _tagsHandler.Add(tag, data.OneLabEntity.Entity);
+                TagsHandler.Add(tag, data.OneLabEntity.Entity);
             }
         }
 
         protected override void OnSignal(OneLabSignals.OnEcsMonoBehaviorStartDestroySignal data)
         {
-            if (Pooler.Tags.Has(data.EcsMonoBehavior.Entity)) _tagsHandler.Remove(data.EcsMonoBehavior.Entity);
+            if (Pooler.Tags.Has(data.EcsMonoBehavior.Entity)) TagsHandler.Remove(data.EcsMonoBehavior.Entity);
         }
 
         protected override void OnSignal(OneLabSignals.CommandFilterTagSignal data)
@@ -35,7 +28,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             
             if (data.TagFilter.any.IsNotEmpty())
             {
-                if (_tagsHandler.HasAny(data.Entity, data.TagFilter.any))
+                if (TagsHandler.HasAny(data.Entity, data.TagFilter.any))
                 {
                     data.TagFilter.onSuccess?.Invoke(data.Entity, Componenter, Pooler);
                     return;
@@ -44,7 +37,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             
             if (data.TagFilter.include.IsNotEmpty())
             {
-                var includeResult = _tagsHandler.HasAll(data.Entity, data.TagFilter.include);
+                var includeResult = TagsHandler.HasAll(data.Entity, data.TagFilter.include);
                 if (includeResult) result = true;
             }
             
@@ -52,7 +45,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
             {
                 if (data.TagFilter.exclude.IsNotEmpty())
                 {
-                    result = !_tagsHandler.HasAny(data.Entity, data.TagFilter.exclude);
+                    result = !TagsHandler.HasAny(data.Entity, data.TagFilter.exclude);
                 }
             }
             
