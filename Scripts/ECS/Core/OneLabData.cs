@@ -1,4 +1,5 @@
-﻿using Exerussus._1EasyEcs.Scripts.Core;
+﻿
+using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Components;
 using UnityEngine;
@@ -179,7 +180,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             public float LoopTimeRemaining;
         }
 
-        public struct CommandReleaseVfxMark : IOneLabEcsData
+        public struct RequestReleaseVfxMark : IOneLabEcsData
         {
         
         }
@@ -255,7 +256,8 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
 
         public struct DirectionMover : IOneLabEcsData
         {
-            
+            public float Speed;
+            public Vector2 Direction;
         }
     }
 }

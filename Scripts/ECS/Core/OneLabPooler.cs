@@ -33,7 +33,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             Touchable = new PoolerModule<OneLabData.Touchable>(world);
             CharacterAnimator = new PoolerModule<OneLabData.CharacterAnimator>(world);
             Vfx = new PoolerModule<OneLabData.Vfx>(world);
-            CommandReleaseVfx = new PoolerModule<OneLabData.CommandReleaseVfxMark>(world);
+            CommandReleaseVfx = new PoolerModule<OneLabData.RequestReleaseVfxMark>(world);
             Visual = new PoolerModule<OneLabData.Visual>(world);
             Tags = new PoolerModule<OneLabData.Tags>(world);
             CameraTarget = new PoolerModule<OneLabData.CameraTarget>(world);
@@ -77,7 +77,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         public readonly PoolerModule<OneLabData.Touchable> Touchable;
         public readonly PoolerModule<OneLabData.CharacterAnimator> CharacterAnimator;
         public readonly PoolerModule<OneLabData.Vfx> Vfx;
-        public readonly PoolerModule<OneLabData.CommandReleaseVfxMark> CommandReleaseVfx;
+        public readonly PoolerModule<OneLabData.RequestReleaseVfxMark> CommandReleaseVfx;
         public readonly PoolerModule<OneLabData.Visual> Visual;
         public readonly PoolerModule<OneLabData.Tags> Tags;
         public readonly PoolerModule<OneLabData.CameraTarget> CameraTarget;

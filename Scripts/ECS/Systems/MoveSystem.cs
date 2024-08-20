@@ -9,15 +9,26 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
     public class MoveSystem : OneLabSystem
     {
         private EcsFilter _pointMoverFilter;
+        private EcsFilter _directionMoverFilter;
 
         protected override void Initialize()
         {
             _pointMoverFilter = Componenter.Filter<OneLabData.PointMover>().End();
+            _directionMoverFilter = Componenter.Filter<OneLabData.DirectionMover>().Inc<OneLabData.Transform>().End();
         }
 
         protected override void Update()
         {
             _pointMoverFilter.Foreach(OnPointMoveUpdate);
+            _directionMoverFilter.Foreach(OnDirectionMoveUpdate);
+        }
+
+        private void OnDirectionMoveUpdate(int entity)
+        {
+            ref var directionMoverData = ref Pooler.DirectionMover.Get(entity);
+            ref var transformData = ref Pooler.Transform.Get(entity);
+            
+            transformData.Value.Translate(directionMoverData.Speed * DeltaTime * directionMoverData.Direction);
         }
 
         private void OnPointMoveUpdate(int entity)

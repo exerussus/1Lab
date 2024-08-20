@@ -19,7 +19,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Systems
         protected override void Initialize()
         {
             _vfxFilter = Componenter.Filter<OneLabData.Vfx>().End();
-            _vfxReleaseCommandFilter = Componenter.Filter<OneLabData.Vfx>().Inc<OneLabData.CommandReleaseVfxMark>().End();
+            _vfxReleaseCommandFilter = Componenter.Filter<OneLabData.Vfx>().Inc<OneLabData.RequestReleaseVfxMark>().End();
         }
 
         protected override void Update()

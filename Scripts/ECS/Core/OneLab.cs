@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1EasyEcs.Scripts.Custom;
 using Exerussus._1Extensions.Scripts.Extensions;
