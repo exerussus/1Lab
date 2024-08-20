@@ -1,4 +1,4 @@
-﻿using Exerussus._1EasyEcs.Scripts.Core;
+﻿
 using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,7 +9,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
     public class EntityDeathTrigger : OneLabComponent
     {
         [SerializeField] private bool activatedOnStart = true;
-        public UnityEvent<int, Componenter, OneLabPooler> onDead;
+        public UnityEvent<int, OneLabPooler> onDead;
         
         public override void Initialize()
         {
@@ -18,7 +18,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
 
         public override void Destroy()
         {
-            onDead?.Invoke(Entity, Componenter, Pooler);
+            onDead?.Invoke(Entity, Pooler);
             DeactivateTrigger();
         }
 

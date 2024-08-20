@@ -1,5 +1,4 @@
 ﻿
-using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
@@ -10,22 +9,22 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
     {
         [SerializeField] private float gravity;
 
-        public void SetToOrigin(int originEntity, Componenter componenter, OneLabPooler pooler)
+        public void SetToOrigin(int originEntity, OneLabPooler pooler)
         {
-            Set(originEntity, componenter, pooler);
+            Set(originEntity, pooler);
         }
         
-        public void SetToOrigin(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
+        public void SetToOrigin(int originEntity, int targetEntity, OneLabPooler pooler)
         {
-            Set(originEntity, componenter, pooler);
+            Set(originEntity, pooler);
         }
         
-        public void SetToTarget(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
+        public void SetToTarget(int originEntity, int targetEntity, OneLabPooler pooler)
         {
-            Set(targetEntity, componenter, pooler);
+            Set(targetEntity, pooler);
         }
 
-        private void Set(int entity, Componenter componenter, OneLabPooler pooler)
+        private void Set(int entity, OneLabPooler pooler)
         {
             if (!pooler.RigidBody2D.Has(entity)) return;
             

@@ -56,7 +56,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         {
             public AlphaColorComponent AlphaColor;
             public float Speed;
-            public UnityEvent<int, Componenter, OneLabPooler> OnSuccess;
+            public UnityEvent<int, OneLabPooler> OnSuccess;
         }
         
         public struct CharacterAnimatorExpended : IOneLabEcsData
@@ -79,7 +79,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
             public KeyCode Key2;
             public float Power;
             public Vector2 Direction;
-            public UnityEvent<int, Componenter, OneLabPooler> OnJump;
+            public UnityEvent<int, OneLabPooler> OnJump;
             public float CoolDownDelay;
             public float CoolDownTimer;
             public bool ReloadOnTouch;
@@ -216,7 +216,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
 
         public struct EntityDeathTrigger : IOneLabEcsData
         {
-            public UnityEvent<int, Componenter, OneLabPooler> OnDead;
+            public UnityEvent<int, OneLabPooler> OnDead;
         }
 
         public struct GlobalTrigger : IOneLabEcsData
@@ -228,12 +228,12 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         public struct KeyPressedTrigger : IOneLabEcsData
         {
             public KeyCode Key;
-            public UnityEvent<int, Componenter, OneLabPooler> OnPressed;
+            public UnityEvent<int, OneLabPooler> OnPressed;
         }
 
         public struct TimerTrigger : IOneLabEcsData
         {
-            public UnityEvent<int, Componenter, OneLabPooler> OnTick;
+            public UnityEvent<int, OneLabPooler> OnTick;
             public float Delay;
             public float Timer;
             public bool IsLoop;

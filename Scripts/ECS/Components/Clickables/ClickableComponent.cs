@@ -1,4 +1,4 @@
-﻿using Exerussus._1EasyEcs.Scripts.Core;
+﻿
 using Exerussus._1Lab.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
@@ -10,11 +10,11 @@ namespace Exerussus._1Lab.Scripts.ECS.Components.Clickables
     [DisallowMultipleComponent, RequireComponent(typeof(Collider2D))]
     public class ClickableComponent : EcsComponent
     {
-        public UnityEvent<int, Componenter, OneLabPooler> onMouseDown;
+        public UnityEvent<int, OneLabPooler> onMouseDown;
 
         protected virtual void OnMouseDown()
         {
-            onMouseDown?.Invoke(Entity, Componenter, Pooler);
+            onMouseDown?.Invoke(Entity, Pooler);
         }
     }
 }

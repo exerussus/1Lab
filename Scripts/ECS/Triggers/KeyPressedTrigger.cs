@@ -1,4 +1,4 @@
-﻿using Exerussus._1EasyEcs.Scripts.Core;
+﻿
 using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,7 +9,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
     public class KeyPressedTrigger : OneLabComponent
     {
         [SerializeField] public KeyCode key;
-        public UnityEvent<int, Componenter, OneLabPooler> onPressed;
+        public UnityEvent<int, OneLabPooler> onPressed;
         
         public override void Initialize()
         {

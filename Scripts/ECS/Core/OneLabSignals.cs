@@ -48,7 +48,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
 
         public struct CommandFilterTagSignal : IOneLabSignal
         {
-            public TagFilter TagFilter;
+            public TagFilterEffect TagFilter;
             public int Entity;
         }
 

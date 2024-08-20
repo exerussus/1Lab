@@ -1,4 +1,4 @@
-﻿using Exerussus._1EasyEcs.Scripts.Core;
+﻿
 using Exerussus._1Lab.Scripts.ECS.Core;
 using Leopotam.EcsLite;
 using UnityEngine;
@@ -10,7 +10,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
     public class AllEntitiesComponent : OneLabComponent
     {
         private EcsFilter _tagsFilter;
-        public UnityEvent<int, Componenter, OneLabPooler> onExist;
+        public UnityEvent<int, OneLabPooler> onExist;
         
         public override void Initialize()
         {
@@ -19,7 +19,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
 
         public void GetAllEntitiesAndExecute()
         {
-            foreach (var entity in _tagsFilter) onExist?.Invoke(entity, Componenter, Pooler);
+            foreach (var entity in _tagsFilter) onExist?.Invoke(entity, Pooler);
         }
     }
 }

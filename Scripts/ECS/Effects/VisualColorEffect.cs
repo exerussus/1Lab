@@ -1,5 +1,4 @@
 ﻿
-using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 
@@ -10,22 +9,22 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
     {
         [SerializeField] private Color color = Color.white;
         
-        public void SetToOrigin(int originEntity, Componenter componenter, OneLabPooler pooler)
+        public void SetToOrigin(int originEntity, OneLabPooler pooler)
         {
-            SetColor(originEntity, componenter, pooler);
+            SetColor(originEntity, pooler);
         }
         
-        public void SetToOrigin(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
+        public void SetToOrigin(int originEntity, int targetEntity, OneLabPooler pooler)
         {
-            SetColor(originEntity, componenter, pooler);
+            SetColor(originEntity, pooler);
         }
         
-        public void SetToTarget(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
+        public void SetToTarget(int originEntity, int targetEntity, OneLabPooler pooler)
         {
-            SetColor(targetEntity, componenter, pooler);
+            SetColor(targetEntity, pooler);
         }
 
-        private void SetColor(int entity, Componenter componenter, OneLabPooler pooler)
+        private void SetColor(int entity, OneLabPooler pooler)
         {
             if (!pooler.Visual.Has(entity)) return;
 

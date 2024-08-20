@@ -1,5 +1,4 @@
 ﻿
-using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using Exerussus._1Lab.Scripts.Extensions;
@@ -13,9 +12,9 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
     {
         [SerializeField] private GameObject prefab;
         [SerializeField] private Vector2 spawnPosition;
-        public UnityEvent<int, Componenter, OneLabPooler> onSpawn;
+        public UnityEvent<int, OneLabPooler> onSpawn;
         
-        public void SpawnInBetweenTargetPosition(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
+        public void SpawnInBetweenTargetPosition(int originEntity, int targetEntity, OneLabPooler pooler)
         {
             if (!Activated) return;
             var originPosition = pooler.GetVector2Position(originEntity);
@@ -24,21 +23,21 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             Spawn(resultPosition);
         }
         
-        public void SpawnInTargetPosition(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
+        public void SpawnInTargetPosition(int originEntity, int targetEntity, OneLabPooler pooler)
         {
             if (!Activated) return;
             var targetPosition = pooler.GetVector2Position(targetEntity);
             Spawn(targetPosition);
         }
         
-        public void SpawnInOriginPosition(int originEntity, int targetEntity, Componenter componenter, OneLabPooler pooler)
+        public void SpawnInOriginPosition(int originEntity, int targetEntity, OneLabPooler pooler)
         {
             if (!Activated) return;
             var originPosition = pooler.GetVector2Position(originEntity);
             Spawn(originPosition);
         }
         
-        public void SpawnInOriginPosition(int originEntity, Componenter componenter, OneLabPooler pooler)
+        public void SpawnInOriginPosition(int originEntity, OneLabPooler pooler)
         {
             if (!Activated) return;
             var originPosition = pooler.GetVector2Position(originEntity);
@@ -52,7 +51,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             {
                 ecsMonoBehavior.onInitialized += () =>
                 {
-                    onSpawn?.Invoke(ecsMonoBehavior.Entity, ecsMonoBehavior.Componenter, ecsMonoBehavior.Pooler);
+                    onSpawn?.Invoke(ecsMonoBehavior.Entity, ecsMonoBehavior.Pooler);
                 };
             }
         }
@@ -65,7 +64,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Effects
             {
                 ecsMonoBehavior.onInitialized += () =>
                 {
-                    onSpawn?.Invoke(ecsMonoBehavior.Entity, ecsMonoBehavior.Componenter, ecsMonoBehavior.Pooler);
+                    onSpawn?.Invoke(ecsMonoBehavior.Entity, ecsMonoBehavior.Pooler);
                 };
             }
         }

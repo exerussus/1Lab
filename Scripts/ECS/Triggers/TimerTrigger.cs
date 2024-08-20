@@ -1,4 +1,4 @@
-﻿using Exerussus._1EasyEcs.Scripts.Core;
+﻿
 using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,7 +12,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Triggers
         [SerializeField] private float delay = 1f;
         [SerializeField] private bool isLoop;
 
-        public UnityEvent<int, Componenter, OneLabPooler> onTick;
+        public UnityEvent<int, OneLabPooler> onTick;
 
         public override void Initialize()
         {

@@ -1,5 +1,4 @@
 ﻿
-using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1Lab.Scripts.ECS.Core;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,7 +10,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Components
     {
         [SerializeField] public bool makeVisable = false;
         [SerializeField] public float speed = 10;
-        public UnityEvent<int, Componenter, OneLabPooler> onSuccess;
+        public UnityEvent<int, OneLabPooler> onSuccess;
         private const float SpeedMultiply = 0.001f;
 
         public void Run()
