@@ -85,4 +85,9 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         
         }
     }
+
+    public interface IOneLabSignal
+    {
+        
+    }
 }
