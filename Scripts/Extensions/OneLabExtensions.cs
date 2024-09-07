@@ -19,6 +19,27 @@ namespace Exerussus._1Lab.Scripts.Extensions
 
             return component;
         }
+        
+        public static T TrySetDataIfNull<T>(this Object gameObject, ref T component)
+            where T : ScriptableObject
+        {
+            if (component == null)
+            {
+                if (Application.isPlaying)
+                {
+                    var configHub = ConfigLoader.GetConfigHub();
+                    configHub.RefreshConfigs();
+                    component = configHub.GetConfig<T>();
+                }
+                else
+                {
+                    component = ConfigLoader.Get<T>(typeof(T).Name);
+                }
+            }
+
+            return component;
+        }
+        
         public static float GetDistance(this OneLabPooler pooler, int firstEntity, int secondEntity)
         {
             var firstTransform = pooler.Transform.Get(firstEntity).Value;
