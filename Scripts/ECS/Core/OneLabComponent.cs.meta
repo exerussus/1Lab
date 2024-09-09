@@ -1,3 +1,13 @@
-﻿fileFormatVersion: 2
+fileFormatVersion: 2
 guid: ec3f7cf8446543638e96da8fff51e5e9
-timeCreated: 1722560504
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - signalHandler: {fileID: 11400000, guid: cda2655bd7774684284b5271754ffad1, type: 2}
+  - oneLabEntity: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
