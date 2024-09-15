@@ -2,6 +2,7 @@
 using Exerussus._1Lab.Scripts.ECS.Core;
 using Leopotam.EcsLite;
 using UnityEngine;
+using LogType = Exerussus._1EasyEcs.Scripts.Custom.LogType;
 
 namespace Exerussus._1Lab.Scripts.ECS.Systems
 {

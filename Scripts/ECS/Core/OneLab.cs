@@ -22,6 +22,7 @@ namespace Exerussus._1Lab.Scripts.ECS.Core
         public static EcsWorld World => Instance._world;
         public static Signal Signal => Instance._signalHandler.Signal;
         public static OneLabPooler Pooler => Instance._pooler;
+        public override LogLevel LogLevel => LogLevel.None;
         private event Action OnDestroyEvent;
         private OneLabConfiguration _configuration;
         private SignalHandler _signalHandler;
